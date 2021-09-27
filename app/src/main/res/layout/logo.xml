@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 로고 -->
+    <RelativeLayout
+        android:id="@+id/logo"
+        android:layout_width="411dp"
+        android:layout_height="823dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="216dp"
+        android:layout_marginTop="1038dp"
+        android:background="@drawable/background"
+        android:clipToOutline="true"
+        tools:ignore="MissingConstraints"
+        >
+
+        <!-- Status Bar -->
+        <RelativeLayout
+            android:id="@+id/status_bar"
+            android:layout_width="411dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/status_bar"
+            tools:ignore="MissingConstraints" >
+        </RelativeLayout>
+
+        <!-- Frame_Logo -->
+        <RelativeLayout
+            android:id="@+id/container_logo"
+            android:layout_width="149dp"
+            android:layout_height="101dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="131dp"
+            android:layout_marginTop="301dp"
+            android:background="@drawable/hear_we_go" />
+
+        <!-- Frame_google_login -->
+        <RelativeLayout
+            android:id="@+id/container_google_login"
+            android:layout_width="395dp"
+            android:layout_height="90dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="603dp"
+            android:layout_marginBottom="130dp"
+            android:background="@drawable/default_background"
+            android:clipToOutline="true"
+            tools:ignore="MissingConstraints">
+
+            <!-- Google Icon undefined -->
+            <RelativeLayout
+                android:id="@+id/google_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/google_icon_undefined" />
+
+            <!-- 구글계정 로그인 -->
+            <TextView
+                android:id="@+id/구글계정_로그인"
+                android:layout_width="253dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="71dp"
+                android:layout_marginTop="18dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:lineSpacingExtra="10sp"
+                android:text="구글계정 로그인"
+                android:textAppearance="@style/white_text" />
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

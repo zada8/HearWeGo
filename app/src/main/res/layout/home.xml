@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 홈 화면 -->
+    <RelativeLayout
+        android:id="@+id/background"
+        android:layout_width="411dp"
+        android:layout_height="823dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="783dp"
+        android:layout_marginTop="1039dp"
+        android:background="@drawable/background"
+        android:clipToOutline="true"
+        tools:ignore="MissingConstraints" >
+
+        <!-- Status Bar -->
+        <RelativeLayout
+            android:id="@+id/status_bar"
+            android:layout_width="411dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/status_bar"
+            tools:ignore="MissingConstraints" />
+
+        <!-- Menu Frame -->
+        <RelativeLayout
+            android:id="@+id/frame_menu"
+            android:layout_width="395dp"
+            android:layout_height="775dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/menu_list"
+            tools:ignore="MissingConstraints">
+
+            <!-- Menu navi -->
+            <RelativeLayout
+                android:id="@+id/menu_navi"
+                android:layout_width="395dp"
+                android:layout_height="187.75dp"
+                android:background="@drawable/menu_background">
+
+                <!-- Container map -->
+                <RelativeLayout
+                    android:id="@+id/container_map"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="61dp"
+                    android:layout_marginTop="53.88dp"
+                    android:background="@drawable/map"
+                    android:clipToOutline="true" />
+
+                <!-- 길 안내 -->
+                <TextView
+                    android:id="@+id/길안내"
+                    android:layout_width="169dp"
+                    android:layout_height="84dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="165dp"
+                    android:layout_marginTop="51.88dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="16sp"
+                    android:text="길 안내"
+                    android:textColor="@color/yellow"
+                    android:textSize="56dp" />
+
+            </RelativeLayout>
+
+            <!-- Menu surroundings -->
+            <RelativeLayout
+                android:id="@+id/menu_surround"
+                android:layout_width="395dp"
+                android:layout_height="187.75dp"
+                android:layout_marginTop="195.75dp"
+                android:background="@drawable/menu_background">
+
+                <!-- Container surroundings -->
+                <RelativeLayout
+                    android:id="@+id/container_surround"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="42dp"
+                    android:layout_marginTop="53.88dp"
+                    android:background="@drawable/apartment"
+                    android:clipToOutline="true" />
+
+                <!-- 주변시설 -->
+                <TextView
+                    android:id="@+id/주변시설"
+                    android:layout_width="207dp"
+                    android:layout_height="84dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="146dp"
+                    android:layout_marginTop="51.88dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="16sp"
+                    android:text="주변시설"
+                    android:textColor="@color/yellow"
+                    android:textSize="56dp" />
+
+            </RelativeLayout>
+
+            <!-- Menu bookmarks -->
+            <RelativeLayout
+                android:id="@+id/menu_bookmark"
+                android:layout_width="395dp"
+                android:layout_height="187.75dp"
+                android:layout_marginTop="391.5dp"
+                android:background="@drawable/menu_background">
+
+                <!-- Container bookmarks -->
+                <RelativeLayout
+                    android:id="@+id/container_bookmarks"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="42dp"
+                    android:layout_marginTop="53.88dp"
+                    android:background="@drawable/bookmarks"
+                    android:clipToOutline="true" />
+
+                <!-- 즐겨찾기 -->
+                <TextView
+                    android:id="@+id/즐겨찾기"
+                    android:layout_width="207dp"
+                    android:layout_height="84dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="146dp"
+                    android:layout_marginTop="51.88dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="16sp"
+                    android:text="즐겨찾기"
+                    android:textColor="@color/yellow"
+                    android:textSize="56dp" />
+
+            </RelativeLayout>
+
+            <!-- Menu setting -->
+            <RelativeLayout
+                android:id="@+id/menu_setting"
+                android:layout_width="395dp"
+                android:layout_height="187.75dp"
+                android:layout_marginTop="587.25dp"
+                android:background="@drawable/menu_background">
+
+                <!-- Container setting -->
+                <RelativeLayout
+                    android:id="@+id/container_setting"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="93.5dp"
+                    android:layout_marginTop="53.88dp"
+                    android:background="@drawable/settings"
+                    android:clipToOutline="true" />
+
+                <!-- 설정 -->
+                <TextView
+                    android:id="@+id/some_id"
+                    android:layout_width="104dp"
+                    android:layout_height="84dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="197.5dp"
+                    android:layout_marginTop="51.88dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="16sp"
+                    android:text="설정"
+                    android:textColor="@color/yellow"
+                    android:textSize="56dp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
