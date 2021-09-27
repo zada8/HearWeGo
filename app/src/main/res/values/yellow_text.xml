@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+  Font family: Inter
+  Line height: 54sp
+  (identical to box height)
+-->
+    <!-- styles.xml -->
+    <style name="yellow_text">
+        <item name="android:font">
+            Inter
+        </item>
+        <item name="android:textSize">
+            36sp
+        </item>
+
+        <item name="android:textColor">
+            #FFE500
+        </item>
+
+    </style>
+</resources>

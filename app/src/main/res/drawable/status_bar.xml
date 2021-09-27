@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- drawable/status_bar.xml -->
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="411dp"
+    android:height="32dp"
+    android:viewportWidth="411"
+    android:viewportHeight="32"
+    >
+
+    <group>
+
+        <clip-path
+            android:pathData="M0 0H411V32H0V0Z"
+            />
+
+        <path
+            android:pathData="M0 0V32H411V0"
+            android:fillColor="#767676"
+            />
+
+    </group>
+
+</vector>
