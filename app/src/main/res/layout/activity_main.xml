@@ -1,18 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#66000000"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- Frame 31 -->
+    <RelativeLayout
+        android:id="@+id/frame_29"
+        android:layout_width="411dp"
+        android:layout_height="92dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/frame_29" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Frame 32 -->
+    <RelativeLayout
+        android:id="@+id/frame_31"
+        android:layout_width="205dp"
+        android:layout_height="84dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="93dp"
+        android:background="@drawable/frame_31" />
+
+    <!-- skip_next -->
+
+    <RelativeLayout
+        android:id="@+id/frame_32"
+        android:layout_width="205dp"
+        android:layout_height="84dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginLeft="205dp"
+        android:layout_marginTop="93dp"
+
+        android:background="@drawable/frame_32" />
+
+    <!-- skip_next -->
+    <RelativeLayout
+        android:id="@+id/skip"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="61dp"
+        android:layout_marginTop="494dp"
+        android:background="@drawable/skip_next"
+         />
+
+    <!-- pause -->
+
+    <!-- Frame 6 -->
+
+    <RelativeLayout
+        android:id="@+id/skip_next"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="268dp"
+        android:layout_marginTop="495dp"
+        android:background="@drawable/skip_next"
+         />
+
+    <RelativeLayout
+        android:id="@+id/pause"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="164dp"
+        android:layout_marginTop="495dp"
+        android:background="@drawable/pause"
+         />
+
+    <RelativeLayout
+        android:id="@+id/frame_6"
+        android:layout_width="395dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="624dp"
+        android:background="@drawable/frame_6" >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="99dp"
+            android:layout_marginLeft="99dp"
+            android:layout_marginBottom="18dp"
+            android:text="현재 위치 확인"
+            android:textColor="#FFE500"
+            android:textSize="34sp" />
+    </RelativeLayout>
+
+</RelativeLayout>
