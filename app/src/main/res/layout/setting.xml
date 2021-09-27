@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- 설정 -->
+    <RelativeLayout
+        android:id="@+id/some_id"
+        android:layout_width="411dp"
+        android:layout_height="823dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="216dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="2009dp"
+        android:clipToOutline="true"
+        android:background="@drawable/background"
+        tools:ignore="MissingConstraints">
+
+        <!-- list_button -->
+        <RelativeLayout
+            android:id="@+id/list_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/list_button"
+            tools:ignore="MissingConstraints">
+
+            <!-- previous_button -->
+            <RelativeLayout
+                android:id="@+id/previous"
+                android:layout_width="205dp"
+                android:layout_height="84dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="739dp"
+                android:background="@drawable/previous"
+                tools:ignore="MissingConstraints" >
+
+                <!-- 이전 -->
+                <TextView
+                    android:id="@+id/이전"
+                    android:layout_width="67dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="69dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="이전"
+                    android:textAppearance="@style/white_text" />
+            </RelativeLayout>
+
+            <!-- home_button -->
+            <RelativeLayout
+                android:id="@+id/home"
+                android:layout_width="205dp"
+                android:layout_height="84dp"
+                android:layout_marginLeft="205dp"
+                android:layout_marginTop="739dp"
+                android:background="@drawable/home" >
+
+                <!-- 홈 -->
+                <TextView
+                    android:id="@+id/홈"
+                    android:layout_width="34dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="85.5dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="홈"
+                    android:textAppearance="@style/white_text" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!-- bar_top -->
+    <RelativeLayout
+        android:id="@+id/bar_top"
+        android:layout_width="411dp"
+        android:layout_height="124dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:clipToOutline="true"
+        android:background="@drawable/bar_top"
+        tools:ignore="MissingConstraints" >
+
+        <!-- status_bar -->
+        <RelativeLayout
+            android:id="@+id/status_bar"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/status_bar"
+            tools:ignore="MissingConstraints" />
+
+        <!-- title_setting -->
+        <RelativeLayout
+            android:id="@+id/title_setting"
+            android:layout_width="411dp"
+            android:layout_height="92dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/title_setting">
+
+            <!-- 설정 -->
+            <TextView
+                android:id="@+id/설정"
+                android:layout_width="67dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="172dp"
+                android:layout_marginTop="19dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:lineSpacingExtra="10sp"
+                android:text="설정"
+                android:textAppearance="@style/white_text" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+        <!-- list_menu -->
+        <RelativeLayout
+            android:id="@+id/list_menu"
+            android:layout_width="411dp"
+            android:layout_height="318dp"
+            android:background="@drawable/list_menu"
+            tools:layout_editor_absoluteY="156dp"
+            tools:ignore="MissingConstraints">
+
+        <!-- help -->
+        <RelativeLayout
+            android:id="@+id/help"
+            android:layout_width="395dp"
+            android:layout_height="90dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/help" >
+
+            <!-- 도움말 -->
+            <TextView
+                android:id="@+id/도움말"
+                android:layout_width="100dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="147.5dp"
+                android:layout_marginTop="18dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:lineSpacingExtra="10sp"
+                android:text="도움말"
+                android:textAppearance="@style/yellow_text" />
+        </RelativeLayout>
+
+            <!-- logout -->
+            <RelativeLayout
+                android:id="@+id/logout"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="8dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="114dp"
+                android:background="@drawable/logout" >
+
+                <!-- 로그아웃 -->
+                <TextView
+                    android:id="@+id/로그아웃"
+                    android:layout_width="133dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="131dp"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="로그아웃"
+                    android:textAppearance="@style/yellow_text" />
+            </RelativeLayout>
+
+            <!-- withdraw -->
+            <RelativeLayout
+                android:id="@+id/withdraw"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="228dp"
+                android:background="@drawable/withdraw" >
+
+                <!-- 회원탈퇴 -->
+                <TextView
+                    android:id="@+id/회원탈퇴"
+                    android:layout_width="133dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="131dp"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="회원탈퇴"
+                    android:textAppearance="@style/yellow_text" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+
+    <!-- list_button -->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
