@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- drawable/menu_list.xml -->
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="395dp"
+    android:height="775dp"
+    android:viewportWidth="395"
+    android:viewportHeight="775"
+    >
+
+    <group>
+
+        <clip-path
+            android:pathData="M0 0H395V775H0V0Z"
+            />
+
+    </group>
+
+</vector>
