@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 즐겨찾기 -->
+    <RelativeLayout
+        android:id="@+id/background"
+        android:layout_width="411dp"
+        android:layout_height="823dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="1350dp"
+        android:layout_marginTop="2026dp"
+        android:background="@drawable/background"
+        android:clipToOutline="true"
+        tools:ignore="MissingConstraints" >
+
+        <!-- Bar Top -->
+        <RelativeLayout
+            android:id="@+id/bar_top"
+            android:layout_width="411dp"
+            android:layout_height="124dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/bar_top"
+            android:clipToOutline="true"
+            tools:ignore="MissingConstraints">
+
+            <!-- Status Bar -->
+            <RelativeLayout
+                android:id="@+id/status_bar"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/status_bar"
+                tools:ignore="MissingConstraints" />
+
+            <!-- Frame category -->
+            <RelativeLayout
+                android:id="@+id/title_hospital"
+                android:layout_width="411dp"
+                android:layout_height="92dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/frame_29"
+                tools:ignore="MissingConstraints">
+
+                <!-- 즐겨찾기 선택 -->
+                <TextView
+                    android:id="@+id/some_id"
+                    android:layout_width="208dp"
+                    android:layout_height="54dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="101.5dp"
+                    android:layout_marginTop="19dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="즐겨찾기 선택"
+                    android:textAppearance="@style/white_text" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <!-- list_button -->
+        <RelativeLayout
+            android:id="@+id/list_button"
+            android:layout_width="411dp"
+            android:layout_height="84dp"
+            android:layout_marginTop="739dp"
+            android:background="@drawable/list_button"
+            tools:ignore="MissingConstraints">
+
+            <!-- previous -->
+            <RelativeLayout
+                android:id="@+id/previous"
+                android:layout_width="205dp"
+                android:layout_height="84dp"
+                android:background="@drawable/previous">
+
+                <!-- 이전 -->
+                <TextView
+                    android:id="@+id/이전"
+                    android:layout_width="67dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="69dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="이전"
+                    android:textAppearance="@style/white_text" />
+            </RelativeLayout>
+
+
+            <!-- home -->
+            <RelativeLayout
+                android:id="@+id/home"
+                android:layout_width="205dp"
+                android:layout_height="84dp"
+                android:layout_marginLeft="206dp"
+                android:background="@drawable/home">
+
+                <!-- 홈 -->
+                <TextView
+                    android:id="@+id/홈"
+                    android:layout_width="67dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="69dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="홈"
+                    android:textAppearance="@style/white_text" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <!-- Frame Bookmark -->
+    <RelativeLayout
+        android:id="@+id/frame_bookmark"
+        android:layout_width="395dp"
+        android:layout_height="432dp"
+        android:background="@drawable/frame_bookmark"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="156dp" >
+
+        <!-- Frame Bookmark Button1 -->
+        <RelativeLayout
+            android:id="@+id/frame_bookmark1"
+            android:layout_width="395dp"
+            android:layout_height="90dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/default_yellow"
+            tools:ignore="MissingConstraints" >
+
+            <!-- 서울대학교병원 -->
+            <TextView
+                android:id="@+id/서울대학교병원"
+                android:layout_width="232dp"
+                android:layout_height="54dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="81.5dp"
+                android:layout_marginTop="18dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:lineSpacingExtra="10sp"
+                android:text="서울대학교병원"
+                android:textAppearance="@style/yellow_text"
+                />
+        </RelativeLayout>
+
+        <!-- Frame Bookmark Button2 -->
+        <RelativeLayout
+            android:id="@+id/frame_bookmark2"
+            android:layout_width="395dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="114dp"
+            android:background="@drawable/default_yellow"
+            tools:ignore="MissingConstraints" >
+
+            <!-- 신촌세브란스병원 -->
+            <TextView
+                android:id="@+id/신촌세브란스병원"
+                android:layout_width="265dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="65dp"
+                android:layout_marginTop="18dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:lineSpacingExtra="10sp"
+                android:text="신촌세브란스병원"
+                android:textAppearance="@style/yellow_text" />
+        </RelativeLayout>
+
+
+        <!-- Frame Bookmark Button3 -->
+        <RelativeLayout
+            android:id="@+id/frame_bookmark3"
+            android:layout_width="395dp"
+            android:layout_height="90dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="228dp"
+            android:background="@drawable/default_yellow"
+            tools:ignore="MissingConstraints" >
+
+            <!-- 동아약국 -->
+            <TextView
+                android:id="@+id/동아약국"
+                android:layout_width="133dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="131dp"
+                android:layout_marginTop="18dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:lineSpacingExtra="10sp"
+                android:text="동아약국"
+                android:textAppearance="@style/yellow_text" />
+        </RelativeLayout>
+
+
+        <!-- Frame Bookmark Button4 -->
+        <RelativeLayout
+            android:id="@+id/frame_bookmark4"
+            android:layout_width="395dp"
+            android:layout_height="90dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="342dp"
+            android:background="@drawable/default_yellow"
+            >
+
+            <!-- 노원구공원 -->
+            <TextView
+                android:id="@+id/노원구공원"
+                android:layout_width="166dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="114.5dp"
+                android:layout_marginTop="18dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:lineSpacingExtra="10sp"
+                android:text="노원구공원"
+                android:textAppearance="@style/yellow_text" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

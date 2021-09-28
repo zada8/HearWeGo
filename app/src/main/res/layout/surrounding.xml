@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 주변시설 -->
+    <RelativeLayout
+        android:id="@+id/background"
+        android:layout_width="411dp"
+        android:layout_height="823dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="1350dp"
+        android:layout_marginTop="1039dp"
+        android:background="@drawable/background"
+        android:clipToOutline="true"
+        tools:ignore="MissingConstraints" >
+
+        <!-- bar_top -->
+
+        <RelativeLayout
+            android:id="@+id/bar_top"
+            android:layout_width="411dp"
+            android:layout_height="124dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/bar_top"
+            android:clipToOutline="true"
+            tools:ignore="MissingConstraints" >
+
+            <!-- Status Bar -->
+            <RelativeLayout
+                android:id="@+id/status_bar"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/status_bar"
+                tools:ignore="MissingConstraints" />
+
+            <!-- Title Surrounding -->
+            <RelativeLayout
+                android:id="@+id/title_surrounding"
+                android:layout_width="411dp"
+                android:layout_height="92dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/frame_29"
+                tools:ignore="MissingConstraints" >
+
+                <!-- 주변시설 선택 -->
+                <TextView
+                    android:id="@+id/병원"
+                    android:layout_width="208dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="101.5dp"
+                    android:layout_marginTop="19dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="주변시설 선택"
+                    android:textAppearance="@style/white_text" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <!-- Frame Menu-->
+        <RelativeLayout
+            android:id="@+id/frame_menu"
+            android:layout_width="395dp"
+            android:layout_height="546dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="156dp"
+            android:background="@drawable/frame_menu" >
+
+            <!-- Frame Menu Button 1 -->
+            <RelativeLayout
+                android:id="@+id/menu_button1"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:background="@drawable/default_yellow" >
+
+                <!-- 공공시설 -->
+                <TextView
+                    android:id="@+id/서울대학교병원"
+                    android:layout_width="133dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="131dp"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="공공시설"
+                    android:textAppearance="@style/yellow_text" />
+            </RelativeLayout>
+
+
+            <!-- Frame Menu Button 2 -->
+            <RelativeLayout
+                android:id="@+id/menu_button2"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="114dp"
+                android:background="@drawable/default_yellow" >
+
+                <!-- 지하철역 -->
+                <TextView
+                    android:id="@+id/병원2"
+                    android:layout_width="133dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="131dp"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="지하철역"
+                    android:textAppearance="@style/yellow_text" />
+            </RelativeLayout>
+
+
+            <!-- Frame Menu Button 3 -->
+            <RelativeLayout
+                android:id="@+id/menu_button3"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="228dp"
+                android:background="@drawable/default_yellow"
+                >
+
+                <!-- 화장실 -->
+                <TextView
+                    android:id="@+id/병원3"
+                    android:layout_width="100dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="147.5dp"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="화장실"
+                    android:textAppearance="@style/yellow_text" />
+            </RelativeLayout>
+
+
+
+            <!-- Frame Menu Button 4 -->
+            <RelativeLayout
+                android:id="@+id/menu_button4"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="342dp"
+                android:background="@drawable/default_yellow"
+                >
+
+                <!-- 병원 -->
+                <TextView
+                    android:id="@+id/병원4"
+                    android:layout_width="67dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="164dp"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="병원"
+                    android:textAppearance="@style/yellow_text" />
+            </RelativeLayout>
+
+
+
+            <!-- Frame Menu Button 5 -->
+            <RelativeLayout
+                android:id="@+id/menu_button5"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="456dp"
+                android:background="@drawable/default_yellow"
+                >
+
+                <!-- 약국 -->
+                <TextView
+                    android:id="@+id/병원5"
+                    android:layout_width="67dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="164dp"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="약국"
+                    android:textAppearance="@style/yellow_text" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <!-- list_button -->
+        <RelativeLayout
+            android:id="@+id/list_button"
+            android:layout_width="411dp"
+            android:layout_height="84dp"
+            android:layout_marginTop= "739dp"
+            android:background="@drawable/list_button" >
+
+            <!-- previous -->
+            <RelativeLayout
+                android:id="@+id/previous"
+                android:layout_width="205dp"
+                android:layout_height="84dp"
+                android:background="@drawable/previous" >
+
+                <!-- 이전 -->
+                <TextView
+                    android:id="@+id/이전"
+                    android:layout_width="67dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="69dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="이전"
+                    android:textAppearance="@style/white_text" />
+            </RelativeLayout>
+
+
+            <!-- home -->
+            <RelativeLayout
+                android:id="@+id/home"
+                android:layout_width="205dp"
+                android:layout_height="84dp"
+                android:layout_marginLeft="206dp"
+                android:background="@drawable/home" >
+
+                <!-- 홈 -->
+                <TextView
+                    android:id="@+id/홈"
+                    android:layout_width="67dp"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="69dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="10sp"
+                    android:text="홈"
+                    android:textAppearance="@style/white_text" />
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
