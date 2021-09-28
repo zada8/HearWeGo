@@ -14,7 +14,6 @@
         android:layout_marginLeft="216dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="2009dp"
-        android:clipToOutline="true"
         android:background="@drawable/background"
         tools:ignore="MissingConstraints">
 
@@ -82,7 +81,6 @@
         android:layout_height="124dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:clipToOutline="true"
         android:background="@drawable/bar_top"
         tools:ignore="MissingConstraints" >
 
@@ -201,8 +199,6 @@
         </RelativeLayout>
 
 
-
-    <!-- list_button -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

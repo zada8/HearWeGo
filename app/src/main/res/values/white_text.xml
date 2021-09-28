@@ -7,10 +7,6 @@
 -->
     <!-- styles.xml -->
     <style name="white_text">
-        <item name="android:font">
-            Inter
-        </item>
-
         <item name="android:textSize">
             36sp
         </item>

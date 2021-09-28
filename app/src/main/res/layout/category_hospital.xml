@@ -16,7 +16,6 @@
         android:layout_marginLeft="1917dp"
         android:layout_marginTop="1039dp"
         android:background="@drawable/background"
-        android:clipToOutline="true"
         tools:ignore="MissingConstraints" >
 
         <!-- Bar Top -->
@@ -27,7 +26,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:background="@drawable/bar_top"
-            android:clipToOutline="true"
             tools:ignore="MissingConstraints">
 
             <!-- Status Bar -->
