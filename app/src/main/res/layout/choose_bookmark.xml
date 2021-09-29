@@ -77,50 +77,19 @@
             tools:ignore="MissingConstraints">
 
             <!-- previous -->
-            <RelativeLayout
+            <ImageButton
                 android:id="@+id/previous"
                 android:layout_width="205dp"
                 android:layout_height="84dp"
-                android:background="@drawable/previous">
-
-                <!-- 이전 -->
-                <TextView
-                    android:id="@+id/이전"
-                    android:layout_width="67dp"
-                    android:layout_height="54dp"
-                    android:layout_marginLeft="69dp"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center_vertical"
-                    android:lineSpacingExtra="10sp"
-                    android:text="이전"
-                    android:textColor="@color/white"
-                    android:textSize="36dp"
-                    android:textStyle="bold"/>
-            </RelativeLayout>
-
+                android:background="@drawable/previous_button"/>
 
             <!-- home -->
-            <RelativeLayout
+            <ImageButton
                 android:id="@+id/home"
                 android:layout_width="205dp"
                 android:layout_height="84dp"
                 android:layout_marginLeft="206dp"
-                android:background="@drawable/home">
-
-                <!-- 홈 -->
-                <TextView
-                    android:id="@+id/홈"
-                    android:layout_width="67dp"
-                    android:layout_height="54dp"
-                    android:layout_marginLeft="69dp"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:lineSpacingExtra="10sp"
-                    android:text="홈"
-                    android:textColor="@color/white"
-                    android:textSize="36dp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
+                android:background="@drawable/home_button" />
         </RelativeLayout>
     </RelativeLayout>
 
