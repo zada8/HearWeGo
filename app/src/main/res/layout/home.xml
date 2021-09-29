@@ -41,152 +41,35 @@
             tools:ignore="MissingConstraints">
 
             <!-- Menu navi -->
-            <RelativeLayout
-
+            <ImageButton
                 android:id="@+id/menu_navi"
                 android:layout_width="395dp"
                 android:layout_height="187.75dp"
-                android:background="@drawable/menu_background">
-
-                <!-- Container map -->
-                <RelativeLayout
-                    android:id="@+id/container_map"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="61dp"
-                    android:layout_marginTop="53.88dp"
-                    android:background="@drawable/map" />
-
-                <!-- 길 안내 -->
-                <TextView
-                    android:id="@+id/길안내"
-                    android:layout_width="169dp"
-                    android:layout_height="84dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="165dp"
-                    android:layout_marginTop="51.88dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:lineSpacingExtra="16sp"
-                    android:text="길 안내"
-                    android:textColor="@color/yellow"
-                    android:textSize="56dp"
-                    android:textStyle="bold"/>
-
-            </RelativeLayout>
+                android:background="@drawable/menu_navi"/>
 
             <!-- Menu surroundings -->
-            <RelativeLayout
+            <ImageButton
                 android:id="@+id/menu_surround"
                 android:layout_width="395dp"
                 android:layout_height="187.75dp"
                 android:layout_marginTop="195.75dp"
-                android:background="@drawable/menu_background">
-
-                <!-- Container surroundings -->
-                <RelativeLayout
-                    android:id="@+id/container_surround"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="42dp"
-                    android:layout_marginTop="53.88dp"
-                    android:background="@drawable/apartment" />
-
-                <!-- 주변시설 -->
-                <TextView
-                    android:id="@+id/주변시설"
-                    android:layout_width="207dp"
-                    android:layout_height="84dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="146dp"
-                    android:layout_marginTop="51.88dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:lineSpacingExtra="16sp"
-                    android:text="주변시설"
-                    android:textColor="@color/yellow"
-                    android:textSize="56dp"
-                    android:textStyle="bold"/>
-
-            </RelativeLayout>
+                android:background="@drawable/menu_surroundings"/>
 
             <!-- Menu bookmarks -->
-            <RelativeLayout
+            <ImageButton
                 android:id="@+id/menu_bookmark"
                 android:layout_width="395dp"
                 android:layout_height="187.75dp"
                 android:layout_marginTop="391.5dp"
-                android:background="@drawable/menu_background">
-
-                <!-- Container bookmarks -->
-                <RelativeLayout
-                    android:id="@+id/container_bookmarks"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="42dp"
-                    android:layout_marginTop="53.88dp"
-                    android:background="@drawable/bookmarks" />
-
-                <!-- 즐겨찾기 -->
-                <TextView
-                    android:id="@+id/즐겨찾기"
-                    android:layout_width="207dp"
-                    android:layout_height="84dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="146dp"
-                    android:layout_marginTop="51.88dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:lineSpacingExtra="16sp"
-                    android:text="즐겨찾기"
-                    android:textColor="@color/yellow"
-                    android:textSize="56dp"
-                    android:textStyle="bold"/>
-
-            </RelativeLayout>
+                android:background="@drawable/menu_bookmark"/>
 
             <!-- Menu setting -->
-            <RelativeLayout
+            <ImageButton
                 android:id="@+id/menu_setting"
                 android:layout_width="395dp"
                 android:layout_height="187.75dp"
                 android:layout_marginTop="587.25dp"
-                android:background="@drawable/menu_background">
-
-                <!-- Container setting -->
-                <RelativeLayout
-                    android:id="@+id/container_setting"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="93.5dp"
-                    android:layout_marginTop="53.88dp"
-                    android:background="@drawable/settings" />
-
-                <!-- 설정 -->
-                <TextView
-                    android:id="@+id/병원"
-                    android:layout_width="104dp"
-                    android:layout_height="84dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="197.5dp"
-                    android:layout_marginTop="51.88dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:lineSpacingExtra="16sp"
-                    android:text="설정"
-                    android:textColor="@color/yellow"
-                    android:textSize="56dp"
-                    android:textStyle="bold"/>
-
-            </RelativeLayout>
+                android:background="@drawable/menu_setting"/>
         </RelativeLayout>
     </RelativeLayout>
 
