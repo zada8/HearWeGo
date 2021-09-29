@@ -25,12 +25,11 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentTop="true"
         android:background="@drawable/frame_29"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="33dp">
 
         <TextView
             android:id="@+id/destination_text"
@@ -178,8 +177,8 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="166dp"
         android:layout_marginBottom="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -203,7 +202,7 @@
         <ImageView
             android:id="@+id/straight_point"
             android:layout_width="match_parent"
-            android:layout_height="241dp"
+            android:layout_height="211dp"
             android:soundEffectsEnabled="false"
             android:visibility="visible"
             app:srcCompat="@drawable/straight_point" />
