@@ -3,25 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#A8A8A8">
     <!-- Frame 29 -->
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/skip_next"
-        app:backgroundTint="#0A0C4A"
-        app:backgroundTintMode="screen"
-        app:icon="@drawable/next"
-        app:iconGravity="textEnd"
-        app:iconTint="#FFE500"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintStart_toEndOf="@+id/button9" />
+    <RelativeLayout
+        android:id="@+id/status_bar"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/status_bar"
+        app:layout_constraintBottom_toTopOf="@+id/frame_29"
+        tools:ignore="MissingConstraints" />
 
     <RelativeLayout
         android:id="@+id/frame_29"
@@ -55,7 +50,6 @@
         android:id="@+id/linearLayout"
         android:layout_width="409dp"
         android:layout_height="81dp"
-        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -67,7 +61,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/frame_31"
+            android:gravity="center"
             android:text="이전"
+            android:textColor="#FFFFFF"
             android:textSize="34sp"
             android:textStyle="bold"
             app:backgroundTint="#0A0C4A"
@@ -79,8 +75,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/frame_32"
+            android:gravity="center"
             android:text="홈"
             android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             android:textSize="34sp"
             android:textStyle="bold"
             app:backgroundTint="#0A0C4A"
@@ -93,6 +91,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="29dp"
         android:background="@drawable/frame_6"
+        android:drawableLeft="@drawable/target"
+        android:gravity="center"
         android:text="현재 위치 확인"
         android:textColor="#FFE500"
         android:textSize="32sp"
@@ -108,8 +108,9 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button3"
+        style="@android:style/Widget.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
@@ -122,16 +123,17 @@
         app:iconGravity="textEnd"
         app:iconTint="#FFE500"
         app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toStartOf="@+id/button9" />
+        app:layout_constraintEnd_toStartOf="@+id/button9"
+        app:srcCompat="@drawable/prev" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button9"
+        style="@android:style/Widget.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:background="@drawable/skip_next"
         app:backgroundTint="#0A0C4A"
-
         app:backgroundTintMode="screen"
         app:icon="@drawable/pause"
         app:iconGravity="textEnd"
@@ -139,7 +141,27 @@
         app:iconTint="#FFE500"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/pause"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageButton
+        android:id="@+id/button5"
+        style="@android:style/Widget.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/skip_next"
+        app:backgroundTint="#0A0C4A"
+        app:backgroundTintMode="screen"
+        app:icon="@drawable/next"
+        app:iconGravity="textEnd"
+        app:iconTint="#FFE500"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/button9"
+        app:srcCompat="@drawable/next" />
 
     <TextView
         android:id="@+id/textView5"
