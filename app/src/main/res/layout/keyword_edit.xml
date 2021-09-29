@@ -74,34 +74,19 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
-        <Button
+        <ImageButton
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/frame_31"
-            android:gravity="center"
-            android:text="이전"
-            android:textColor="#FFFFFF"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            app:backgroundTint="#0A0C4A"
-            app:backgroundTintMode="screen" />
+            android:background="@drawable/previous_button"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/home_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/frame_32"
-            android:gravity="center"
-            android:text="홈"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            app:backgroundTint="#0A0C4A"
-            app:backgroundTintMode="screen" />
+            android:background="@drawable/home_button"/>
     </LinearLayout>
 
     <Button
