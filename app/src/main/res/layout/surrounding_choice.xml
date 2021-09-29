@@ -104,7 +104,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/walk_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -117,13 +117,13 @@
         android:textStyle="bold"
         app:backgroundTint="#0A0C4A"
         app:backgroundTintMode="screen"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintBottom_toTopOf="@+id/subway_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frame_29" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/subway_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -137,6 +137,6 @@
         app:backgroundTintMode="screen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/walk_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
