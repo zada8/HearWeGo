@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Logo extends AppCompatActivity {
+public class LogoActivity extends AppCompatActivity {
 
     RelativeLayout layout01 = (RelativeLayout) findViewById(R.id.status_bar);
     RelativeLayout layout02 = (RelativeLayout) findViewById(R.id.container_logo);

@@ -18,8 +18,8 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".Logo"/>
-        <activity android:name=".Setting"/>
+        <activity android:name=".LogoActivity"/>
+        <activity android:name=".SettingActivity"/>
     </application>
 
 </manifest>

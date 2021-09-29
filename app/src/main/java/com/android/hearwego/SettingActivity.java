@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Setting extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity {
 
     RelativeLayout layout01 = (RelativeLayout) findViewById(R.id.bar_top);
     RelativeLayout layout02 = (RelativeLayout) findViewById(R.id.help);
