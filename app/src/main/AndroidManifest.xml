@@ -19,7 +19,6 @@
 
         </activity>
         <activity android:name=".LogoActivity"/>
-        <activity android:name=".SettingActivity"/>
     </application>
 
 </manifest>
