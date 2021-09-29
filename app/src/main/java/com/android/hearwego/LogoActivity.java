@@ -1,21 +1,18 @@
 package com.android.hearwego;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.widget.RelativeLayout;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LogoActivity extends AppCompatActivity {
 
-    RelativeLayout status_bar = (RelativeLayout) findViewById(R.id.status_bar);
-    RelativeLayout container_logo = (RelativeLayout) findViewById(R.id.container_logo);
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logo);
+
+        ImageButton button_login = findViewById(R.id.google_login); // 구글 로그인 이미지 버튼 객체 참조
+
     }
 }
