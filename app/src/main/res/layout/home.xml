@@ -72,7 +72,8 @@
                     android:lineSpacingExtra="16sp"
                     android:text="길 안내"
                     android:textColor="@color/yellow"
-                    android:textSize="56dp" />
+                    android:textSize="56dp"
+                    android:textStyle="bold"/>
 
             </RelativeLayout>
 
@@ -108,7 +109,8 @@
                     android:lineSpacingExtra="16sp"
                     android:text="주변시설"
                     android:textColor="@color/yellow"
-                    android:textSize="56dp" />
+                    android:textSize="56dp"
+                    android:textStyle="bold"/>
 
             </RelativeLayout>
 
@@ -144,7 +146,8 @@
                     android:lineSpacingExtra="16sp"
                     android:text="즐겨찾기"
                     android:textColor="@color/yellow"
-                    android:textSize="56dp" />
+                    android:textSize="56dp"
+                    android:textStyle="bold"/>
 
             </RelativeLayout>
 
@@ -180,7 +183,8 @@
                     android:lineSpacingExtra="16sp"
                     android:text="설정"
                     android:textColor="@color/yellow"
-                    android:textSize="56dp" />
+                    android:textSize="56dp"
+                    android:textStyle="bold"/>
 
             </RelativeLayout>
         </RelativeLayout>

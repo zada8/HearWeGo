@@ -74,7 +74,9 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:lineSpacingExtra="10sp"
                 android:text="구글계정 로그인"
-                android:textAppearance="@style/white_text" />
+                android:textColor="@color/white"
+                android:textSize="36dp"
+                android:textStyle="bold"/>
         </RelativeLayout>
 
 
