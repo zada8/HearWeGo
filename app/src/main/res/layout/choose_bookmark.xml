@@ -15,7 +15,6 @@
         android:layout_marginLeft="1350dp"
         android:layout_marginTop="2026dp"
         android:background="@drawable/background"
-        android:clipToOutline="true"
         tools:ignore="MissingConstraints" >
 
         <!-- Bar Top -->
@@ -26,7 +25,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:background="@drawable/bar_top"
-            android:clipToOutline="true"
             tools:ignore="MissingConstraints">
 
             <!-- Status Bar -->
@@ -63,7 +61,9 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:lineSpacingExtra="10sp"
                     android:text="즐겨찾기 선택"
-                    android:textAppearance="@style/white_text" />
+                    android:textColor="@color/white"
+                    android:textSize="36dp"
+                    android:textStyle="bold" />
             </RelativeLayout>
         </RelativeLayout>
 
@@ -93,7 +93,9 @@
                     android:gravity="center_vertical"
                     android:lineSpacingExtra="10sp"
                     android:text="이전"
-                    android:textAppearance="@style/white_text" />
+                    android:textColor="@color/white"
+                    android:textSize="36dp"
+                    android:textStyle="bold"/>
             </RelativeLayout>
 
 
@@ -112,10 +114,12 @@
                     android:layout_height="54dp"
                     android:layout_marginLeft="69dp"
                     android:layout_marginTop="15dp"
-                    android:gravity="center_vertical"
+                    android:gravity="center_vertical|center_horizontal"
                     android:lineSpacingExtra="10sp"
                     android:text="홈"
-                    android:textAppearance="@style/white_text" />
+                    android:textColor="@color/white"
+                    android:textSize="36dp"
+                    android:textStyle="bold" />
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
@@ -153,7 +157,9 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:lineSpacingExtra="10sp"
                 android:text="서울대학교병원"
-                android:textAppearance="@style/yellow_text"
+                android:textColor="@color/yellow"
+                android:textSize="36dp"
+                android:textStyle="bold"
                 />
         </RelativeLayout>
 
@@ -176,7 +182,9 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:lineSpacingExtra="10sp"
                 android:text="신촌세브란스병원"
-                android:textAppearance="@style/yellow_text" />
+                android:textColor="@color/yellow"
+                android:textSize="36dp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
 
@@ -201,7 +209,9 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:lineSpacingExtra="10sp"
                 android:text="동아약국"
-                android:textAppearance="@style/yellow_text" />
+                android:textColor="@color/yellow"
+                android:textSize="36dp"
+                android:textStyle="bold"/>
         </RelativeLayout>
 
 
@@ -226,7 +236,9 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:lineSpacingExtra="10sp"
                 android:text="노원구공원"
-                android:textAppearance="@style/yellow_text" />
+                android:textColor="@color/yellow"
+                android:textSize="36dp"
+                android:textStyle="bold" />
         </RelativeLayout>
     </RelativeLayout>
 

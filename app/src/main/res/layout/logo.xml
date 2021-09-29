@@ -15,7 +15,6 @@
         android:layout_marginLeft="216dp"
         android:layout_marginTop="1038dp"
         android:background="@drawable/background"
-        android:clipToOutline="true"
         tools:ignore="MissingConstraints"
         >
 
@@ -45,13 +44,13 @@
         <!-- Frame_google_login -->
         <RelativeLayout
             android:id="@+id/container_google_login"
+            android:clickable="true"
             android:layout_width="395dp"
             android:layout_height="90dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="603dp"
             android:layout_marginBottom="130dp"
             android:background="@drawable/default_background"
-            android:clipToOutline="true"
             tools:ignore="MissingConstraints">
 
             <!-- Google Icon undefined -->
@@ -75,7 +74,9 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:lineSpacingExtra="10sp"
                 android:text="구글계정 로그인"
-                android:textAppearance="@style/white_text" />
+                android:textColor="@color/white"
+                android:textSize="36dp"
+                android:textStyle="bold"/>
         </RelativeLayout>
 
 

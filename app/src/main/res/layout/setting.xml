@@ -14,7 +14,6 @@
         android:layout_marginLeft="216dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="2009dp"
-        android:clipToOutline="true"
         android:background="@drawable/background"
         tools:ignore="MissingConstraints">
 
@@ -48,7 +47,9 @@
                     android:gravity="center_vertical"
                     android:lineSpacingExtra="10sp"
                     android:text="이전"
-                    android:textAppearance="@style/white_text" />
+                    android:textColor="@color/white"
+                    android:textSize="36dp"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
             <!-- home_button -->
@@ -67,10 +68,12 @@
                     android:layout_height="54dp"
                     android:layout_marginLeft="85.5dp"
                     android:layout_marginTop="15dp"
-                    android:gravity="center_vertical"
+                    android:gravity="center_vertical|center_horizontal"
                     android:lineSpacingExtra="10sp"
                     android:text="홈"
-                    android:textAppearance="@style/white_text" />
+                    android:textColor="@color/white"
+                    android:textSize="36dp"
+                    android:textStyle="bold" />
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
@@ -82,7 +85,6 @@
         android:layout_height="124dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:clipToOutline="true"
         android:background="@drawable/bar_top"
         tools:ignore="MissingConstraints" >
 
@@ -117,7 +119,9 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:lineSpacingExtra="10sp"
                 android:text="설정"
-                android:textAppearance="@style/white_text" />
+                android:textColor="@color/white"
+                android:textSize="36dp"
+                android:textStyle="bold" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -148,7 +152,9 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:lineSpacingExtra="10sp"
                 android:text="도움말"
-                android:textAppearance="@style/yellow_text" />
+                android:textColor="@color/yellow"
+                android:textSize="36dp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
             <!-- logout -->
@@ -172,7 +178,9 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:lineSpacingExtra="10sp"
                     android:text="로그아웃"
-                    android:textAppearance="@style/yellow_text" />
+                    android:textColor="@color/yellow"
+                    android:textSize="36dp"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
             <!-- withdraw -->
@@ -196,13 +204,13 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:lineSpacingExtra="10sp"
                     android:text="회원탈퇴"
-                    android:textAppearance="@style/yellow_text" />
+                    android:textColor="@color/yellow"
+                    android:textSize="36dp"
+                    android:textStyle="bold" />
             </RelativeLayout>
         </RelativeLayout>
 
 
-
-    <!-- list_button -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
