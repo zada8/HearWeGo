@@ -8,7 +8,7 @@
     <!-- Frame 29 -->
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/nowgps_btn"
         style="@android:style/Widget.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,6 +16,7 @@
         android:background="@drawable/frame_6"
         android:drawableStart="@drawable/target"
         android:drawableLeft="@drawable/target"
+        android:fontFamily="sans-serif"
         android:text="현재 위치 확인"
         android:textColor="#FFE500"
         android:textSize="32sp"
@@ -49,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="19dp"
+            android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="목적지 입력"
             android:textColor="#FFFFFF"

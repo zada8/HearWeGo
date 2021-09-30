@@ -1,5 +1,6 @@
 package com.android.hearwego;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +36,9 @@ public class LogoActivity extends AppCompatActivity {
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        } //gps 기능 permission request
 
         ImageButton button_login = findViewById(R.id.google_login); // 구글 로그인 이미지 버튼 객체 참조
 

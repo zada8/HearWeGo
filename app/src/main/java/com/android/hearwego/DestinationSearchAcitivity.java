@@ -1,14 +1,38 @@
 package com.android.hearwego;
 
+import android.Manifest;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class DestinationSearchAcitivity extends AppCompatActivity {
+import com.skt.Tmap.TMapData;
+import com.skt.Tmap.TMapGpsManager;
+import com.skt.Tmap.TMapPoint;
+import com.skt.Tmap.TMapView;
+
+import java.util.Locale;
+
+public class DestinationSearchAcitivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
+
+    TMapView tMapView = null;
+    TMapGpsManager tMapGpsManager = null;
+    TMapData tMapData = null;
+
+    private static String API_KEY = "l7xx59d0bb77ddfc45efb709f48d1b31715c";
+
+    TextToSpeech textToSpeech;
+
+    @Override
+    public void onLocationChange(Location location) {
+        tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
+    }
 
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
@@ -31,6 +55,48 @@ public class DestinationSearchAcitivity extends AppCompatActivity {
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
+
+        //TextToSpeech 기본 설정
+        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR){
+                    textToSpeech.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
+
+        //현재 위치 받아오기
+        tMapData = new TMapData();
+
+        tMapView = new TMapView(this);
+        tMapView.setSKTMapApiKey(API_KEY);
+
+        //TmapGps 설정
+        tMapGpsManager = new TMapGpsManager(this);
+        tMapGpsManager.setMinTime(1000);
+        tMapGpsManager.setMinDistance(5);
+        tMapGpsManager.setProvider(tMapGpsManager.NETWORK_PROVIDER);
+        tMapGpsManager.OpenGps();
+
+        //현재위치확인 버튼 누르면 현재위치를 음성으로 안내할 수 있게 구현
+        Button nowgps_btn = findViewById(R.id.nowgps_btn);
+        nowgps_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TMapPoint nowpoint = tMapView.getLocationPoint();
+
+                tMapData.convertGpsToAddress(nowpoint.getLatitude(), nowpoint.getLongitude(), new TMapData.ConvertGPSToAddressListenerCallback() {
+                    @Override
+                    public void onConvertToGPSToAddress(String s) {
+                        textToSpeech.setPitch(1.5f);
+                        textToSpeech.setSpeechRate(1.0f);
+                        textToSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                });
+            }
+        });
+
 
     }
 }
