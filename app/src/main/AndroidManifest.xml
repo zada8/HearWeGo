@@ -14,10 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
-        <activity android:name=".RouteGuideActivity"></activity>
+        <activity android:name=".RouteGuideActivity" />
         <activity android:name=".RouteChoiceActivity" />
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".HomeActivity"/>
         <activity android:name=".LogoActivity">
             <intent-filter>
@@ -28,6 +27,7 @@
         <activity android:name=".DestinationSearchActivity"/>
         <activity android:name=".SurroundingActivity"/>
         <activity android:name=".SettingActivity"/>
+        <activity android:name=".BookmarkActivity"/>
     </application>
 
 </manifest>

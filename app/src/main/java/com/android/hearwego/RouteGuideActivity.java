@@ -9,7 +9,7 @@ import android.view.View;
 
 public class RouteGuideActivity extends AppCompatActivity {
 
-    private View 	decorView; //full screen 객체 선언
+    private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
 
     public static final int REQUEST_CODE_WALK = 120;

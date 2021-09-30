@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LogoActivity extends AppCompatActivity {
 
-    private View 	decorView; //full screen 객체 선언
+    private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
 
     @Override

@@ -36,7 +36,7 @@ public class RouteChoiceActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION); //소프트 키 숨기기
 
-        Button walk_button = findViewById(R.id.walk_button);
+        Button walk_button = findViewById(R.id.button_walk);
         walk_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){

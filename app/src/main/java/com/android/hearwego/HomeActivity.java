@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private View 	decorView; //full screen 객체 선언
+    private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
 
     @Override
@@ -53,6 +53,15 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, SurroundingActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        button_bookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, BookmarkActivity.class);
                 startActivity(intent);
                 finish();
             }
