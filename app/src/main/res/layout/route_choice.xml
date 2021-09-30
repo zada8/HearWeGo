@@ -7,16 +7,6 @@
     android:layout_height="match_parent"
     android:background="#A8A8A8">
     <!-- Frame 29 -->
-    <RelativeLayout
-        android:id="@+id/status_bar"
-        android:layout_width="0dp"
-        android:layout_height="32dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/status_bar"
-        app:layout_constraintBottom_toTopOf="@+id/frame_29"
-        tools:ignore="MissingConstraints" />
 
     <RelativeLayout
         android:id="@+id/frame_29"
