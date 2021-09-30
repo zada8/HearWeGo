@@ -13,132 +13,118 @@
         android:layout_height="823dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="1350dp"
-        android:layout_marginTop="1039dp"
         android:background="@drawable/background"
-        tools:ignore="MissingConstraints" >
+        tools:ignore="MissingConstraints">
 
         <!-- bar_top -->
-        <RelativeLayout
-            android:id="@+id/bar_top"
-            android:layout_width="411dp"
-            android:layout_height="92dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/bar_top">
-
-
-            <!-- Title Surrounding -->
-            <RelativeLayout
-                android:id="@+id/title_surrounding"
-                android:layout_width="411dp"
-                android:layout_height="92dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="0dp"
-                android:background="@drawable/frame_29">
-
-                <!-- 주변시설 선택 -->
-                <TextView
-                    android:id="@+id/주변시설선택"
-                    android:layout_width="208dp"
-                    android:layout_height="54dp"
-                    android:layout_marginLeft="101.5dp"
-                    android:layout_marginTop="19dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:lineSpacingExtra="10sp"
-                    android:text="주변시설 선택"
-                    android:textColor="@color/white"
-                    android:textSize="36dp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-
-        </RelativeLayout>
 
         <!-- Frame Menu-->
-        <RelativeLayout
-            android:id="@+id/frame_menu"
-            android:layout_width="395dp"
-            android:layout_height="546dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="156dp"
-            android:background="@drawable/frame_menu" >
-
-            <!-- Frame Menu Button 1 -->
-            <ImageButton
-                android:id="@+id/menu_facility"
-                android:layout_width="395dp"
-                android:layout_height="90dp"
-                android:background="@drawable/facility" />
-
-            <!-- Frame Menu Button 2 -->
-            <ImageButton
-                android:id="@+id/menu_subway"
-                android:layout_width="395dp"
-                android:layout_height="90dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="114dp"
-                android:background="@drawable/subway" />
-
-            <!-- Frame Menu Button 3 -->
-            <ImageButton
-                android:id="@+id/menu_toilet"
-                android:layout_width="395dp"
-                android:layout_height="90dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="228dp"
-                android:background="@drawable/toilet" />
-
-            <!-- Frame Menu Button 4 -->
-            <ImageButton
-                android:id="@+id/menu_hospital"
-                android:layout_width="395dp"
-                android:layout_height="90dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="342dp"
-                android:background="@drawable/hospital" />
-
-            <!-- Frame Menu Button 5 -->
-            <ImageButton
-                android:id="@+id/menu_pharmacy"
-                android:layout_width="395dp"
-                android:layout_height="90dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="456dp"
-                android:background="@drawable/pharmacy" />
-
-        </RelativeLayout>
 
         <!-- list_button -->
-        <RelativeLayout
-            android:id="@+id/list_button"
-            android:layout_width="411dp"
-            android:layout_height="84dp"
-            android:layout_marginTop= "739dp"
-            android:background="@drawable/list_button" >
 
-            <!-- previous -->
-            <ImageButton
-                android:id="@+id/previous"
-                android:layout_width="205dp"
-                android:layout_height="84dp"
-                android:background="@drawable/previous_button" />
-
-            <!-- home -->
-            <ImageButton
-                android:id="@+id/home"
-                android:layout_width="205dp"
-                android:layout_height="84dp"
-                android:layout_marginLeft="206dp"
-                android:background="@drawable/home_button" />
-        </RelativeLayout>
     </RelativeLayout>
 
+    <ImageButton
+        android:id="@+id/previous"
+        android:layout_width="205dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="739dp"
+        android:background="@drawable/previous_button"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="205dp"
+        android:layout_height="84dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="739dp"
+        android:background="@drawable/home_button"
+        app:layout_constraintLeft_toRightOf="@+id/previous"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <RelativeLayout
+        android:id="@+id/title_surrounding"
+        android:layout_width="411dp"
+        android:layout_height="92dp"
+        android:background="@drawable/frame_29"
+        tools:ignore="MissingConstraints">
+
+        <!-- 주변시설 선택 -->
+        <TextView
+            android:id="@+id/주변시설선택"
+            android:layout_width="208dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="101.5dp"
+            android:layout_marginTop="19dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:lineSpacingExtra="10sp"
+            android:text="주변시설 선택"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/menu_facility"
+        android:layout_width="395dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="156dp"
+        android:background="@drawable/facility"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/menu_subway"
+        android:layout_width="395dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/subway"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_facility"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/menu_toilet"
+        android:layout_width="395dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/toilet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_subway"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/menu_hospital"
+        android:layout_width="395dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/hospital"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_toilet"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/menu_pharmacy"
+        android:layout_width="395dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/pharmacy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_hospital"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
