@@ -25,7 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DestinationSearchAcitivity"/>
+        <activity android:name=".DestinationSearchActivity"/>
+        <activity android:name=".SurroundingActivity"/>
         <activity android:name=".SettingActivity"/>
     </application>
 

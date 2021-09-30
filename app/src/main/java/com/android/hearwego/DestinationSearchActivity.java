@@ -19,7 +19,7 @@ import com.skt.Tmap.TMapView;
 
 import java.util.Locale;
 
-public class DestinationSearchAcitivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
+public class DestinationSearchActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
 
     TMapView tMapView = null;
     TMapGpsManager tMapGpsManager = null;

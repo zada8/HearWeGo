@@ -35,7 +35,6 @@ public class HomeActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility( uiOption );
 
 
-
         ImageButton button_navi = findViewById(R.id.menu_navi); //메뉴1: 길 안내 이미지 버튼 객체 참조
         ImageButton button_surround = findViewById(R.id.menu_surround); //메뉴2: 주변시설 이미지 버튼 객체 참조
         ImageButton button_bookmark = findViewById(R.id.menu_bookmark); //메뉴3: 즐겨찾기 이미지 버튼 객체 참조
@@ -44,7 +43,16 @@ public class HomeActivity extends AppCompatActivity {
         button_navi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, DestinationSearchAcitivity.class);
+                Intent intent = new Intent(HomeActivity.this, DestinationSearchActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        button_surround.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, SurroundingActivity.class);
                 startActivity(intent);
                 finish();
             }

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".SurroundingActivity">
 
     <!-- 주변시설 -->
     <RelativeLayout
@@ -70,14 +71,14 @@
 
             <!-- Frame Menu Button 1 -->
             <ImageButton
-                android:id="@+id/공공시설"
+                android:id="@+id/menu_facility"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:background="@drawable/facility" />
 
             <!-- Frame Menu Button 2 -->
             <ImageButton
-                android:id="@+id/지하철역"
+                android:id="@+id/menu_subway"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:layout_alignParentLeft="true"
@@ -87,7 +88,7 @@
 
             <!-- Frame Menu Button 3 -->
             <ImageButton
-                android:id="@+id/화장실"
+                android:id="@+id/menu_toilet"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:layout_alignParentLeft="true"
@@ -97,7 +98,7 @@
 
             <!-- Frame Menu Button 4 -->
             <ImageButton
-                android:id="@+id/병원"
+                android:id="@+id/menu_hospital"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:layout_alignParentLeft="true"
@@ -107,7 +108,7 @@
 
             <!-- Frame Menu Button 5 -->
             <ImageButton
-                android:id="@+id/약국"
+                android:id="@+id/menu_pharmacy"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:layout_alignParentLeft="true"

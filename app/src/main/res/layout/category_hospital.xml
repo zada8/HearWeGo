@@ -22,7 +22,7 @@
         <RelativeLayout
             android:id="@+id/bar_top"
             android:layout_width="411dp"
-            android:layout_height="124dp"
+            android:layout_height="92dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:background="@drawable/bar_top"
@@ -37,7 +37,7 @@
                 android:layout_height="92dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="0dp"
                 android:background="@drawable/frame_29"
                 tools:ignore="MissingConstraints">
 
@@ -53,7 +53,7 @@
                     android:text="병원"
                     android:textColor="@color/yellow"
                     android:textSize="36dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </RelativeLayout>
         </RelativeLayout>
 
@@ -69,7 +69,7 @@
 
             <!-- Frame Menu Button 1 -->
             <RelativeLayout
-                android:id="@+id/공공시설"
+                android:id="@+id/menu_facility"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:background="@drawable/default_yellow">
@@ -92,7 +92,7 @@
 
             <!-- Frame Menu Button 2 -->
             <RelativeLayout
-                android:id="@+id/지하철역"
+                android:id="@+id/menu_subway"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:layout_alignParentLeft="true"
@@ -118,7 +118,7 @@
 
             <!-- Frame Menu Button 3 -->
             <RelativeLayout
-                android:id="@+id/화장실"
+                android:id="@+id/menu_toilet"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:layout_alignParentLeft="true"
@@ -144,7 +144,7 @@
 
             <!-- Frame Menu Button 4 -->
             <RelativeLayout
-                android:id="@+id/병원"
+                android:id="@+id/menu_hospital"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:layout_alignParentLeft="true"
@@ -170,7 +170,7 @@
 
             <!-- Frame Menu Button 5 -->
             <RelativeLayout
-                android:id="@+id/약국"
+                android:id="@+id/menu_pharmacy"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:layout_alignParentLeft="true"
