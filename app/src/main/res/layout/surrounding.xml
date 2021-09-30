@@ -22,11 +22,11 @@
         <RelativeLayout
             android:id="@+id/bar_top"
             android:layout_width="411dp"
-            android:layout_height="124dp"
+            android:layout_height="92dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:background="@drawable/bar_top"
-            tools:ignore="MissingConstraints" >
+            tools:ignore="MissingConstraints">
 
             <!-- Status Bar -->
 
@@ -37,9 +37,9 @@
                 android:layout_height="92dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="0dp"
                 android:background="@drawable/frame_29"
-                tools:ignore="MissingConstraints" >
+                tools:ignore="MissingConstraints">
 
                 <!-- 주변시설 선택 -->
                 <TextView
@@ -53,7 +53,7 @@
                     android:text="주변시설 선택"
                     android:textColor="@color/white"
                     android:textSize="36dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </RelativeLayout>
 
 
