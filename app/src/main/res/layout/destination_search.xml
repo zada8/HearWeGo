@@ -21,8 +21,6 @@
         android:textColor="#FFE500"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:backgroundTint="#0A0C4A"
-        app:backgroundTintMode="screen"
         app:icon="@drawable/target"
         app:iconGravity="textEnd|textStart"
         app:iconTint="#FFE500"
