@@ -19,7 +19,6 @@
         tools:ignore="MissingConstraints" >
 
         <!-- bar_top -->
-
         <RelativeLayout
             android:id="@+id/bar_top"
             android:layout_width="411dp"
@@ -29,7 +28,6 @@
             android:background="@drawable/bar_top"
             tools:ignore="MissingConstraints">
 
-            <!-- Status Bar -->
 
             <!-- Title Surrounding -->
             <RelativeLayout
