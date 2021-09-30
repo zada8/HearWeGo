@@ -25,8 +25,7 @@
             android:layout_height="92dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:background="@drawable/bar_top"
-            tools:ignore="MissingConstraints">
+            android:background="@drawable/bar_top">
 
 
             <!-- Title Surrounding -->
@@ -37,8 +36,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="0dp"
-                android:background="@drawable/frame_29"
-                tools:ignore="MissingConstraints">
+                android:background="@drawable/frame_29">
 
                 <!-- 주변시설 선택 -->
                 <TextView

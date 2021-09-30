@@ -43,6 +43,15 @@ public class SurroundingActivity extends AppCompatActivity {
         ImageButton button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         ImageButton button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
 
+        //병원 버튼 누를 시 화면 전환
+        button_hospital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SurroundingActivity.this, HospitalActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         //이전 버튼 누를 시 화면 전환
         button_previous.setOnClickListener(new View.OnClickListener() {
