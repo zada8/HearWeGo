@@ -19,15 +19,6 @@
         tools:ignore="MissingConstraints" >
 
         <!-- Status Bar -->
-        <RelativeLayout
-            android:id="@+id/status_bar"
-            android:layout_width="411dp"
-            android:layout_height="32dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/status_bar"
-            tools:ignore="MissingConstraints" />
 
         <!-- Menu Frame -->
         <RelativeLayout
@@ -37,7 +28,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="24dp">
 
             <!-- Menu navi -->
             <ImageButton

@@ -20,6 +20,44 @@
 
         <!-- list_button -->
         <RelativeLayout
+            android:id="@+id/list_menu"
+            android:layout_width="411dp"
+            android:layout_height="318dp"
+            android:layout_marginTop="156dp"
+            tools:ignore="MissingConstraints">
+
+            <!-- help -->
+            <ImageButton
+                android:id="@+id/help"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/help_button" />
+
+            <!-- logout -->
+            <ImageButton
+                android:id="@+id/logout"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="114dp"
+                android:background="@drawable/logout_button" />
+
+            <!-- withdraw -->
+            <ImageButton
+                android:id="@+id/withdraw"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="228dp"
+                android:background="@drawable/withdraw_button" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/list_button"
             android:layout_width="411dp"
             android:layout_height="84dp"
@@ -52,21 +90,11 @@
     <RelativeLayout
         android:id="@+id/bar_top"
         android:layout_width="411dp"
-        android:layout_height="124dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        tools:ignore="MissingConstraints" >
+        tools:ignore="MissingConstraints">
 
-        <!-- status_bar -->
-        <RelativeLayout
-            android:id="@+id/status_bar"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/status_bar"
-            tools:ignore="MissingConstraints" />
 
         <!-- title_setting -->
         <RelativeLayout
@@ -75,7 +103,7 @@
             android:layout_height="92dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="0dp"
             android:background="@drawable/title_setting">
 
             <!-- 설정 -->
@@ -93,46 +121,6 @@
                 android:textStyle="bold" />
         </RelativeLayout>
     </RelativeLayout>
-
-        <!-- list_menu -->
-        <RelativeLayout
-            android:id="@+id/list_menu"
-            android:layout_width="411dp"
-            android:layout_height="318dp"
-            tools:layout_editor_absoluteY="156dp"
-            tools:ignore="MissingConstraints">
-
-        <!-- help -->
-            <ImageButton
-                android:id="@+id/help"
-                android:layout_width="395dp"
-                android:layout_height="90dp"
-                android:layout_marginLeft="8dp"
-                android:background="@drawable/help_button"></ImageButton>
-
-            <!-- logout -->
-            <ImageButton
-                android:id="@+id/logout"
-                android:layout_width="395dp"
-                android:layout_height="90dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="114dp"
-                android:background="@drawable/logout_button" />
-
-            <!-- withdraw -->
-            <ImageButton
-                android:id="@+id/withdraw"
-                android:layout_width="395dp"
-                android:layout_height="90dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="228dp"
-                android:background="@drawable/withdraw_button" />
-        </RelativeLayout>
-
 
 
 

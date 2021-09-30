@@ -29,15 +29,6 @@
             tools:ignore="MissingConstraints">
 
             <!-- Status Bar -->
-            <RelativeLayout
-                android:id="@+id/status_bar"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/status_bar"
-                tools:ignore="MissingConstraints" />
 
             <!-- Frame category -->
             <RelativeLayout
