@@ -33,7 +33,7 @@ public class HomeActivity extends AppCompatActivity {
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION); //소프트 키 숨기기
+
 
 
         ImageButton button_navi = findViewById(R.id.menu_navi); //메뉴1: 길 안내 이미지 버튼 객체 참조

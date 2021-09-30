@@ -32,7 +32,6 @@ public class SettingActivity extends AppCompatActivity {
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
 
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION); //소프트 키 숨기기
 
         ImageButton button_help = findViewById(R.id.help); //도움말 이미지 버튼 객체 참조
         ImageButton button_logout = findViewById(R.id.logout); //로그아웃 이미지 버튼 객체 참조
