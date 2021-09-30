@@ -25,7 +25,6 @@
             android:layout_height="84dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/list_button"
             tools:ignore="MissingConstraints">
 
             <!-- previous_button -->
@@ -36,7 +35,6 @@
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="0dp"
                 android:background="@drawable/previous_button"
-                android:onClick="onBackClicked"
                 tools:ignore="MissingConstraints" />
 
             <!-- home_button -->
@@ -46,8 +44,7 @@
                 android:layout_height="84dp"
                 android:layout_marginLeft="205dp"
                 android:layout_marginTop="0dp"
-                android:background="@drawable/home_button"
-                android:onClick="onHomeClicked" />
+                android:background="@drawable/home_button" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -58,7 +55,6 @@
         android:layout_height="124dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/bar_top"
         tools:ignore="MissingConstraints" >
 
         <!-- status_bar -->
@@ -103,7 +99,6 @@
             android:id="@+id/list_menu"
             android:layout_width="411dp"
             android:layout_height="318dp"
-            android:background="@drawable/list_menu"
             tools:layout_editor_absoluteY="156dp"
             tools:ignore="MissingConstraints">
 
@@ -113,8 +108,7 @@
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:layout_marginLeft="8dp"
-                android:background="@drawable/help_button"
-                android:onClick="onHelpClicked"></ImageButton>
+                android:background="@drawable/help_button"></ImageButton>
 
             <!-- logout -->
             <ImageButton
@@ -125,8 +119,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="114dp"
-                android:background="@drawable/logout_button"
-                android:onClick="onLogoutClicked" />
+                android:background="@drawable/logout_button" />
 
             <!-- withdraw -->
             <ImageButton
@@ -137,8 +130,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="228dp"
-                android:background="@drawable/withdraw_button"
-                android:onClick="onWithdrawClicked" />
+                android:background="@drawable/withdraw_button" />
         </RelativeLayout>
 
 

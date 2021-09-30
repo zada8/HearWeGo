@@ -37,17 +37,14 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/menu_list"
-            tools:ignore="MissingConstraints">
+            android:layout_marginTop="40dp">
 
             <!-- Menu navi -->
             <ImageButton
                 android:id="@+id/menu_navi"
                 android:layout_width="395dp"
                 android:layout_height="187.75dp"
-                android:background="@drawable/menu_navi"
-                android:onClick="onNaviClicked" />
+                android:background="@drawable/menu_navi" />
 
             <!-- Menu surroundings -->
             <ImageButton
@@ -55,8 +52,7 @@
                 android:layout_width="395dp"
                 android:layout_height="187.75dp"
                 android:layout_marginTop="195.75dp"
-                android:background="@drawable/menu_surroundings"
-                android:onClick="onSurroundClicked" />
+                android:background="@drawable/menu_surroundings" />
 
             <!-- Menu bookmarks -->
             <ImageButton
@@ -64,8 +60,7 @@
                 android:layout_width="395dp"
                 android:layout_height="187.75dp"
                 android:layout_marginTop="391.5dp"
-                android:background="@drawable/menu_bookmark"
-                android:onClick="onBookmarkClicked" />
+                android:background="@drawable/menu_bookmark" />
 
             <!-- Menu setting -->
             <ImageButton
@@ -73,8 +68,7 @@
                 android:layout_width="395dp"
                 android:layout_height="187.75dp"
                 android:layout_marginTop="587.25dp"
-                android:background="@drawable/menu_setting"
-                android:onClick="onSettingClicked" />
+                android:background="@drawable/menu_setting" />
         </RelativeLayout>
     </RelativeLayout>
 
