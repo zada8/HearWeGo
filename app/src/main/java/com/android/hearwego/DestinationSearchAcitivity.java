@@ -91,7 +91,7 @@ public class DestinationSearchAcitivity extends AppCompatActivity implements TMa
                     public void onConvertToGPSToAddress(String s) {
                         textToSpeech.setPitch(1.5f);
                         textToSpeech.setSpeechRate(1.0f);
-                        textToSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);
+                        textToSpeech.speak("현재 위치는 "+s+"입니다", TextToSpeech.QUEUE_FLUSH, null);
                     }
                 });
             }
