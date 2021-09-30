@@ -79,55 +79,42 @@
             android:background="@drawable/home_button"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button_walk"
+    <ImageButton
+        android:id="@+id/delete_keyword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:layout_marginBottom="38dp"
-        android:background="@drawable/frame_9"
+        android:background="@drawable/keyword_delete"
         android:gravity="center"
-        android:text="키워드 삭제"
-        android:textColor="#FFE500"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button_subway"
+        app:layout_constraintBottom_toTopOf="@+id/set_destination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frame_29" />
 
-    <Button
-        android:id="@+id/button2"
+    <ImageButton
+        android:id="@+id/delete_bookmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="38dp"
-        android:background="@drawable/frame_9"
+        android:background="@drawable/bookmark_delete"
         android:gravity="center"
-        android:text="즐겨찾기 삭제"
-        android:textColor="#FFE500"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button_subway"
+        app:layout_constraintBottom_toTopOf="@+id/set_destination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frame_29"
         app:layout_constraintVertical_bias="0.954" />
 
-    <Button
-        android:id="@+id/button_subway"
+    <ImageButton
+        android:id="@+id/set_destination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="148dp"
-        android:background="@drawable/frame_destination"
+        android:background="@drawable/set_destination"
         android:gravity="center"
-        android:text="목적지로 설정"
-        android:textStyle="bold"
-        android:textColor="#FFE500"
-        android:textSize="36sp"
-        app:backgroundTintMode="screen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_walk" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_keyword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

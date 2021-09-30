@@ -7,23 +7,13 @@
     android:background="#A8A8A8">
     <!-- Frame 29 -->
 
-    <Button
-        android:id="@+id/nowgps_btn"
+    <ImageButton
+        android:id="@+id/button1_nowgps"
         style="@android:style/Widget.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
-        android:background="@drawable/frame_6"
-        android:drawableStart="@drawable/target"
-        android:drawableLeft="@drawable/target"
-        android:fontFamily="@font/inter_medium"
-        android:text="현재 위치 확인"
-        android:textColor="#FFE500"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:icon="@drawable/target"
-        app:iconGravity="textEnd|textStart"
-        app:iconTint="#FFE500"
+        android:background="@drawable/now_gps"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

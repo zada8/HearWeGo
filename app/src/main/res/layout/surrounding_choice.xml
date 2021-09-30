@@ -90,35 +90,27 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_walk"
+        android:id="@+id/add_bookmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:layout_marginBottom="38dp"
-        android:background="@drawable/frame_9"
+        android:background="@drawable/bookmark_add"
         android:gravity="center"
-        android:text="즐겨찾기 등록"
-        android:textColor="#FFE500"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button_subway"
+        app:layout_constraintBottom_toTopOf="@+id/set_destination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frame_29" />
 
     <Button
-        android:id="@+id/button_subway"
+        android:id="@+id/set_destination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:background="@drawable/frame_destination"
+        android:background="@drawable/set_destination"
         android:gravity="center"
-        android:text="목적지로 설정"
-        android:textColor="#FFE500"
-        android:textSize="36sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_walk" />
+        app:layout_constraintTop_toBottomOf="@+id/add_bookmark" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

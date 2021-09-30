@@ -63,7 +63,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_walk"
+        android:id="@+id/delete_keyword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
@@ -74,13 +74,13 @@
         android:textColor="#FFE500"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button_subway"
+        app:layout_constraintBottom_toTopOf="@+id/set_destination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frame_29" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/delete_bookmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -91,14 +91,14 @@
         android:textColor="#FFE500"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button_subway"
+        app:layout_constraintBottom_toTopOf="@+id/set_destination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frame_29"
         app:layout_constraintVertical_bias="0.954" />
 
     <Button
-        android:id="@+id/button_subway"
+        android:id="@+id/set_destination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="148dp"
@@ -110,6 +110,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_walk" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_keyword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -60,36 +60,26 @@
             android:background="@drawable/home_button" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button_walk"
+    <ImageButton
+        android:id="@+id/moveby_walk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:layout_marginBottom="38dp"
-        android:background="@drawable/frame_11"
-        android:gravity="center"
-        android:text="도보로 이동"
-        android:textColor="#FFE500"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button_subway"
+        android:background="@drawable/moveby_walk"
+        app:layout_constraintBottom_toTopOf="@+id/moveby_subway"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frame_29" />
 
-    <Button
-        android:id="@+id/button_subway"
+    <ImageButton
+        android:id="@+id/moveby_subway"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:background="@drawable/frame13"
-        android:gravity="center"
-        android:text="지하철로 이동"
-        android:textColor="#FFE500"
-        android:textSize="36sp"
-        android:textStyle="bold"
+        android:background="@drawable/moveby_subway"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_walk" />
+        app:layout_constraintTop_toBottomOf="@+id/moveby_walk" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

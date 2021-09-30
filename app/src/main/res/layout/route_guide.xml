@@ -58,29 +58,20 @@
             android:background="@drawable/home_button"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button"
+    <ImageButton
+        android:id="@+id/button2_nowgps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="29dp"
-        android:background="@drawable/frame_6"
-        android:drawableLeft="@drawable/target"
+        android:background="@drawable/now_gps"
         android:gravity="center"
-        android:text="현재 위치 확인"
-        android:textColor="#FFE500"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:icon="@drawable/target"
-        app:iconGravity="textStart"
-        app:iconPadding="10dp"
-        app:iconTint="#FFE500"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/button3"
+        android:id="@+id/button_back"
         style="@android:style/Widget.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,12 +82,12 @@
         app:icon="@drawable/prev"
         app:iconGravity="textEnd"
         app:iconTint="#FFE500"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toStartOf="@+id/button9"
+        app:layout_constraintBottom_toTopOf="@+id/button2_nowgps"
+        app:layout_constraintEnd_toStartOf="@+id/button_pause"
         app:srcCompat="@drawable/prev" />
 
     <ImageButton
-        android:id="@+id/button9"
+        android:id="@+id/button_pause"
         style="@android:style/Widget.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,14 +97,14 @@
         app:iconGravity="textEnd"
         app:iconPadding="0dp"
         app:iconTint="#FFE500"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/button2_nowgps"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/pause"
         tools:ignore="VectorDrawableCompat" />
 
     <ImageButton
-        android:id="@+id/button5"
+        android:id="@+id/button_forth"
         style="@android:style/Widget.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -124,8 +115,8 @@
         app:icon="@drawable/next"
         app:iconGravity="textEnd"
         app:iconTint="#FFE500"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintStart_toEndOf="@+id/button9"
+        app:layout_constraintBottom_toTopOf="@+id/button2_nowgps"
+        app:layout_constraintStart_toEndOf="@+id/button_pause"
         app:srcCompat="@drawable/next" />
 
     <TextView

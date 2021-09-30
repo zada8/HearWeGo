@@ -1,14 +1,12 @@
 package com.android.hearwego;
 
-import android.Manifest;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -80,7 +78,7 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
         tMapGpsManager.OpenGps();
 
         //현재위치확인 버튼 누르면 현재위치를 음성으로 안내할 수 있게 구현
-        Button nowgps_btn = findViewById(R.id.nowgps_btn);
+        ImageButton nowgps_btn = findViewById(R.id.button1_nowgps);
         nowgps_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
