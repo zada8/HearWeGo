@@ -42,7 +42,7 @@ public class BookmarkActivity extends AppCompatActivity {
         ImageButton button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         ImageButton button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
 
-        //병원 버튼 누를 시 화면 전환
+        //즐겨찾기 버튼
         button_bookmark1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
