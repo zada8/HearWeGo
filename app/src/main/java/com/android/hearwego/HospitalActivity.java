@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.ActionBar;
@@ -34,8 +35,19 @@ public class HospitalActivity extends AppCompatActivity {
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(uiOption);
 
+        Button button_hospital1 = findViewById(R.id.hospital1);
         ImageButton button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         ImageButton button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
+
+        //병원1 누를 시 화면 전환
+        button_hospital1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         //이전 버튼 누를 시 화면 전환
         button_previous.setOnClickListener(new View.OnClickListener() {
