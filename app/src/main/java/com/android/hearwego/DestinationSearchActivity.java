@@ -1,5 +1,6 @@
 package com.android.hearwego;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
 
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +79,12 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
         tMapGpsManager.setProvider(tMapGpsManager.NETWORK_PROVIDER);
         tMapGpsManager.OpenGps();
 
-        //현재위치확인 버튼 누르면 현재위치를 음성으로 안내할 수 있게 구현
+        //버튼 선언
         ImageButton nowgps_btn = findViewById(R.id.button1_nowgps);
+        ImageButton previous = findViewById(R.id.previous);
+        ImageButton home = findViewById(R.id.home);
+
+        //현재위치확인 버튼 누르면 현재위치를 음성으로 안내할 수 있게 구현
         nowgps_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +101,39 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
             }
         });
 
+        //이전 버튼 선언
+        previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DestinationSearchActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
+        //홈 버튼 선언
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DestinationSearchActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if(textToSpeech!=null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+            textToSpeech = null;
+        }
     }
 }
