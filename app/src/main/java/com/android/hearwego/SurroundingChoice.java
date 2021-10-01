@@ -10,7 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class BookmarkEdit extends AppCompatActivity {
+public class SurroundingChoice extends AppCompatActivity {
+
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
 
@@ -18,7 +19,7 @@ public class BookmarkEdit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bookmark_edit);
+        setContentView(R.layout.surrounding_choice);
 
         ActionBar actionBar = getSupportActionBar(); //액션바(패키지명) 숨김처리
         actionBar.hide();
@@ -34,19 +35,17 @@ public class BookmarkEdit extends AppCompatActivity {
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
 
-        Button button_delete_keyword = findViewById(R.id.delete_keyword);
-        Button button_delete_bookmark = findViewById(R.id.delete_bookmark);
+        Button button_add_bookmark = findViewById(R.id.add_bookmark);
         Button button_set_destination = findViewById(R.id.set_destination);
 
         ImageButton button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         ImageButton button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
 
-
         //이전 버튼 누를 시 화면 전환
         button_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BookmarkEdit.this, BookmarkActivity.class);
+                Intent intent = new Intent(SurroundingChoice.this, SurroundingActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -56,11 +55,13 @@ public class BookmarkEdit extends AppCompatActivity {
         button_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BookmarkEdit.this, HomeActivity.class);
+                Intent intent = new Intent(SurroundingChoice.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
+
+
 
     }
 }
