@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SurroundingActivity">
+    tools:context=".BookmarkActivity">
 
     <!-- 주변시설 -->
     <RelativeLayout
@@ -45,7 +46,7 @@
         tools:ignore="MissingConstraints" />
 
     <RelativeLayout
-        android:id="@+id/title_surrounding"
+        android:id="@+id/title_bookmark"
         android:layout_width="411dp"
         android:layout_height="92dp"
         android:background="@drawable/frame_29"
@@ -67,7 +68,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/menu_hos1"
+        android:id="@+id/bookmark1"
         android:layout_width="395dp"
         android:layout_height="90dp"
         android:layout_marginStart="8dp"
@@ -84,7 +85,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/menu_subway"
+        android:id="@+id/bookmark2"
         android:layout_width="395dp"
         android:layout_height="90dp"
         android:layout_marginStart="8dp"
@@ -96,11 +97,11 @@
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_hos1"
+        app:layout_constraintTop_toBottomOf="@+id/bookmark1"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/menu_toilet"
+        android:id="@+id/bookmark3"
         android:layout_width="395dp"
         android:layout_height="90dp"
         android:layout_marginStart="8dp"
@@ -112,11 +113,11 @@
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_subway"
+        app:layout_constraintTop_toBottomOf="@+id/bookmark2"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/menu_hospital"
+        android:id="@+id/bookmark4"
         android:layout_width="395dp"
         android:layout_height="90dp"
         android:layout_marginStart="8dp"
@@ -128,7 +129,7 @@
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_toilet"
+        app:layout_constraintTop_toBottomOf="@+id/bookmark3"
         tools:ignore="MissingConstraints" />
 
 
