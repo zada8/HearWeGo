@@ -61,7 +61,23 @@
                 android:layout_marginTop="587.25dp"
                 android:background="@drawable/menu_setting" />
         </RelativeLayout>
+
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/name_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_box"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="@+id/background" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "619964046408",
+    "project_id": "hearwego",
+    "storage_bucket": "hearwego.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619964046408:android:24f8e13605fd9fcedacc7d",
+        "android_client_info": {
+          "package_name": "com.android.hearwego"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619964046408-a3i8b2vk287jqmeud4ca8th8h8u7oh30.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.hearwego",
+            "certificate_hash": "67c1e9e782224e6d299a8a86a4ac3ab071942b19"
+          }
+        },
+        {
+          "client_id": "619964046408-6hm7t5j9sritu2u7ij5cpet2c3ag63cl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEE9aD9EdQ023JoEOSibCa7bxedA1WdMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619964046408-6hm7t5j9sritu2u7ij5cpet2c3ag63cl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

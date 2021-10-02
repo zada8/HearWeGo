@@ -5,14 +5,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 
 public class HomeActivity extends AppCompatActivity {
 
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
+
+    private TextView name_box; //이름 표시할 상단 TextView
+    private ImageView image_box; //사진 표시할 상단 ImageView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +82,16 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name"); //LogoActivity로부터 이름 전달받음
+        String imageurl = intent.getStringExtra("imageurl"); //LogoActivity로부터 이미지 url 전달받음
+
+        name_box = findViewById(R.id.name_box); //name 텍스트를 TextView에 세팅
+        name_box.setText(name);
+        image_box = findViewById(R.id.image_box);
+        Glide.with(this).load(imageurl).into(image_box); //이미지 url을 ImageView에 세팅
+
     }
 
 }
