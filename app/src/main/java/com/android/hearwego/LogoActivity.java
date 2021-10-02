@@ -84,7 +84,6 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
     }
-    //구글로그인
     //구글 로그인 요청했을 때 결과값을 되돌려받는 곳
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
@@ -126,5 +125,4 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
     public void withdraw() {
         auth.getCurrentUser().delete();
     }
-
 }
