@@ -35,7 +35,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import org.jetbrains.annotations.NotNull;
 
 public class LogoActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
-
+    
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
     private SignInButton btn_Google; //구글 로그인 버튼
@@ -83,9 +83,8 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                 startActivityForResult(intent, REQ_SIGN_GOOGLE);
             }
         });
-
     }
-
+    //구글로그인
     //구글 로그인 요청했을 때 결과값을 되돌려받는 곳
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
