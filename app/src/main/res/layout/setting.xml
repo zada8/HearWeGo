@@ -36,7 +36,7 @@
 
             <!-- logout -->
             <ImageButton
-                android:id="@+id/logout"
+                android:id="@+id/btn_logout"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:layout_alignParentLeft="true"
@@ -47,7 +47,7 @@
 
             <!-- withdraw -->
             <ImageButton
-                android:id="@+id/withdraw"
+                android:id="@+id/btn_withdraw"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:layout_alignParentLeft="true"

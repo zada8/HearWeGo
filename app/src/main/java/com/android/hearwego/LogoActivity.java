@@ -1,6 +1,7 @@
 package com.android.hearwego;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -39,7 +42,7 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
     private FirebaseAuth auth; //firebase 인증 객체
     private GoogleApiClient googleApiClient; //구글 API 클라리언트 객체
     private static final int REQ_SIGN_GOOGLE = 100; //구글 로그인 결과 코드
-
+    public static Context context_logo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,10 +116,16 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                         }
                     }
                 });
+        context_logo = this;
     }
 
     @Override
     public void onConnectionFailed(@NonNull @org.jetbrains.annotations.NotNull ConnectionResult connectionResult) {
         
     }
+    //로그아웃 함수
+    public void withdraw() {
+        auth.getCurrentUser().delete();
+    }
+
 }

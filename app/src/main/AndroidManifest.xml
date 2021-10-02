@@ -19,7 +19,6 @@
         <activity android:name=".BookmarkEdit" />
         <activity android:name=".RouteGuideActivity" />
         <activity android:name=".RouteChoiceActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".LogoActivity">
             <intent-filter>
