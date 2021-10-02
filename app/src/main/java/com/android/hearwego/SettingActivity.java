@@ -70,7 +70,7 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(SettingActivity.this, "로그아웃", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(SettingActivity.this,HomeActivity.class);
+                Intent intent = new Intent(SettingActivity.this,LogoActivity.class);
                 startActivity(intent);
                 finish();
             }
