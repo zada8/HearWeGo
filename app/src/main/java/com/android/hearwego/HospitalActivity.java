@@ -51,6 +51,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
     Button button_hospital7;
     Button button_hospital8;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,16 +120,6 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                 finish();
             }
         });
-
-        //병원1 누를 시 화면 전환
-        button_hospital1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
     /*현재 위치가 변화될 때 사용되는 함수*/
@@ -158,6 +149,15 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                         switch (i) {
                             case 0:
                                 button_hospital1.setText(item.getPOIName());
+                                button_hospital1.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                        hs1_intent.putExtra("name", item.getPOIName());
+                                        hs1_intent.putExtra("address", item.getPOIAddress());
+                                        startActivity(hs1_intent);
+                                    }
+                                });
                                 break;
                             case 1:
                                 button_hospital2.setText(item.getPOIName());

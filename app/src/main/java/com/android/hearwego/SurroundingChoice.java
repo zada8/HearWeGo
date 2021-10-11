@@ -6,14 +6,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class SurroundingChoice extends AppCompatActivity {
 
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
+
+    //텍스트뷰 선언
+    TextView nameText;
+    TextView addressText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +67,17 @@ public class SurroundingChoice extends AppCompatActivity {
             }
         });
 
+        //인텐트 받아들임
+        Intent intent = getIntent();
+        String nameData = intent.getStringExtra("name");
+        String addressData = intent.getStringExtra("address");
+        Log.d("현재-위치!", nameData + addressData);
+
+        //목적지 이름, 주소 텍스트 설정 (주소는 동까지만 뜸. )
+        nameText = findViewById(R.id.destination);
+        nameText.setText(nameData);
+        addressText = findViewById(R.id.destination_address);
+        addressText.setText(addressData);
 
 
     }
