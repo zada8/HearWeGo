@@ -5,6 +5,7 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -27,11 +28,6 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
     private static String API_KEY = "l7xx59d0bb77ddfc45efb709f48d1b31715c";
 
     TextToSpeech textToSpeech;
-
-    @Override
-    public void onLocationChange(Location location) {
-        tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
-    }
 
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
@@ -124,6 +120,12 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
 
 
 
+    }
+
+    @Override
+    public void onLocationChange(Location location) {
+        tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
+        Log.d("현재위치", tMapView.getLocationPoint().toString());
     }
 
     @Override
