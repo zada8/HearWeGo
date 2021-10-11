@@ -63,7 +63,8 @@
             android:text="주변시설 선택"
             android:textColor="@color/white"
             android:textSize="36sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/inter_medium"/>
     </RelativeLayout>
 
     <ImageButton

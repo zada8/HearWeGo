@@ -44,7 +44,8 @@
             android:text="병원"
             android:textColor="@color/yellow"
             android:textSize="36dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/inter_medium"/>
     </RelativeLayout>
 
     <!-- 병원1 -->
@@ -72,7 +73,8 @@
                 android:text="서울대학교병원"
                 android:textColor="@color/yellow"
                 android:textSize="36sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
 
             <!-- 병원2 -->
             <Button
@@ -86,7 +88,8 @@
                 android:text="병원2"
                 android:textColor="@color/yellow"
                 android:textSize="36sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
 
             <!-- 병원3 -->
             <Button
@@ -100,7 +103,8 @@
                 android:text="병원3"
                 android:textColor="@color/yellow"
                 android:textSize="36sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
 
             <!-- 병원4 -->
             <Button
@@ -114,7 +118,8 @@
                 android:text="병원4"
                 android:textColor="@color/yellow"
                 android:textSize="36sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
 
             <!-- 병원5 -->
             <Button
@@ -128,9 +133,10 @@
                 android:text="병원5"
                 android:textColor="@color/yellow"
                 android:textSize="36sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
 
-            <!-- 병원5 -->
+            <!-- 병원6 -->
             <Button
                 android:id="@+id/hospital6"
                 android:layout_width="395dp"
@@ -142,7 +148,8 @@
                 android:text="병원6"
                 android:textColor="@color/yellow"
                 android:textSize="36sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
 
             <!-- 병원7 -->
             <Button
@@ -156,7 +163,8 @@
                 android:text="병원7"
                 android:textColor="@color/yellow"
                 android:textSize="36sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
 
             <!-- 병원8 -->
             <Button
@@ -170,7 +178,8 @@
                 android:text="병원8"
                 android:textColor="@color/yellow"
                 android:textSize="36sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
 
         </LinearLayout>
     </ScrollView>
