@@ -23,7 +23,6 @@ public class HomeActivity extends AppCompatActivity {
     private ImageView image_box; //사진 표시할 상단 ImageView
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

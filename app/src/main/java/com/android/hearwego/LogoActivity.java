@@ -18,7 +18,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
@@ -41,11 +43,11 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
     private SignInButton btn_Google; //구글 로그인 버튼
-    private FirebaseAuth auth; //firebase 인증 객체
-    private GoogleApiClient googleApiClient; //구글 API 클라리언트 객체
+    public FirebaseAuth auth; //firebase 인증 객체
+    public GoogleSignInClient googleSignInClient;
+    public GoogleApiClient googleApiClient; //구글 API 클라리언트 객체
     private static final int REQ_SIGN_GOOGLE = 100; //구글 로그인 결과 코드
     public static Context context_logo;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,7 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
                 .build();
+        googleSignInClient = GoogleSignIn.getClient(LogoActivity.this, googleSignInOptions);
 
         // onCreate 메소드에서 FirebaseAuth 개체의 공유 인스턴스 가져오기
         // 로그인 버튼 이벤트 > signInIntent 호출
@@ -89,8 +92,8 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onClick(View v) {
                 Log.v("알림", "구글 LOGIN");
-                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(intent, REQ_SIGN_GOOGLE);
+                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+                startActivityForResult(signInIntent, REQ_SIGN_GOOGLE);
             }
         });
     }
@@ -101,11 +104,15 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
         if(requestCode == REQ_SIGN_GOOGLE){
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if(result.isSuccess()){ //인증 결과가 성공적이면 실행
+                Log.v("알림", "google sign 성공, FireBase Auth.");
                 GoogleSignInAccount account = result.getSignInAccount(); //구글 로그인 정보를 담고 있는 변수 (닉네임, 이메일 주소, 등)
                 resultLogin(account); //로그인 결과 값 출력 수행하는 메소드 호출
+            } else {
+                Log.v("알림", result.isSuccess() +" Google Sign In failed. Because : " + result.getStatus().toString());
             }
         }
     }
+
     //로그인 결과 값 출력 수행하는 메소드
     private void resultLogin(GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
@@ -114,7 +121,7 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                     @Override
                     public void onComplete(@NonNull @NotNull Task<AuthResult> task) { //최종 구글 로그인 성공 여부 검사
                         if(task.isSuccessful()){ //로그인이 성공했으면
-                            Toast.makeText(LogoActivity.this, "환영합니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogoActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                             intent.putExtra("name", account.getDisplayName());
                             intent.putExtra("imageurl", String.valueOf(account.getPhotoUrl())); //String.valueOf(): 특정 자료형을 String 형태로 변환시키는 방법
@@ -127,19 +134,76 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
         context_logo = this;
     }
 
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct){
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.v("알림", "ONCOMPLETE");
+                       // 인증 실패 시
+                        if (!task.isSuccessful()) {
+                            Log.v("알림", "!task.isSuccessful()");
+                            Toast.makeText(LogoActivity.this, "인증 실패", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Log.v("알림", "task.isSuccessful()");
+                            FirebaseUser user = auth.getCurrentUser();
+                            Toast.makeText(LogoActivity.this, "인증 성공", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
     @Override
     public void onConnectionFailed(@NonNull @org.jetbrains.annotations.NotNull ConnectionResult connectionResult) {
         
     }
-    //로그아웃 함수
-    public void withdraw() {
-        auth.getCurrentUser().delete();
-    }
+
     //사용자가 현재 로그인되어 있는지 확인
     @Override
     public void onStart() {
+        // 활동을 초기화할 때 사용자가 현재 로그인되어 있는지 확인
         super.onStart();
         FirebaseUser currentUser = auth.getCurrentUser();
     }
+
+
+    //로그아웃
+    public void signOut(){
+        googleApiClient.connect();
+        googleApiClient.registerConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+            @Override
+            public void onConnected(@Nullable @org.jetbrains.annotations.Nullable Bundle bundle) {
+                FirebaseAuth.getInstance().signOut();
+                if(googleApiClient.isConnected()){
+                    Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>(){
+                        @Override
+                        public void onResult(@NonNull @NotNull Status status) {
+                            if(status.isSuccess()){
+                                Log.v("알림", "로그아웃 성공");
+                                setResult(1);
+                            }else {
+                                setResult(0);
+                            }
+                            finish();
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onConnectionSuspended(int i) {
+                Log.v("알림", "Google API Client Connection Suspended");
+                setResult(-1);
+                finish();
+            }
+        });
+    }
+
+    //회원 탈퇴
+    public void withdraw() {
+        googleSignInClient.revokeAccess();
+        auth = FirebaseAuth.getInstance();
+        auth.getCurrentUser().delete();
+    }
+
 }
 
