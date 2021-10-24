@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import org.jetbrains.annotations.NotNull;
@@ -43,6 +45,8 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
     private GoogleApiClient googleApiClient; //구글 API 클라리언트 객체
     private static final int REQ_SIGN_GOOGLE = 100; //구글 로그인 결과 코드
     public static Context context_logo;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +70,8 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
             requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         } //gps 기능 permission request
 
+
+        // GoogleSignInOptions 생성
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -74,11 +80,15 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
                 .build();
+
+        // onCreate 메소드에서 FirebaseAuth 개체의 공유 인스턴스 가져오기
+        // 로그인 버튼 이벤트 > signInIntent 호출
         auth = FirebaseAuth.getInstance(); //파이어베이스 인증 객체 초기화
         btn_Google = findViewById(R.id.btn_Google);
         btn_Google.setOnClickListener(new View.OnClickListener() { //구글 로그인 버튼 클릭시 동작
             @Override
             public void onClick(View v) {
+                Log.v("알림", "구글 LOGIN");
                 Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
                 startActivityForResult(intent, REQ_SIGN_GOOGLE);
             }
@@ -124,6 +134,12 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
     //로그아웃 함수
     public void withdraw() {
         auth.getCurrentUser().delete();
+    }
+    //사용자가 현재 로그인되어 있는지 확인
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = auth.getCurrentUser();
     }
 }
 

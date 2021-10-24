@@ -35,17 +35,18 @@
                 android:background="@drawable/help_button" />
 
             <!-- logout -->
+
+            <!-- withdraw -->
             <ImageButton
                 android:id="@+id/btn_logout"
                 android:layout_width="395dp"
                 android:layout_height="90dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="7dp"
                 android:layout_marginTop="114dp"
                 android:background="@drawable/logout_button" />
 
-            <!-- withdraw -->
             <ImageButton
                 android:id="@+id/btn_withdraw"
                 android:layout_width="395dp"

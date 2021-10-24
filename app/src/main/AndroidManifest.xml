@@ -19,11 +19,11 @@
         <activity android:name=".BookmarkEdit" />
         <activity android:name=".RouteGuideActivity" />
         <activity android:name=".RouteChoiceActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".HomeActivity">
+        </activity>
         <activity android:name=".LogoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

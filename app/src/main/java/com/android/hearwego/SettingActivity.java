@@ -42,7 +42,6 @@ public class SettingActivity extends AppCompatActivity {
         ImageButton button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
         ImageButton btn_logout = (ImageButton)findViewById(R.id.btn_logout); //로그아웃 버튼 객체 참조
 
-
         //이전 버튼 누를 시 화면 전환
         button_previous.setOnClickListener(new View.OnClickListener() {
             @Override

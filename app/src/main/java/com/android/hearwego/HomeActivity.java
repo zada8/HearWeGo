@@ -12,6 +12,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -20,6 +21,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private TextView name_box; //이름 표시할 상단 TextView
     private ImageView image_box; //사진 표시할 상단 ImageView
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
