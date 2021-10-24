@@ -40,9 +40,7 @@ public class SettingActivity extends AppCompatActivity {
         ImageButton btn_withdraw = findViewById(R.id.btn_withdraw); //회원탈퇴 이미지 버튼 객체 참조
         ImageButton button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         ImageButton button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
-        ImageButton firebasesignout = (ImageButton)findViewById(R.id.firebasesignout); //로그아웃 버튼 객체 참조
-        firebasesignout.setOnClickListener((View.OnClickListener) this);
-
+        ImageButton btn_logout = (ImageButton)findViewById(R.id.btn_logout); //로그아웃 버튼 객체 참조
 
 
         //이전 버튼 누를 시 화면 전환
@@ -68,7 +66,7 @@ public class SettingActivity extends AppCompatActivity {
 
 
         //로그아웃 버튼 클릭시 동작
-        firebasesignout.setOnClickListener(new View.OnClickListener() {
+        btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
