@@ -3,8 +3,8 @@ package com.android.hearwego;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -36,13 +36,14 @@ public class SettingActivity extends AppCompatActivity {
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
-
-
         ImageButton button_help = findViewById(R.id.help); //도움말 이미지 버튼 객체 참조
-        ImageButton btn_logout = findViewById(R.id.btn_logout); //로그아웃 이미지 버튼 객체 참조
         ImageButton btn_withdraw = findViewById(R.id.btn_withdraw); //회원탈퇴 이미지 버튼 객체 참조
         ImageButton button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         ImageButton button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
+        ImageButton firebasesignout = (ImageButton)findViewById(R.id.firebasesignout); //로그아웃 버튼 객체 참조
+        firebasesignout.setOnClickListener((View.OnClickListener) this);
+
+
 
         //이전 버튼 누를 시 화면 전환
         button_previous.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +65,10 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+
+
         //로그아웃 버튼 클릭시 동작
-        btn_logout.setOnClickListener(new View.OnClickListener() {
+        firebasesignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();

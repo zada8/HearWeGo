@@ -35,7 +35,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import org.jetbrains.annotations.NotNull;
 
 public class LogoActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
-    
+
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
     private SignInButton btn_Google; //구글 로그인 버튼
@@ -126,3 +126,4 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
         auth.getCurrentUser().delete();
     }
 }
+

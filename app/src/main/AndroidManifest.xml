@@ -21,12 +21,15 @@
         <activity android:name=".RouteChoiceActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".LogoActivity">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".FirebaseUIActivity"/>
+        <activity android:name=".AuthActivity"/>
         <activity android:name=".DestinationSearchActivity" />
         <activity android:name=".SurroundingActivity" />
         <activity android:name=".SettingActivity" />
