@@ -51,6 +51,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
     Button button_hospital7;
     Button button_hospital8;
 
+    int num=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,13 +141,18 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
             //현재 위치 탐색 완료 후 주변 병원 찾기 시작
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
             //주변 반경 10km 지정, 가까운 순서대로 출력, 버튼이 8개라 8개의 병원을 가져온다.
-            tMapData.findAroundNamePOI(nowPoint, "병원", 10, 8, new TMapData.FindAroundNamePOIListenerCallback() {
+            tMapData.findAroundNamePOI(nowPoint, "병원", 10, 20, new TMapData.FindAroundNamePOIListenerCallback() {
                 @Override
                 public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
-                    for(int i = 0;i<8;i++){
+                    for(int i = 0;i<20;i++){
+                        num = num +1;
                         TMapPOIItem item = arrayList.get(i);
                         Log.d("현재-위치", item.getPOIName());
-                        switch (i) {
+                        if(item.getPOIName().contains("주차장")){
+                            num=num-1;
+                            continue;
+                        }
+                        switch (num) {
                             case 0:
                                 button_hospital1.setText(item.getPOIName());
                                 button_hospital1.setOnClickListener(new View.OnClickListener() {
