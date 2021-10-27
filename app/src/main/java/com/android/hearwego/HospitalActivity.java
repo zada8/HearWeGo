@@ -51,6 +51,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
     Button button_hospital7;
     Button button_hospital8;
 
+    /*switch문 사용 위한 변수*/
     int num=-1;
 
     @Override
@@ -146,6 +147,9 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                 public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
                     for(int i = 0;i<20;i++){
                         num = num +1;
+                        if(num == 8){
+                            break;
+                        }
                         TMapPOIItem item = arrayList.get(i);
                         Log.d("현재-위치", item.getPOIName());
                         if(item.getPOIName().contains("주차장")){
