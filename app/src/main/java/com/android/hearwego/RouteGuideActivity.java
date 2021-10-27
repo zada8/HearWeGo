@@ -3,14 +3,20 @@ package com.android.hearwego;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class RouteGuideActivity extends AppCompatActivity {
 
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
+
+    /*텍스트뷰 선언*/
+    TextView destination_text;
 
     public static final int REQUEST_CODE_WALK = 120;
     @Override
@@ -32,6 +38,14 @@ public class RouteGuideActivity extends AppCompatActivity {
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
 
+        /*인텐트 받아들임*/
+        Intent intent = getIntent();
+        String nameData = intent.getStringExtra("name");
+        Double latitude = intent.getDoubleExtra("latitude", 0);
+        Double longitude = intent.getDoubleExtra("longitude", 0);
+
+        destination_text = findViewById(R.id.destination_text);
+        destination_text.setText(nameData);
 
 
     }

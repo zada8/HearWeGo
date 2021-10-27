@@ -30,6 +30,7 @@
             android:textColor="#FFE500"
             android:textSize="36sp"
             android:textStyle="bold"
+            android:fontFamily="@font/inter_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </RelativeLayout>

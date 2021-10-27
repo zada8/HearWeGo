@@ -17,7 +17,7 @@ public class SurroundingChoice extends AppCompatActivity {
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
 
-    //텍스트뷰 선언
+    /*텍스트뷰 선언*/
     TextView nameText;
     TextView addressText;
 
@@ -47,7 +47,7 @@ public class SurroundingChoice extends AppCompatActivity {
         ImageButton button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         ImageButton button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
 
-        //이전 버튼 누를 시 화면 전환
+        /*이전 버튼 누를 시 화면 전환*/
         button_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +57,7 @@ public class SurroundingChoice extends AppCompatActivity {
             }
         });
 
-        //홈 버튼 누를 시 화면 전환
+        /*홈 버튼 누를 시 화면 전환*/
         button_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,17 +67,33 @@ public class SurroundingChoice extends AppCompatActivity {
             }
         });
 
-        //인텐트 받아들임
+        /*인텐트 받아들임*/
         Intent intent = getIntent();
         String nameData = intent.getStringExtra("name");
         String addressData = intent.getStringExtra("address");
+        Double latitude = Double.parseDouble(intent.getStringExtra("latitude"));
+        Double longitude = Double.parseDouble(intent.getStringExtra("longitude"));
+
         Log.d("현재-위치!", nameData + addressData);
 
-        //목적지 이름, 주소 텍스트 설정 (주소는 동까지만 뜸. )
+        /*목적지 이름, 주소 텍스트 설정 (주소는 동까지만 뜸. )*/
         nameText = findViewById(R.id.destination);
         nameText.setText(nameData);
         addressText = findViewById(R.id.destination_address);
         addressText.setText(addressData);
+
+        /*'목적지로 설정' 버튼 눌렀을 때*/
+        button_set_destination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*인텐트 보냄*/
+                Intent dest_intent = new Intent(SurroundingChoice.this, RouteGuideActivity.class);
+                dest_intent.putExtra("name", nameData);
+                dest_intent.putExtra("latitude", latitude);
+                dest_intent.putExtra("longitude", longitude);
+                startActivity(dest_intent);
+            }
+        });
 
 
     }

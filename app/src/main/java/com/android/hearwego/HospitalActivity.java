@@ -165,30 +165,109 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                         Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
                                         hs1_intent.putExtra("name", item.getPOIName());
                                         hs1_intent.putExtra("address", item.getPOIAddress());
+                                        hs1_intent.putExtra("latitude", item.noorLat);
+                                        hs1_intent.putExtra("longitude", item.noorLon);
                                         startActivity(hs1_intent);
                                     }
                                 });
                                 break;
                             case 1:
                                 button_hospital2.setText(item.getPOIName());
+                                button_hospital2.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent hs2_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                        hs2_intent.putExtra("name", item.getPOIName());
+                                        hs2_intent.putExtra("address", item.getPOIAddress());
+                                        hs2_intent.putExtra("latitude", item.noorLat);
+                                        hs2_intent.putExtra("longitude", item.noorLon);
+                                        startActivity(hs2_intent);
+                                    }
+                                });
                                 break;
                             case 2:
                                 button_hospital3.setText(item.getPOIName());
+                                button_hospital3.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent hs3_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                        hs3_intent.putExtra("name", item.getPOIName());
+                                        hs3_intent.putExtra("address", item.getPOIAddress());
+                                        hs3_intent.putExtra("latitude", item.noorLat);
+                                        hs3_intent.putExtra("longitude", item.noorLon);
+                                        startActivity(hs3_intent);
+                                    }
+                                });
                                 break;
                             case 3:
                                 button_hospital4.setText(item.getPOIName());
+                                button_hospital4.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent hs4_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                        hs4_intent.putExtra("name", item.getPOIName());
+                                        hs4_intent.putExtra("address", item.getPOIAddress());
+                                        hs4_intent.putExtra("latitude", item.noorLat);
+                                        hs4_intent.putExtra("longitude", item.noorLon);
+                                        startActivity(hs4_intent);
+                                    }
+                                });
                                 break;
                             case 4:
                                 button_hospital5.setText(item.getPOIName());
+                                button_hospital5.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent hs5_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                        hs5_intent.putExtra("name", item.getPOIName());
+                                        hs5_intent.putExtra("address", item.getPOIAddress());
+                                        hs5_intent.putExtra("latitude", item.noorLat);
+                                        hs5_intent.putExtra("longitude", item.noorLon);
+                                        startActivity(hs5_intent);
+                                    }
+                                });
                                 break;
                             case 5:
                                 button_hospital6.setText(item.getPOIName());
+                                button_hospital6.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent hs6_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                        hs6_intent.putExtra("name", item.getPOIName());
+                                        hs6_intent.putExtra("address", item.getPOIAddress());
+                                        hs6_intent.putExtra("latitude", item.noorLat);
+                                        hs6_intent.putExtra("longitude", item.noorLon);
+                                        startActivity(hs6_intent);
+                                    }
+                                });
                                 break;
                             case 6:
                                 button_hospital7.setText(item.getPOIName());
+                                button_hospital7.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent hs7_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                        hs7_intent.putExtra("name", item.getPOIName());
+                                        hs7_intent.putExtra("address", item.getPOIAddress());
+                                        hs7_intent.putExtra("latitude", item.noorLat);
+                                        hs7_intent.putExtra("longitude", item.noorLon);
+                                        startActivity(hs7_intent);
+                                    }
+                                });
                                 break;
                             case 7:
                                 button_hospital8.setText(item.getPOIName());
+                                button_hospital8.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent hs8_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                        hs8_intent.putExtra("name", item.getPOIName());
+                                        hs8_intent.putExtra("address", item.getPOIAddress());
+                                        hs8_intent.putExtra("latitude", item.noorLat);
+                                        hs8_intent.putExtra("longitude", item.noorLon);
+                                        startActivity(hs8_intent);
+                                    }
+                                });
                                 break;
                             default:
                                 Log.d("오류", "해당하는 버튼이 없습니다.");
