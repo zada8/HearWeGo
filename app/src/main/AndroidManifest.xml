@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.android.hearwego">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -32,6 +33,11 @@
         <activity android:name=".SettingActivity" />
         <activity android:name=".BookmarkActivity" />
         <activity android:name=".HospitalActivity" />
+        <activity android:name=".FacilityActivity" />
+        <activity android:name=".PharmacyActivity"/>
+        <activity android:name=".SubwayActivity"/>
+        <activity android:name=".RestroomActivity"/>
+
     </application>
 
 </manifest>
