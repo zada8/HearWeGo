@@ -124,47 +124,29 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="0M"
         android:textColor="#FFE500"
         android:textSize="64sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/frame_29" />
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="220dp"
-        android:layout_height="166dp"
-        android:layout_marginBottom="400dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="대한생명 홍익BRANCH 에서 대한생명 홍익BRANCH 방면으로 우회전 후 양화로 을 따라 94m 이동"
+        android:textAlignment="center"
+        android:textColor="#FFE500"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/button_pause"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frame_29">
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <ImageView
-            android:id="@+id/left_point"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/left_point" />
-
-        <ImageView
-            android:id="@+id/right_point"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/right_point" />
-
-        <ImageView
-            android:id="@+id/straight_point"
-            android:layout_width="match_parent"
-            android:layout_height="211dp"
-            android:soundEffectsEnabled="false"
-            android:visibility="visible"
-            app:srcCompat="@drawable/straight_point" />
-
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

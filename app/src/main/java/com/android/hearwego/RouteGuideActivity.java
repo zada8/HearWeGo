@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class RouteGuideActivity extends AppCompatActivity {
@@ -37,6 +38,27 @@ public class RouteGuideActivity extends AppCompatActivity {
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
+
+        ImageButton button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
+        ImageButton button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
+
+        //이전 버튼 누를 시 화면 전환
+        button_previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        //홈 버튼 누를 시 화면 전환
+        button_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RouteGuideActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         /*인텐트 받아들임*/
         Intent intent = getIntent();
