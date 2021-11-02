@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SubwayActivity">
+
+    <!-- 주변시설 - 지하철 카테고리 -->
+
+    <RelativeLayout
+        android:id="@+id/background"
+        android:layout_width="411dp"
+        android:layout_height="823dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background"
+        tools:ignore="MissingConstraints">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/title_subway"
+        android:layout_width="411dp"
+        android:layout_height="92dp"
+        android:background="@drawable/frame_29"
+        tools:ignore="MissingConstraints">
+
+        <!-- 지하철역 -->
+        <TextView
+            android:id="@+id/categoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_marginLeft="139dp"
+            android:layout_marginTop="19dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:lineSpacingExtra="10sp"
+            android:text="지하철역"
+            android:textColor="@color/yellow"
+            android:textSize="36dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/inter_medium"/>
+    </RelativeLayout>
+
+    <!-- 지하철역 스크롤뷰 -->
+    <ScrollView
+        android:layout_width="411dp"
+        android:layout_height="615dp"
+        android:layout_marginTop="124dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 지하철1 -->
+            <Button
+                android:id="@+id/subway1"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/default_yellow"
+                android:text="지하철역1"
+                android:textColor="@color/yellow"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 지하철역2 -->
+            <Button
+                android:id="@+id/subway2"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="지하철역2"
+                android:textColor="@color/yellow"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 지하철역3 -->
+            <Button
+                android:id="@+id/subway3"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="지하철역3"
+                android:textColor="@color/yellow"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 지하철역4 -->
+            <Button
+                android:id="@+id/subway4"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="지하철역4"
+                android:textColor="@color/yellow"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 지하철역5 -->
+            <Button
+                android:id="@+id/subway5"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="지하철역5"
+                android:textColor="@color/yellow"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 지하철역6 -->
+            <Button
+                android:id="@+id/subway6"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="지하철역6"
+                android:textColor="@color/yellow"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 지하철역7 -->
+            <Button
+                android:id="@+id/subway7"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="지하철역7"
+                android:textColor="@color/yellow"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 지하철역8 -->
+            <Button
+                android:id="@+id/subway8"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="지하철역8"
+                android:textColor="@color/yellow"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 지하철역9 -->
+            <Button
+                android:id="@+id/subway9"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="지하철역9"
+                android:textColor="@color/yellow"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 지하철역10 -->
+            <Button
+                android:id="@+id/subway10"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="지하철역10"
+                android:textColor="@color/yellow"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <!-- 이전 버튼 -->
+    <ImageButton
+        android:id="@+id/previous"
+        android:layout_width="205dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="739dp"
+        android:background="@drawable/previous_button"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <!-- 홈 버튼 -->
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="205dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="739dp"
+        android:background="@drawable/home_button"
+        app:layout_constraintLeft_toRightOf="@+id/previous"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
