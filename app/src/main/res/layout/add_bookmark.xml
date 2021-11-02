@@ -66,6 +66,7 @@
         android:textColor="@color/yellow"
         android:textSize="36sp"
         android:textStyle="bold"
+        android:fontFamily="@font/inter_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -81,6 +82,7 @@
         android:textColor="@color/white"
         android:textSize="36sp"
         android:textStyle="bold"
+        android:fontFamily="@font/inter_medium"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -97,6 +99,7 @@
         android:textColor="@color/white"
         android:textSize="36sp"
         android:textStyle="bold"
+        android:fontFamily="@font/inter_medium"
         app:layout_constraintLeft_toRightOf="@+id/home"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
