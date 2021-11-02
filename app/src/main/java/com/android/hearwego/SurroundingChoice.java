@@ -78,7 +78,6 @@ public class SurroundingChoice extends AppCompatActivity {
         nameText = findViewById(R.id.destination);
         nameText.setText(nameData);
         addressText = findViewById(R.id.destination_address);
-        addressText.setText(addressData);
 
         /*'목적지로 설정' 버튼 눌렀을 때*/
         button_set_destination.setOnClickListener(new View.OnClickListener() {

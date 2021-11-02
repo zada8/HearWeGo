@@ -100,8 +100,8 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
         button_hospital7 = findViewById(R.id.hospital7);
         button_hospital8 = findViewById(R.id.hospital8);
 
-        ImageButton button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
-        ImageButton button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
+        Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
+        Button button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
 
         //이전 버튼 누를 시 화면 전환
         button_previous.setOnClickListener(new View.OnClickListener() {
