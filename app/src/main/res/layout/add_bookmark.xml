@@ -35,7 +35,7 @@
             android:lineSpacingExtra="10sp"
             android:text="즐겨찾기 추가"
             android:textColor="@color/white"
-            android:textSize="36dp"
+            android:textSize="36sp"
             android:textStyle="bold"
             android:fontFamily="@font/inter_medium"/>
     </RelativeLayout>

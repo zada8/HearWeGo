@@ -124,6 +124,8 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
         });
     }
 
+
+
     /*현재 위치가 변화될 때 사용되는 함수*/
     @Override
     public void onLocationChange(Location location) {
