@@ -51,8 +51,6 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
     Button button_facility9;
     Button button_facility10;
 
-    /*switch문 사용 위한 변수*/
-    int num=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +131,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
     public void onLocationChange(Location location) {
         tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
         nowPoint = tMapView.getLocationPoint();
-        Log.d("카테고리-현재위치", nowPoint.toString());
+        Log.d("공공기관-현재위치", nowPoint.toString());
 
         /*Tmap 기본 위치가 SKT 타워로 설정되어있음.
          * SKT 타워 주변의 병원이 뜨지 않게 만들기 위해서
@@ -183,7 +181,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                                 button_facility10.setText(item.getPOIName());
                                 break;
                             default:
-                                Log.d("카테고리-오류", "해당하는 버튼이 없습니다.");
+                                Log.d("공공기관-오류", "해당하는 버튼이 없습니다.");
                         }
                     }
                 }
