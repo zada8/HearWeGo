@@ -143,8 +143,8 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
         }else{
             //현재 위치 탐색 완료 후 주변 병원 찾기 시작
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
-            //주변 반경 10km 지정, 가까운 순서대로 출력, 버튼이 8개라 8개의 병원을 가져온다.
-            tMapData.findAroundNamePOI(nowPoint, "병원", 10, 20, new TMapData.FindAroundNamePOIListenerCallback() {
+            //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 8개라 8개의 병원을 가져온다.
+            tMapData.findAroundNamePOI(nowPoint, "병원", 2, 20, new TMapData.FindAroundNamePOIListenerCallback() {
                 @Override
                 public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
                     for(int i = 0;i<20;i++){
