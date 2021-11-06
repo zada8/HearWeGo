@@ -37,6 +37,7 @@
         <activity android:name=".PharmacyActivity"/>
         <activity android:name=".SubwayActivity"/>
         <activity android:name=".RestroomActivity"/>
+        <activity android:name=".AddBookmarkActivity"/>
 
     </application>
 
