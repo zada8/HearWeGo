@@ -19,7 +19,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.category_facility);
+        setContentView(R.layout.add_bookmark);
 
         ActionBar actionBar = getSupportActionBar(); //액션바(패키지명) 숨김처리
         actionBar.hide();
