@@ -15,6 +15,24 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/background"
         tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/mic_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="95dp"
+            android:layout_marginLeft="95dp"
+            android:layout_marginTop="239dp"
+            android:layout_marginEnd="96dp"
+            android:layout_marginRight="96dp"
+            android:background="@drawable/mic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -41,17 +59,6 @@
     </RelativeLayout>
 
     <!-- 마이크 버튼 -->
-    <ImageButton
-        android:id="@+id/mic"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_marginStart="95dp"
-        android:layout_marginLeft="95dp"
-        android:layout_marginTop="226dp"
-        android:background="@drawable/mic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
 
     <!-- 즐겨찾기 등록 버튼 -->
     <Button
