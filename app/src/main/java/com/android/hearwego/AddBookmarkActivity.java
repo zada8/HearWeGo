@@ -24,8 +24,8 @@ public class AddBookmarkActivity extends AppCompatActivity{
 
     Intent intent;
     SpeechRecognizer mRecognizer;
-    Button mic_button;
-    TextView sttResult;
+    Button sttBtn;
+    TextView textView;
     final int PERMISSION = 1;
 
     private View decorView; //full screen 객체 선언
@@ -57,8 +57,8 @@ public class AddBookmarkActivity extends AppCompatActivity{
                     Manifest.permission.RECORD_AUDIO},PERMISSION);
         }
         // xml의 버튼과 텍스트 뷰 연결
-        sttResult = (TextView)findViewById(R.id.sttResult);
-        mic_button = (Button) findViewById(R.id.mic_button);
+        textView = (TextView)findViewById(R.id.sttResult);
+        sttBtn = (Button) findViewById(R.id.mic_button);
 
         // RecognizerIntent 객체 생성
         intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -66,7 +66,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
         // 버튼을 클릭 이벤트 - 객체에 Context와 listener를 할당한 후 실행
-        mic_button.setOnClickListener(new View.OnClickListener() {
+        sttBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 mRecognizer = SpeechRecognizer.createSpeechRecognizer(AddBookmarkActivity.this);
@@ -171,7 +171,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
                     results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
             for (int i = 0; i < matches.size(); i++){
-                sttResult.setText(matches.get(i));
+                textView.setText(matches.get(i));
             }
         }
 
