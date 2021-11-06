@@ -171,7 +171,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
                     results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
             for (int i = 0; i < matches.size(); i++){
-                textView.setText(matches.get(i));
+                textView.setText(matches.get(i));   // 데이터
             }
         }
 
