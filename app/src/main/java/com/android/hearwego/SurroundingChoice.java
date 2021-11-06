@@ -90,6 +90,20 @@ public class SurroundingChoice extends AppCompatActivity {
                 dest_intent.putExtra("longitude", longitude);
                 startActivity(dest_intent);
             }
+
+        });
+
+        //즐겨찾기 등록 버튼을 눌렀을 때
+        button_add_bookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //인텐트 보내기
+                Intent bookmark_intent = new Intent(SurroundingChoice.this, AddBookmarkActivity.class);
+                bookmark_intent.putExtra("name", nameData);
+                bookmark_intent.putExtra("latitude", latitude);
+                bookmark_intent.putExtra("longitude", longitude);
+                startActivity(bookmark_intent);
+            }
         });
 
 
