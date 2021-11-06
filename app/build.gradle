@@ -36,6 +36,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:19.0.2' //파이어베이스 코어
     implementation 'com.google.firebase:firebase-auth:21.0.1' //파이어베이스 인증
     implementation 'com.firebaseui:firebase-ui-auth:4.3.2' //파이어베이스 인증
+    implementation 'com.google.firebase:firebase-database:18.0.1'   //파이어베이스 데이터베이스
+    implementation platform('com.google.firebase:firebase-bom:28.4.2') //파이어베이스 데이터베이스
     implementation 'org.jetbrains:annotations:15.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0' //글라이드 이미지 로딩
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0' //글라이드 이미지 로딩
