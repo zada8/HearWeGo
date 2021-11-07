@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,9 +15,14 @@ import android.speech.SpeechRecognizer;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.util.ArrayList;
 
@@ -26,6 +32,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
     SpeechRecognizer mRecognizer;
     Button sttBtn;
     TextView textView;
+    Button bookmarkBtn;
     final int PERMISSION = 1;
 
     private View decorView; //full screen 객체 선언
@@ -59,6 +66,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
         // xml의 버튼과 텍스트 뷰 연결
         textView = (TextView)findViewById(R.id.sttResult);
         sttBtn = (Button) findViewById(R.id.mic_button);
+        bookmarkBtn = (Button) findViewById(R.id.save_bookmark);
 
         // RecognizerIntent 객체 생성
         intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -76,8 +84,6 @@ public class AddBookmarkActivity extends AppCompatActivity{
         });
 
 
-
-        Button button_save_bookmark = findViewById(R.id.save_bookmark);
         Button button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
         Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
 
@@ -111,6 +117,18 @@ public class AddBookmarkActivity extends AppCompatActivity{
         }
 
         @Override
+        public void onResults(Bundle results) {
+            //인식 결과가 준비되면 호출
+            //말을 하면 ArrayList에 단어를 넣고 textView에 단어를 이어줍니다.
+            ArrayList<String> matches =
+                    results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+
+            for (int i = 0; i < matches.size(); i++){
+                ((LogoActivity) LogoActivity.context_logo).keyword = matches.get(i);
+                textView.setText(((LogoActivity) LogoActivity.context_logo).keyword);   // 음성 인식한 데이터를 text로 변환해 표시
+            }
+        }
+        @Override
         public void onBeginningOfSpeech() {}
 
         @Override
@@ -120,7 +138,17 @@ public class AddBookmarkActivity extends AppCompatActivity{
         public void onBufferReceived(byte[] buffer) {}
 
         @Override
-        public void onEndOfSpeech() {}
+        public void onEndOfSpeech() {       // 은성 인식이 제대로 되었을 때의 동작
+            bookmarkBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+                    Intent intent = new Intent(AddBookmarkActivity.this, HomeActivity.class);
+                    addKeywordData();
+                    startActivity(intent);
+                }
+            });
+
+        }
 
         @Override
         public void onError(int error) {
@@ -163,17 +191,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
                     + message,Toast.LENGTH_SHORT).show();
         }
 
-        @Override
-        public void onResults(Bundle results) {
-            //인식 결과가 준비되면 호출
-            //말을 하면 ArrayList에 단어를 넣고 textView에 단어를 이어줍니다.
-            ArrayList<String> matches =
-                    results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
-            for (int i = 0; i < matches.size(); i++){
-                textView.setText(matches.get(i));   // 데이터
-            }
-        }
 
         @Override
         public void onPartialResults(Bundle partialResults) {}
@@ -181,5 +199,32 @@ public class AddBookmarkActivity extends AppCompatActivity{
         @Override
         public void onEvent(int eventType, Bundle params) {}
     };
+
+    private void addKeywordData()
+    {
+        ((LogoActivity) LogoActivity.context_logo).user.put("userID",((LogoActivity) LogoActivity.context_logo).userID);
+        ((LogoActivity) LogoActivity.context_logo).user.put("userName",((LogoActivity) LogoActivity.context_logo).userName);
+        ((LogoActivity) LogoActivity.context_logo).user.put("latitude", ((LogoActivity) LogoActivity.context_logo).latitude);
+        ((LogoActivity) LogoActivity.context_logo).user.put("longitude", ((LogoActivity) LogoActivity.context_logo).longitude);
+        ((LogoActivity) LogoActivity.context_logo).user.put("keyword", ((LogoActivity) LogoActivity.context_logo).keyword);
+        ((LogoActivity) LogoActivity.context_logo).db.collection("users")
+                .add(((LogoActivity) LogoActivity.context_logo).user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>()
+                {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference)
+                    {
+                        Log.d("tag", "Document ID = " + documentReference.get());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener()
+                {
+                    @Override
+                    public void onFailure(@NonNull Exception e)
+                    {
+                        Log.d("tag", "Document Error!!");
+                    }
+                });
+    }
 
 }

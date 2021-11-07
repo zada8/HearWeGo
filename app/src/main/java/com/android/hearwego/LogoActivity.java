@@ -29,14 +29,28 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+
+
 
 public class LogoActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -47,6 +61,13 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
     public GoogleSignInClient googleSignInClient;
     public GoogleApiClient googleApiClient; //구글 API 클라리언트 객체
     private static final int REQ_SIGN_GOOGLE = 100; //구글 로그인 결과 코드
+    public FirebaseFirestore db = FirebaseFirestore.getInstance();  // 데이터베이스
+    public String userID;
+    public String userName;
+    public Double latitude;
+    public Double longitude;
+    public String keyword;
+    public Map<String, Object> user = new HashMap<>();
     public static Context context_logo;
 
     @Override
@@ -96,7 +117,10 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                 startActivityForResult(signInIntent, REQ_SIGN_GOOGLE);
             }
         });
+
     }
+    
+
     //구글 로그인 요청했을 때 결과값을 되돌려받는 곳
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
@@ -107,6 +131,8 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                 Log.v("알림", "google sign 성공, FireBase Auth.");
                 GoogleSignInAccount account = result.getSignInAccount(); //구글 로그인 정보를 담고 있는 변수 (닉네임, 이메일 주소, 등)
                 resultLogin(account); //로그인 결과 값 출력 수행하는 메소드 호출
+                userID = account.getIdToken();
+                userName = account.getDisplayName();
             } else {
                 Log.v("알림", result.isSuccess() +" Google Sign In failed. Because : " + result.getStatus().toString());
             }

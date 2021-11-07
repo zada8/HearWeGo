@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <queries>
-        <package android:name="com.google.android.googlequicksearchbox"/>
+        <package android:name="com.google.android.googlequicksearchbox" />
     </queries>
 
     <application
@@ -19,16 +19,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
-        <activity android:name=".ResultActivity"/>
+        <activity android:name=".ResultActivity" />
         <activity android:name=".SurroundingChoice" />
         <activity android:name=".BookmarkEdit" />
         <activity android:name=".RouteGuideActivity" />
         <activity android:name=".RouteChoiceActivity" />
-        <activity android:name=".HomeActivity">
-        </activity>
+        <activity android:name=".HomeActivity" />
         <activity android:name=".LogoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -38,11 +38,10 @@
         <activity android:name=".BookmarkActivity" />
         <activity android:name=".HospitalActivity" />
         <activity android:name=".FacilityActivity" />
-        <activity android:name=".PharmacyActivity"/>
-        <activity android:name=".SubwayActivity"/>
-        <activity android:name=".RestroomActivity"/>
-        <activity android:name=".AddBookmarkActivity"/>
-
+        <activity android:name=".PharmacyActivity" />
+        <activity android:name=".SubwayActivity" />
+        <activity android:name=".RestroomActivity" />
+        <activity android:name=".AddBookmarkActivity" />
     </application>
 
 </manifest>
