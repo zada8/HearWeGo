@@ -72,7 +72,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
         /*TMapGPS 설정*/
         tMapGps = new TMapGpsManager(this);
         tMapGps.setMinTime(1000);
-        tMapGps.setMinDistance(5);
+        tMapGps.setMinDistance(1);
         tMapGps.setProvider(tMapGps.NETWORK_PROVIDER);
         tMapGps.OpenGps();
 
