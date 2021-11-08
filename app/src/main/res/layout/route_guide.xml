@@ -16,6 +16,8 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/background"
         tools:ignore="MissingConstraints">
+
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -72,78 +74,13 @@
             android:background="@drawable/frame_31" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button2_nowgps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="29dp"
-        android:background="@drawable/default_yellow"
-        android:layout_centerHorizontal="true"
-        android:text="현재 위치 확인"
-        android:textColor="@color/yellow"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/inter_medium"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
-        android:id="@+id/button_back"
-        style="@android:style/Widget.ImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/skip_next"
-        app:icon="@drawable/prev"
-        app:iconGravity="textEnd"
-        app:iconTint="#FFE500"
-        app:layout_constraintBottom_toTopOf="@+id/button2_nowgps"
-        app:layout_constraintEnd_toStartOf="@+id/button_pause"
-        app:srcCompat="@drawable/prev" />
-
-    <ImageButton
-        android:id="@+id/button_pause"
-        style="@android:style/Widget.ImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/skip_next"
-        app:icon="@drawable/pause"
-        app:iconGravity="textEnd"
-        app:iconPadding="0dp"
-        app:iconTint="#FFE500"
-        app:layout_constraintBottom_toTopOf="@+id/button2_nowgps"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/pause"
-        tools:ignore="VectorDrawableCompat" />
-
-    <ImageButton
-        android:id="@+id/button_forth"
-        style="@android:style/Widget.ImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/skip_next"
-        app:icon="@drawable/next"
-        app:iconGravity="textEnd"
-        app:iconTint="#FFE500"
-        app:layout_constraintBottom_toTopOf="@+id/button2_nowgps"
-        app:layout_constraintStart_toEndOf="@+id/button_pause"
-        app:srcCompat="@drawable/next" />
 
     <TextView
         android:id="@+id/distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="0M"
         android:textColor="#FFE500"
         android:textSize="64sp"
@@ -156,17 +93,77 @@
         android:id="@+id/guide_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:gravity="center"
-        android:text="대한생명 홍익BRANCH 에서 대한생명 홍익BRANCH 방면으로 우회전 후 양화로 을 따라 94m 이동"
+        android:text="길 안내 설명"
         android:textAlignment="center"
         android:textColor="#FFE500"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/button_pause"
+        app:layout_constraintTop_toBottomOf="@+id/distance"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/distance" />
+        android:layout_marginTop="5dp" />
+
+    <ImageButton
+        android:id="@+id/button_pause"
+        style="@android:style/Widget.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/skip_next"
+        app:icon="@drawable/pause"
+        app:iconGravity="textEnd"
+        app:iconPadding="0dp"
+        app:iconTint="#FFE500"
+        app:srcCompat="@drawable/pause"
+        tools:ignore="VectorDrawableCompat"
+        app:layout_constraintBottom_toTopOf="@+id/button2_nowgps"
+        app:layout_constraintTop_toBottomOf="@+id/guide_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2_nowgps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/default_yellow"
+        android:layout_centerHorizontal="true"
+        android:text="현재 위치 확인"
+        android:textColor="@color/yellow"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/inter_medium"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_pause" />
+
+    <Button
+        android:id="@+id/button_setStartPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/default_yellow"
+        android:layout_centerHorizontal="true"
+        android:text="출발지 설정"
+        android:textColor="@color/yellow"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/inter_medium"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2_nowgps"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

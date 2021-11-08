@@ -3,16 +3,29 @@ package com.android.hearwego;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class RouteGuideActivity extends AppCompatActivity {
+import com.skt.Tmap.TMapData;
+import com.skt.Tmap.TMapGpsManager;
+import com.skt.Tmap.TMapPoint;
+import com.skt.Tmap.TMapView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class RouteGuideActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback{
 
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
@@ -20,7 +33,18 @@ public class RouteGuideActivity extends AppCompatActivity {
     /*텍스트뷰 선언*/
     TextView destination_text;
 
-    public static final int REQUEST_CODE_WALK = 120;
+    String appKey = "l7xx59d0bb77ddfc45efb709f48d1b31715c"; //appKey
+
+    /*TMAP 필요 변수 선언*/
+    TMapGpsManager tMapGps = null;
+    TMapView tMapView = null;
+    TMapData tMapData = null;
+    TMapPoint nowPoint = null;
+
+    /*SKT 타워 위도와 현재 위치의 위도를 비교하기 위한 변수*/
+    String SKT_latitude = Double.toString(37.566474);
+    String n_latitude = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,4 +96,83 @@ public class RouteGuideActivity extends AppCompatActivity {
 
 
     }
+
+    /*보행자 경로 JSON 파일을 가져오는 함수*/
+    public void getRoute(){
+
+    }
+
+    /*Asynctask 클래스 NetworkTask 생성*/
+    public class NetworkTask extends AsyncTask<Void, Void, String>{
+        private String url;
+        private ContentValues values;
+
+        public NetworkTask(String url, ContentValues values){
+            this.url = url;
+            this.values = values;
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String result; //요청 결과를 저장하는 변수
+            RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
+            result = requestHttpURLConnection.request(url, values); //url로부터 결과를 얻어온다.
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            //doInBackground()로 부터 리턴된 값이 onPostExecute()의 매개변수로 넘어오므로 s를 출력한다.
+            try{
+                //전체 데이터를 제이슨 객체로 변환
+                JSONObject root = new JSONObject(s);
+                System.out.println("제일 상위" + root);
+
+                //전체 데이터중에 features 리스트의 첫번째 객체를 가지고 오기
+                JSONObject features = (JSONObject)root.getJSONArray("features").get(0);
+                System.out.println("상위에서 첫번째 리스트 : " + features);
+
+                //리스트의 첫번째 객체에 있는 geometry 가져오기
+                JSONObject geometry = features.getJSONObject("geometry");
+                System.out.println("리스트에서 geometry 객체 : " + geometry);
+
+                //최종적으로 위도와 경도를 가져온다.
+                //String latitude = geometry.getJ
+                //
+                // SONArray("coordinates").get(0).toString();
+                //String longtitude = geometry.getJSONArray("coordinates").get(1).toString();
+                //textView.setMovementMethod(new ScrollingMovementMethod());
+                //textView.setText(root.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /*사용자 위치가 변경되면 실행되는 함수*/
+    @Override
+    public void onLocationChange(Location location) {
+        //현재 위치의 위도, 경도를 받아옴
+        tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
+        nowPoint = tMapView.getLocationPoint();
+        Log.d("현재위치", nowPoint.toString());
+
+        /*Tmap 기본 위치가 SKT 타워로 설정되어있음.
+         * SKT 타워 주변의 병원이 뜨지 않게 만들기 위해서
+         * SKT 타워 경도와 진짜 현재 위치의 경도를 비교*/
+        n_latitude = Double.toString(nowPoint.getLatitude());
+        if (n_latitude.equals(SKT_latitude) == true) {
+            Log.d("현재위치-SKT타워O", "실행되었습니다.");
+        } else {
+            //현재 위치 탐색 완료
+            Log.d("현재위치-SKT타워X", "실행되었습니다.");
+        }
+    }
+
+
 }
