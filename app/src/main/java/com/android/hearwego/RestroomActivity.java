@@ -150,34 +150,34 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
                         Log.d("화장실-현재위치이름", item.getPOIName() + item.getDistance(nowPoint));
                         switch (i){
                             case 0:
-                                button_restroom1.setText(item.getPOIName());
+                                button_restroom1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 1:
-                                button_restroom2.setText(item.getPOIName());
+                                button_restroom2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 2:
-                                button_restroom3.setText(item.getPOIName());
+                                button_restroom3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 3:
-                                button_restroom4.setText(item.getPOIName());
+                                button_restroom4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 4:
-                                button_restroom5.setText(item.getPOIName());
+                                button_restroom5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 5:
-                                button_restroom6.setText(item.getPOIName());
+                                button_restroom6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 6:
-                                button_restroom7.setText(item.getPOIName());
+                                button_restroom7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 7:
-                                button_restroom8.setText(item.getPOIName());
+                                button_restroom8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 8:
-                                button_restroom9.setText(item.getPOIName());
+                                button_restroom9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 9:
-                                button_restroom10.setText(item.getPOIName());
+                                button_restroom10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             default:
                                 Log.d("편의점-오류", "해당하는 버튼이 없습니다.");

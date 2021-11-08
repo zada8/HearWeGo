@@ -65,7 +65,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="병원1"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -80,7 +80,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="병원2"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -95,7 +95,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="병원3"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -110,7 +110,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="병원4"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -125,7 +125,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="병원5"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -140,7 +140,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="병원6"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -155,7 +155,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="병원7"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -170,7 +170,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="병원8"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 

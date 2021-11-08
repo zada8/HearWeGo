@@ -147,34 +147,34 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                         Log.d("지하철-현재위치이름", item.getPOIName() + item.getDistance(nowPoint));
                         switch (i){
                             case 0:
-                                button_subway1.setText(item.getPOIName());
+                                button_subway1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 1:
-                                button_subway2.setText(item.getPOIName());
+                                button_subway2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 2:
-                                button_subway3.setText(item.getPOIName());
+                                button_subway3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 3:
-                                button_subway4.setText(item.getPOIName());
+                                button_subway4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 4:
-                                button_subway5.setText(item.getPOIName());
+                                button_subway5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 5:
-                                button_subway6.setText(item.getPOIName());
+                                button_subway6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 6:
-                                button_subway7.setText(item.getPOIName());
+                                button_subway7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 7:
-                                button_subway8.setText(item.getPOIName());
+                                button_subway8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 8:
-                                button_subway9.setText(item.getPOIName());
+                                button_subway9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 9:
-                                button_subway10.setText(item.getPOIName());
+                                button_subway10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             default:
                                 Log.d("지하철-오류", "해당하는 버튼이 없습니다.");

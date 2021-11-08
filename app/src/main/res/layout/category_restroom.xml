@@ -66,7 +66,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="편의점1"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -81,7 +81,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="편의점2"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -96,7 +96,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="편의점3"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -111,7 +111,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="편의점4"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -126,7 +126,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="편의점5"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -141,7 +141,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="편의점6"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -156,7 +156,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="편의점7"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -171,7 +171,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="편의점8"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -186,7 +186,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="편의점9"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -201,7 +201,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="편의점10"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 

@@ -148,37 +148,37 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                 public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
                     for(int i = 0;i<10;i++){
                         TMapPOIItem item = arrayList.get(i);
-                        Log.d("카테고리-현재위치이름", item.getPOIName());
+                        Log.d("공공기관-현재위치이름", item.getPOIName());
                         switch (i){
                             case 0:
-                                button_facility1.setText(item.getPOIName());
+                                button_facility1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 1:
-                                button_facility2.setText(item.getPOIName());
+                                button_facility2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 2:
-                                button_facility3.setText(item.getPOIName());
+                                button_facility3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 3:
-                                button_facility4.setText(item.getPOIName());
+                                button_facility4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 4:
-                                button_facility5.setText(item.getPOIName());
+                                button_facility5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 5:
-                                button_facility6.setText(item.getPOIName());
+                                button_facility6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 6:
-                                button_facility7.setText(item.getPOIName());
+                                button_facility7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 7:
-                                button_facility8.setText(item.getPOIName());
+                                button_facility8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 8:
-                                button_facility9.setText(item.getPOIName());
+                                button_facility9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 9:
-                                button_facility10.setText(item.getPOIName());
+                                button_facility10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             default:
                                 Log.d("공공기관-오류", "해당하는 버튼이 없습니다.");

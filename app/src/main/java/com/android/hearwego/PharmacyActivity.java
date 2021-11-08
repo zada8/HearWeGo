@@ -139,9 +139,9 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
         if(n_latitude.equals(SKT_latitude) == true){
             Log.d("현재위치-SKT타워O", "실행되었습니다.");
         } else{
-            //현재 위치 탐색 완료 후 주변 공공기관 찾기 시작
+            //현재 위치 탐색 완료 후 주변 약국 찾기 시작
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
-            //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 공공기관을 가져온다.
+            //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 약국을 가져온다.
             tMapData.findAroundNamePOI(nowPoint, "약국", 2, 20, new TMapData.FindAroundNamePOIListenerCallback() {
                 @Override
                 public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
@@ -158,34 +158,34 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                         }
                         switch (num){
                             case 0:
-                                button_pharmacy1.setText(item.getPOIName());
+                                button_pharmacy1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 1:
-                                button_pharmacy2.setText(item.getPOIName());
+                                button_pharmacy2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 2:
-                                button_pharmacy3.setText(item.getPOIName());
+                                button_pharmacy3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 3:
-                                button_pharmacy4.setText(item.getPOIName());
+                                button_pharmacy4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 4:
-                                button_pharmacy5.setText(item.getPOIName());
+                                button_pharmacy5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 5:
-                                button_pharmacy6.setText(item.getPOIName());
+                                button_pharmacy6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 6:
-                                button_pharmacy7.setText(item.getPOIName());
+                                button_pharmacy7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 7:
-                                button_pharmacy8.setText(item.getPOIName());
+                                button_pharmacy8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 8:
-                                button_pharmacy9.setText(item.getPOIName());
+                                button_pharmacy9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             case 9:
-                                button_pharmacy10.setText(item.getPOIName());
+                                button_pharmacy10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 break;
                             default:
                                 Log.d("약국-오류", "해당하는 버튼이 없습니다.");

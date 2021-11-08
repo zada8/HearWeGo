@@ -66,7 +66,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="지하철역1"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -81,7 +81,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="지하철역2"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -96,7 +96,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="지하철역3"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -111,7 +111,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="지하철역4"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -126,7 +126,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="지하철역5"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -141,7 +141,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="지하철역6"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -156,7 +156,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="지하철역7"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -171,7 +171,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="지하철역8"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -186,7 +186,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="지하철역9"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 
@@ -201,7 +201,7 @@
                 android:background="@drawable/default_yellow"
                 android:text="지하철역10"
                 android:textColor="@color/yellow"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_medium"/>
 

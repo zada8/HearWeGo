@@ -153,14 +153,14 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                             break;
                         }
                         TMapPOIItem item = arrayList.get(i);
-                        Log.d("현재-위치", item.getPOIName());
+                        Log.d("병원:현재-위치", item.getPOIName());
                         if(item.getPOIName().contains("주차장")){
                             num=num-1;
                             continue;
                         }
                         switch (num) {
                             case 0:
-                                button_hospital1.setText(item.getPOIName());
+                                button_hospital1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 button_hospital1.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -174,7 +174,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                 });
                                 break;
                             case 1:
-                                button_hospital2.setText(item.getPOIName());
+                                button_hospital2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 button_hospital2.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -188,7 +188,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                 });
                                 break;
                             case 2:
-                                button_hospital3.setText(item.getPOIName());
+                                button_hospital3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 button_hospital3.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -202,7 +202,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                 });
                                 break;
                             case 3:
-                                button_hospital4.setText(item.getPOIName());
+                                button_hospital4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 button_hospital4.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -216,7 +216,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                 });
                                 break;
                             case 4:
-                                button_hospital5.setText(item.getPOIName());
+                                button_hospital5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 button_hospital5.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -230,7 +230,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                 });
                                 break;
                             case 5:
-                                button_hospital6.setText(item.getPOIName());
+                                button_hospital6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 button_hospital6.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -244,7 +244,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                 });
                                 break;
                             case 6:
-                                button_hospital7.setText(item.getPOIName());
+                                button_hospital7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 button_hospital7.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -258,7 +258,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                 });
                                 break;
                             case 7:
-                                button_hospital8.setText(item.getPOIName());
+                                button_hospital8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
                                 button_hospital8.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
