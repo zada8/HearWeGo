@@ -102,8 +102,8 @@ public class SurroundingChoice extends AppCompatActivity {
                 /*인텐트 보냄*/
                 Intent dest_intent = new Intent(SurroundingChoice.this, RouteGuideActivity.class);
                 dest_intent.putExtra("name", nameData);
-                dest_intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).latitude);
-                dest_intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).longitude);
+                //dest_intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).latitude);
+                //dest_intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).longitude);
                 startActivity(dest_intent);
             }
 

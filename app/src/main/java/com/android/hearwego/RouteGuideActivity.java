@@ -10,6 +10,7 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,8 @@ import com.skt.Tmap.TMapView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Locale;
+
 public class RouteGuideActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback{
 
     private View decorView; //full screen 객체 선언
@@ -36,7 +39,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     String appKey = "l7xx59d0bb77ddfc45efb709f48d1b31715c"; //appKey
 
     /*TMAP 필요 변수 선언*/
-    TMapGpsManager tMapGps = null;
+    TMapGpsManager tMapGpsManager = null;
     TMapView tMapView = null;
     TMapData tMapData = null;
     TMapPoint nowPoint = null;
@@ -44,6 +47,14 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     /*SKT 타워 위도와 현재 위치의 위도를 비교하기 위한 변수*/
     String SKT_latitude = Double.toString(37.566474);
     String n_latitude = null;
+
+    /*TTS 변수 설정*/
+    TextToSpeech textToSpeech;
+
+    /*버튼 선언*/
+    Button nowgps_btn;
+    Button button_previous;
+    Button button_home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +75,56 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
 
+        /*TextToSpeech 기본 설정*/
+        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR){
+                    textToSpeech.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
+
+        /*TMAP 기본 설정*/
+        tMapData = new TMapData();
+        tMapView = new TMapView(this);
+        tMapView.setSKTMapApiKey(appKey);
+        tMapGpsManager = new TMapGpsManager(this);
+        tMapGpsManager.setMinTime(1000);
+        tMapGpsManager.setMinDistance(5);
+        tMapGpsManager.setProvider(tMapGpsManager.NETWORK_PROVIDER);
+        tMapGpsManager.OpenGps();
+
+        /*버튼 설정*/
+        Button nowgps_btn = findViewById(R.id.button2_nowgps);
         Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         Button button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
+
+        /*인텐트 받아들임*/
+        Intent intent = getIntent();
+        String nameData = intent.getStringExtra("name");
+        //Double latitude = intent.getDoubleExtra("latitude", 0);
+        //Double longitude = intent.getDoubleExtra("longitude", 0);
+
+        destination_text = findViewById(R.id.destination_text);
+        destination_text.setText(nameData);
+
+        /*현재 위치 확인 버튼 누를 시*/
+        nowgps_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TMapPoint nowpoint = tMapView.getLocationPoint();
+
+                tMapData.convertGpsToAddress(nowpoint.getLatitude(), nowpoint.getLongitude(), new TMapData.ConvertGPSToAddressListenerCallback() {
+                    @Override
+                    public void onConvertToGPSToAddress(String s) {
+                        textToSpeech.setPitch(1.5f);
+                        textToSpeech.setSpeechRate(1.0f);
+                        textToSpeech.speak("현재 위치는 "+s+"입니다", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                });
+            }
+        });
 
         //이전 버튼 누를 시 화면 전환
         button_previous.setOnClickListener(new View.OnClickListener() {
@@ -85,14 +144,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             }
         });
 
-        /*인텐트 받아들임*/
-        Intent intent = getIntent();
-        String nameData = intent.getStringExtra("name");
-        Double latitude = intent.getDoubleExtra("latitude", 0);
-        Double longitude = intent.getDoubleExtra("longitude", 0);
 
-        destination_text = findViewById(R.id.destination_text);
-        destination_text.setText(nameData);
 
 
     }
@@ -167,7 +219,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
          * SKT 타워 경도와 진짜 현재 위치의 경도를 비교*/
         n_latitude = Double.toString(nowPoint.getLatitude());
         if (n_latitude.equals(SKT_latitude) == true) {
-            Log.d("현재위치-SKT타워O", "실행되었습니다.");
+            Log.d("현재위치-SKT타워O", "현재위치가 SKT 타워로 설정되어있습니다.");
         } else {
             //현재 위치 탐색 완료
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
