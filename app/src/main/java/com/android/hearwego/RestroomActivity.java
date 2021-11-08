@@ -130,7 +130,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
     public void onLocationChange(Location location) {
         tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
         nowPoint = tMapView.getLocationPoint();
-        Log.d("화장실-현재위치", nowPoint.toString());
+        Log.d("편의점-현재위치", nowPoint.toString());
 
         /*Tmap 기본 위치가 SKT 타워로 설정되어있음.
          * SKT 타워 주변의 병원이 뜨지 않게 만들기 위해서
@@ -139,10 +139,10 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
         if(n_latitude.equals(SKT_latitude) == true){
             Log.d("현재위치-SKT타워O", "실행되었습니다.");
         } else{
-            //현재 위치 탐색 완료 후 주변 공공기관 찾기 시작
+            //현재 위치 탐색 완료 후 주변 편의점 찾기 시작
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
-            //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 공공기관을 가져온다.
-            tMapData.findAroundNamePOI(nowPoint, "화장실", 10, 10, new TMapData.FindAroundNamePOIListenerCallback() {
+            //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 편의점을 가져온다.
+            tMapData.findAroundNamePOI(nowPoint, "편의점", 10, 10, new TMapData.FindAroundNamePOIListenerCallback() {
                 @Override
                 public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
                     for(int i = 0;i<10;i++){
@@ -180,7 +180,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
                                 button_restroom10.setText(item.getPOIName());
                                 break;
                             default:
-                                Log.d("공공기관-오류", "해당하는 버튼이 없습니다.");
+                                Log.d("편의점-오류", "해당하는 버튼이 없습니다.");
                         }
                     }
                 }
