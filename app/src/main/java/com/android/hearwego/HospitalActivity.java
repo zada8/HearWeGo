@@ -169,6 +169,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                         hs1_intent.putExtra("address", item.getPOIAddress());
                                         hs1_intent.putExtra("latitude", item.noorLat);
                                         hs1_intent.putExtra("longitude", item.noorLon);
+                                        hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                         startActivity(hs1_intent);
                                     }
                                 });
@@ -183,6 +184,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                         hs2_intent.putExtra("address", item.getPOIAddress());
                                         hs2_intent.putExtra("latitude", item.noorLat);
                                         hs2_intent.putExtra("longitude", item.noorLon);
+                                        hs2_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                         startActivity(hs2_intent);
                                     }
                                 });
@@ -197,6 +199,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                         hs3_intent.putExtra("address", item.getPOIAddress());
                                         hs3_intent.putExtra("latitude", item.noorLat);
                                         hs3_intent.putExtra("longitude", item.noorLon);
+                                        hs3_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                         startActivity(hs3_intent);
                                     }
                                 });
@@ -211,6 +214,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                         hs4_intent.putExtra("address", item.getPOIAddress());
                                         hs4_intent.putExtra("latitude", item.noorLat);
                                         hs4_intent.putExtra("longitude", item.noorLon);
+                                        hs4_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                         startActivity(hs4_intent);
                                     }
                                 });
@@ -225,6 +229,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                         hs5_intent.putExtra("address", item.getPOIAddress());
                                         hs5_intent.putExtra("latitude", item.noorLat);
                                         hs5_intent.putExtra("longitude", item.noorLon);
+                                        hs5_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                         startActivity(hs5_intent);
                                     }
                                 });
@@ -239,6 +244,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                         hs6_intent.putExtra("address", item.getPOIAddress());
                                         hs6_intent.putExtra("latitude", item.noorLat);
                                         hs6_intent.putExtra("longitude", item.noorLon);
+                                        hs6_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                         startActivity(hs6_intent);
                                     }
                                 });
@@ -253,6 +259,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                         hs7_intent.putExtra("address", item.getPOIAddress());
                                         hs7_intent.putExtra("latitude", item.noorLat);
                                         hs7_intent.putExtra("longitude", item.noorLon);
+                                        hs7_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                         startActivity(hs7_intent);
                                     }
                                 });
@@ -267,6 +274,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                         hs8_intent.putExtra("address", item.getPOIAddress());
                                         hs8_intent.putExtra("latitude", item.noorLat);
                                         hs8_intent.putExtra("longitude", item.noorLon);
+                                        hs8_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                         startActivity(hs8_intent);
                                     }
                                 });

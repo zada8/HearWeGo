@@ -28,6 +28,7 @@ public class SurroundingChoice extends AppCompatActivity {
     private int	uiOption; //full screen 객체 선언
     String addressData;
     String nameData;
+    String distanceData;
 
     /*텍스트뷰 선언*/
     TextView nameText;
@@ -82,6 +83,7 @@ public class SurroundingChoice extends AppCompatActivity {
         Intent intent = getIntent();
         nameData = intent.getStringExtra("name");
         addressData = intent.getStringExtra("address");
+        distanceData = intent.getStringExtra("distance");
         ((LogoActivity) LogoActivity.context_logo).latitude = Double.parseDouble(intent.getStringExtra("latitude"));
         ((LogoActivity) LogoActivity.context_logo).longitude = Double.parseDouble(intent.getStringExtra("longitude"));
 
@@ -91,6 +93,7 @@ public class SurroundingChoice extends AppCompatActivity {
         nameText = findViewById(R.id.destination);
         nameText.setText(nameData);
         addressText = findViewById(R.id.destination_address);
+        addressText.setText(addressData + " " + distanceData);
 
         /*'목적지로 설정' 버튼 눌렀을 때*/
         button_set_destination.setOnClickListener(new View.OnClickListener() {
