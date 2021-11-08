@@ -29,6 +29,8 @@ public class SurroundingChoice extends AppCompatActivity {
     String addressData;
     String nameData;
     String distanceData;
+    String latData;
+    String longData;
 
     /*텍스트뷰 선언*/
     TextView nameText;
@@ -84,6 +86,8 @@ public class SurroundingChoice extends AppCompatActivity {
         nameData = intent.getStringExtra("name");
         addressData = intent.getStringExtra("address");
         distanceData = intent.getStringExtra("distance");
+        latData = intent.getStringExtra("latitude");
+        longData = intent.getStringExtra("longitude");
         ((LogoActivity) LogoActivity.context_logo).latitude = Double.parseDouble(intent.getStringExtra("latitude"));
         ((LogoActivity) LogoActivity.context_logo).longitude = Double.parseDouble(intent.getStringExtra("longitude"));
 
@@ -102,6 +106,8 @@ public class SurroundingChoice extends AppCompatActivity {
                 /*인텐트 보냄*/
                 Intent dest_intent = new Intent(SurroundingChoice.this, RouteGuideActivity.class);
                 dest_intent.putExtra("name", nameData);
+                dest_intent.putExtra("latitude", latData);
+                dest_intent.putExtra("longitude", longData);
                 //dest_intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).latitude);
                 //dest_intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).longitude);
                 startActivity(dest_intent);

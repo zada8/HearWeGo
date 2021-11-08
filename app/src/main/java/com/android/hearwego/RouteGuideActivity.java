@@ -26,6 +26,12 @@ import com.skt.Tmap.TMapView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Locale;
 
 public class RouteGuideActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback{
@@ -52,9 +58,25 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     TextToSpeech textToSpeech;
 
     /*버튼 선언*/
-    Button nowgps_btn;
-    Button button_previous;
-    Button button_home;
+    Button nowgps_btn; //현재 위치 확인 버튼
+    Button setStart_btn; //출발지 지정 버튼
+    Button button_previous; //이전 버튼
+    Button button_home; //홈 버튼
+
+    /*경도, 위도 변수 선언*/
+    Double latitude;
+    Double longitude;
+
+    /*JSON 받아오기 위한 변수 선언*/
+    String startX;
+    String startY;
+    String endX;
+    String endY;
+    String latData;
+    String longData;
+    String uu = null;
+    URL url = null;
+    HttpURLConnection urlConnection = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,12 +119,15 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
         /*버튼 설정*/
         nowgps_btn = findViewById(R.id.button2_nowgps);
+        setStart_btn = findViewById(R.id.button_setStartPoint);
         button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
 
         /*인텐트 받아들임*/
         Intent intent = getIntent();
         String nameData = intent.getStringExtra("name");
+        latData = intent.getStringExtra("latitude");
+        longData = intent.getStringExtra("longitude");
         //Double latitude = intent.getDoubleExtra("latitude", 0);
         //Double longitude = intent.getDoubleExtra("longitude", 0);
 
@@ -126,6 +151,17 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             }
         });
 
+        setStart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TMapPoint nowpoint = tMapView.getLocationPoint();
+                latitude = nowpoint.getLatitude();
+                longitude = nowpoint.getLongitude();
+
+                getRoute();
+            }
+        });
+
         //이전 버튼 누를 시 화면 전환
         button_previous.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,13 +180,48 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             }
         });
 
-
-
-
     }
 
     /*보행자 경로 JSON 파일을 가져오는 함수*/
     public void getRoute(){
+        startX = Double.toString(longitude);
+        startY = Double.toString(latitude);
+        endX = longData;
+        endY = latData;
+
+        Log.d("JSON확인", startX+startY+endX+endY);
+
+        try {
+            String startName = URLEncoder.encode("출발지", "UTF-8");
+            String endName = URLEncoder.encode("도착지", "UTF-8");
+
+            System.out.println(endX + endY);
+
+            uu = "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&callback=result&appKey=" + appKey
+                    + "&startX=" + startX + "&startY=" + startY + "&endX=" + endX + "&endY=" + endY
+                    + "&startName=" + startName + "&endName=" + endName;
+
+            System.out.println(uu);
+            url = new URL(uu);
+
+
+        } catch (UnsupportedEncodingException | MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestProperty("Accept-Charset", "utf-8");
+            urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+            Log.d("JSON확인", urlConnection.toString());
+            NetworkTask networkTask = new NetworkTask(uu, null);
+            networkTask.execute();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -183,15 +254,18 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             try{
                 //전체 데이터를 제이슨 객체로 변환
                 JSONObject root = new JSONObject(s);
-                System.out.println("제일 상위" + root);
+                Log.d("JSON확인", "제일 상위" + root);
+                //System.out.println("제일 상위" + root);
 
                 //전체 데이터중에 features 리스트의 첫번째 객체를 가지고 오기
                 JSONObject features = (JSONObject)root.getJSONArray("features").get(0);
-                System.out.println("상위에서 첫번째 리스트 : " + features);
+                Log.d("JSON확인", "상위에서 첫번째 리스트 : " + features);
+                //System.out.println("상위에서 첫번째 리스트 : " + features);
 
                 //리스트의 첫번째 객체에 있는 geometry 가져오기
                 JSONObject geometry = features.getJSONObject("geometry");
-                System.out.println("리스트에서 geometry 객체 : " + geometry);
+                Log.d("JSON확인", "리스트에서 geometry 객체 : " + geometry);
+                //System.out.println("리스트에서 geometry 객체 : " + geometry);
 
                 //최종적으로 위도와 경도를 가져온다.
                 //String latitude = geometry.getJ
