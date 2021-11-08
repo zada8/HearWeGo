@@ -259,12 +259,13 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
                 //전체 데이터중에 features 리스트의 첫번째 객체를 가지고 오기
                 JSONObject features = (JSONObject)root.getJSONArray("features").get(0);
-                Log.d("JSON확인", "상위에서 첫번째 리스트 : " + features);
+                int i = root.getJSONArray("features").length();//JSON 객체의 크기를 구하는 코드
+                Log.d("JSON확인", i + " 상위에서 첫번째 리스트 : " + features);
                 //System.out.println("상위에서 첫번째 리스트 : " + features);
 
-                //리스트의 첫번째 객체에 있는 geometry 가져오기
-                JSONObject geometry = features.getJSONObject("geometry");
-                Log.d("JSON확인", "리스트에서 geometry 객체 : " + geometry);
+                //리스트의 첫번째 객체에 있는 properties 가져오기
+                JSONObject properties = features.getJSONObject("properties");
+                Log.d("JSON확인", "리스트에서 properties 객체 : " + properties);
                 //System.out.println("리스트에서 geometry 객체 : " + geometry);
 
                 //최종적으로 위도와 경도를 가져온다.
