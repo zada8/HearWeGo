@@ -96,9 +96,9 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         tMapGpsManager.OpenGps();
 
         /*버튼 설정*/
-        Button nowgps_btn = findViewById(R.id.button2_nowgps);
-        Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
-        Button button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
+        nowgps_btn = findViewById(R.id.button2_nowgps);
+        button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
+        button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
 
         /*인텐트 받아들임*/
         Intent intent = getIntent();
