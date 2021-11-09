@@ -41,6 +41,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
     /*텍스트뷰 선언*/
     TextView destination_text;
+    TextView guide_text;
+    TextView reDistance_text;
 
     String appKey = "l7xx59d0bb77ddfc45efb709f48d1b31715c"; //appKey
 
@@ -66,6 +68,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     /*경도, 위도 변수 선언*/
     Double latitude;
     Double longitude;
+    String reDistnace;
 
     /*JSON 받아오기 위한 변수 선언*/
     String startX;
@@ -151,6 +154,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             }
         });
 
+        /*출발지 설정 확인 버틀 누를 시*/
         setStart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -258,27 +262,56 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 //System.out.println("제일 상위" + root);
 
                 //전체 데이터중에 features 리스트의 첫번째 객체를 가지고 오기
-                JSONObject features = (JSONObject)root.getJSONArray("features").get(0);
+                JSONObject features = (JSONObject)root.getJSONArray("features").get(1);
                 int i = root.getJSONArray("features").length();//JSON 객체의 크기를 구하는 코드
                 Log.d("JSON확인", i + " 상위에서 첫번째 리스트 : " + features);
-                //System.out.println("상위에서 첫번째 리스트 : " + features);
 
-                //리스트의 첫번째 객체에 있는 properties 가져오기
+                //geometry 가져오기
+                JSONObject geometry = features.getJSONObject("geometry");
+                //geometry에서 경도, 위도 가져오기
+                Double g_latitude = Double.parseDouble(geometry.getJSONArray("coordinates").getJSONArray(0).get(1).toString()); //위도
+                Double g_longitude = Double.parseDouble(geometry.getJSONArray("coordinates").getJSONArray(0).get(0).toString()); //경도
+                /*남은 M 구현하기 위한 코드*/
+                Log.d("JSON확인2", latitude.toString() + longitude.toString());
+                reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
+                reDistance_text = findViewById(R.id.distance);
+                reDistance_text.setText(reDistnace);
+                Log.d("JSON확인", reDistnace);
+
+                //properties 가져오기
                 JSONObject properties = features.getJSONObject("properties");
+                //properties에서 'description' 가져오기
+                String description = properties.getString("description");
+                //description 텍스트뷰에 들어가게 설정
+                guide_text = findViewById(R.id.guide_message);
+                guide_text.setText(description);
                 Log.d("JSON확인", "리스트에서 properties 객체 : " + properties);
-                //System.out.println("리스트에서 geometry 객체 : " + geometry);
 
-                //최종적으로 위도와 경도를 가져온다.
-                //String latitude = geometry.getJ
-                //
-                // SONArray("coordinates").get(0).toString();
-                //String longtitude = geometry.getJSONArray("coordinates").get(1).toString();
-                //textView.setMovementMethod(new ScrollingMovementMethod());
-                //textView.setText(root.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+
+        public String calcDistance(double lat1, double long1, double lat2, double long2){
+            double EARTH_R, Rad, radLat1, radLat2, radDist;
+            double distance, ret;
+
+            EARTH_R = 6371000.0;
+            Rad = Math.PI/180;
+            radLat1 = Rad * lat1;
+            radLat2 = Rad * lat2;
+            radDist = Rad * (long1 - long2);
+
+            distance = Math.sin(radLat1) * Math.sin(radLat2);
+            distance = distance + Math.cos(radLat1) * Math.cos(radLat2) * Math.cos(radDist);
+            ret = EARTH_R * Math.acos(distance);
+
+            double rslt = Math.round(ret);
+            String result = rslt + "m";
+
+            return result;
+        }
+
     }
 
     /*사용자 위치가 변경되면 실행되는 함수*/
@@ -288,7 +321,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
         nowPoint = tMapView.getLocationPoint();
         Log.d("현재위치", nowPoint.toString());
-
         /*Tmap 기본 위치가 SKT 타워로 설정되어있음.
          * SKT 타워 주변의 병원이 뜨지 않게 만들기 위해서
          * SKT 타워 경도와 진짜 현재 위치의 경도를 비교*/
@@ -298,6 +330,9 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         } else {
             //현재 위치 탐색 완료
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
+            latitude = nowPoint.getLatitude();
+            longitude = nowPoint.getLongitude();
+            Log.d("JSON확인1", latitude.toString() + longitude.toString());
         }
     }
 
