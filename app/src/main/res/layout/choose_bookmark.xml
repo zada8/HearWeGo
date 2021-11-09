@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BookmarkActivity">
 
-    <!-- 주변시설 -->
+    <!-- 즐겨찾기 관리 카테고리 -->
+
     <RelativeLayout
         android:id="@+id/background"
         android:layout_width="411dp"
@@ -17,119 +17,247 @@
         android:background="@drawable/background"
         tools:ignore="MissingConstraints">
 
-        <!-- bar_top -->
-
-        <!-- Frame Menu-->
-
-        <!-- list_button -->
-
     </RelativeLayout>
 
-    <ImageButton
-        android:id="@+id/previous"
-        android:layout_width="205dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="739dp"
-        android:background="@drawable/previous_button"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <ImageButton
-        android:id="@+id/home"
-        android:layout_width="205dp"
-        android:layout_height="84dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="739dp"
-        android:background="@drawable/home_button"
-        app:layout_constraintLeft_toRightOf="@+id/previous"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
     <RelativeLayout
-        android:id="@+id/title_bookmark"
+        android:id="@+id/title_manage_bookmark"
         android:layout_width="411dp"
         android:layout_height="92dp"
         android:background="@drawable/frame_29"
         tools:ignore="MissingConstraints">
 
-        <!-- 주변시설 선택 -->
+        <!-- 즐겨찾기 관리 -->
         <TextView
-            android:id="@+id/즐겨찾기선택"
-            android:layout_width="208dp"
+            android:id="@+id/categoryName"
+            android:layout_width="wrap_content"
             android:layout_height="54dp"
-            android:layout_marginLeft="101.5dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="19dp"
             android:gravity="center_horizontal|center_vertical"
             android:lineSpacingExtra="10sp"
-            android:text="즐겨찾기 선택"
-            android:textColor="@color/white"
+            android:text="즐겨찾기 관리"
+            android:textColor="@color/yellow"
             android:textSize="36sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/inter_medium"/>
     </RelativeLayout>
 
+    <!-- 즐겨찾기 관리 스크롤뷰 -->
+    <ScrollView
+        android:layout_width="411dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="124dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 즐겨찾기1 -->
+            <Button
+                android:id="@+id/bookmark1"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/default_yellow"
+                android:text="즐겨찾기1"
+                android:textColor="@color/yellow"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 즐겨찾기2 -->
+            <Button
+                android:id="@+id/bookmark2"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="즐겨찾기2"
+                android:textColor="@color/yellow"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 즐겨찾기3 -->
+            <Button
+                android:id="@+id/bookmark3"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="즐겨찾기3"
+                android:textColor="@color/yellow"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 즐겨찾기4 -->
+            <Button
+                android:id="@+id/bookmark4"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="즐겨찾기4"
+                android:textColor="@color/yellow"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 즐겨찾기5 -->
+            <Button
+                android:id="@+id/bookmark5"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="즐겨찾기5"
+                android:textColor="@color/yellow"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 즐겨찾기6 -->
+            <Button
+                android:id="@+id/bookmark6"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="즐겨찾기6"
+                android:textColor="@color/yellow"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 즐겨찾기7 -->
+            <Button
+                android:id="@+id/bookmark7"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="즐겨찾기7"
+                android:textColor="@color/yellow"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 즐겨찾기8 -->
+            <Button
+                android:id="@+id/bookmark8"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="즐겨찾기8"
+                android:textColor="@color/yellow"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 즐겨찾기9 -->
+            <Button
+                android:id="@+id/bookmark9"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="즐겨찾기9"
+                android:textColor="@color/yellow"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+            <!-- 즐겨찾기 10 -->
+            <Button
+                android:id="@+id/bookmark10"
+                android:layout_width="395dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/default_yellow"
+                android:text="즐겨찾기10"
+                android:textColor="@color/yellow"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 즐겨찾기 등록 버튼 -->
     <Button
-        android:id="@+id/bookmark1"
+        android:id="@+id/save_bookmark"
         android:layout_width="395dp"
         android:layout_height="90dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="124dp"
-
-        android:background="@drawable/default_yellow"
-        android:text="서울대학교병원"
+        android:layout_marginTop="576dp"
+        android:background="@drawable/frame_6"
+        android:text="즐겨찾기 등록"
         android:textColor="@color/yellow"
         android:textSize="36sp"
         android:textStyle="bold"
+        android:fontFamily="@font/inter_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
+
+    <!-- 홈 버튼 -->
     <Button
-        android:id="@+id/bookmark2"
-        android:layout_width="395dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/default_yellow"
-        android:text="신촌세브란스"
-        android:textColor="@color/yellow"
+        android:id="@+id/home"
+        android:layout_width="205dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="739dp"
+        android:background="@drawable/frame_31"
+        android:text="홈"
+        android:textColor="@color/white"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookmark1"
+        android:fontFamily="@font/inter_medium"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
+    <!-- 이전 버튼 -->
     <Button
-        android:id="@+id/bookmark3"
-        android:layout_width="395dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/default_yellow"
-        android:text="동아약국"
-        android:textColor="@color/yellow"
+        android:id="@+id/previous"
+        android:layout_width="205dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="739dp"
+        android:background="@drawable/frame_31"
+        android:text="이전"
+        android:textColor="@color/white"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookmark2"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/bookmark4"
-        android:layout_width="395dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/default_yellow"
-        android:text="노원구 공원"
-        android:textColor="@color/yellow"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookmark3"
+        android:fontFamily="@font/inter_medium"
+        app:layout_constraintLeft_toRightOf="@+id/home"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
 
