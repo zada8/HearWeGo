@@ -296,7 +296,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             double EARTH_R, Rad, radLat1, radLat2, radDist;
             double distance, ret;
 
-            EARTH_R = 6371000.0;
+            EARTH_R = 6372.8 * 1000;
             Rad = Math.PI/180;
             radLat1 = Rad * lat1;
             radLat2 = Rad * lat2;
