@@ -88,6 +88,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     JSONObject geometry = null;
     JSONObject properties = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +133,12 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         setStart_btn = findViewById(R.id.button_setStartPoint);
         button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
+
+        /*병원 액티비티 종료*/
+        if(HospitalActivity.activity != null){
+            HospitalActivity activity = (HospitalActivity)HospitalActivity.activity;
+            activity.finish();
+        }
 
         /*인텐트 받아들임*/
         Intent intent = getIntent();
