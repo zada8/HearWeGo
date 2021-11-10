@@ -1,17 +1,15 @@
 package com.android.hearwego;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -138,7 +136,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
         public void onBufferReceived(byte[] buffer) {}
 
         @Override
-        public void onEndOfSpeech() {       // 은성 인식이 제대로 되었을 때의 동작
+        public void onEndOfSpeech() {       // 음성 인식이 제대로 되었을 때의 동작
             bookmarkBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
