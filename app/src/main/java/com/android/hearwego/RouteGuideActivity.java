@@ -80,6 +80,13 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     String uu = null;
     URL url = null;
     HttpURLConnection urlConnection = null;
+    int cnt = 0; //실시간 음성 안내를 구현하기 위한 카운트변수
+
+    /*JSON 변수 선언*/
+    JSONObject root = null;
+    JSONObject features = null;
+    JSONObject geometry = null;
+    JSONObject properties = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,6 +195,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
     /*보행자 경로 JSON 파일을 가져오는 함수*/
     public void getRoute(){
+
+
         startX = Double.toString(longitude);
         startY = Double.toString(latitude);
         endX = longData;
@@ -221,6 +230,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             Log.d("JSON확인", urlConnection.toString());
             NetworkTask networkTask = new NetworkTask(uu, null);
             networkTask.execute();
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -256,18 +266,20 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             super.onPostExecute(s);
             //doInBackground()로 부터 리턴된 값이 onPostExecute()의 매개변수로 넘어오므로 s를 출력한다.
             try{
+
                 //전체 데이터를 제이슨 객체로 변환
-                JSONObject root = new JSONObject(s);
+                root = new JSONObject(s);
                 Log.d("JSON확인", "제일 상위" + root);
                 //System.out.println("제일 상위" + root);
 
                 //전체 데이터중에 features 리스트의 첫번째 객체를 가지고 오기
-                JSONObject features = (JSONObject)root.getJSONArray("features").get(1);
+                features = (JSONObject)root.getJSONArray("features").get(1);
+                cnt = 1;
                 int i = root.getJSONArray("features").length();//JSON 객체의 크기를 구하는 코드
                 Log.d("JSON확인", i + " 상위에서 첫번째 리스트 : " + features);
 
                 //geometry 가져오기
-                JSONObject geometry = features.getJSONObject("geometry");
+                geometry = features.getJSONObject("geometry");
                 //geometry에서 경도, 위도 가져오기
                 Double g_latitude = Double.parseDouble(geometry.getJSONArray("coordinates").getJSONArray(0).get(1).toString()); //위도
                 Double g_longitude = Double.parseDouble(geometry.getJSONArray("coordinates").getJSONArray(0).get(0).toString()); //경도
@@ -279,13 +291,16 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 Log.d("JSON확인", reDistnace);
 
                 //properties 가져오기
-                JSONObject properties = features.getJSONObject("properties");
+                properties = features.getJSONObject("properties");
                 //properties에서 'description' 가져오기
                 String description = properties.getString("description");
                 //description 텍스트뷰에 들어가게 설정
                 guide_text = findViewById(R.id.guide_message);
                 guide_text.setText(description);
                 Log.d("JSON확인", "리스트에서 properties 객체 : " + properties);
+                Log.d("JSON확인4", Integer.toString(cnt));
+
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -319,22 +334,16 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     public void onLocationChange(Location location) {
         //현재 위치의 위도, 경도를 받아옴
         tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
+        tMapView.setCenterPoint(location.getLongitude(), location.getLatitude());
         nowPoint = tMapView.getLocationPoint();
         Log.d("현재위치", nowPoint.toString());
-        /*Tmap 기본 위치가 SKT 타워로 설정되어있음.
-         * SKT 타워 주변의 병원이 뜨지 않게 만들기 위해서
-         * SKT 타워 경도와 진짜 현재 위치의 경도를 비교*/
-        n_latitude = Double.toString(nowPoint.getLatitude());
-        if (n_latitude.equals(SKT_latitude) == true) {
-            Log.d("현재위치-SKT타워O", "현재위치가 SKT 타워로 설정되어있습니다.");
-        } else {
-            //현재 위치 탐색 완료
-            Log.d("현재위치-SKT타워X", "실행되었습니다.");
-            latitude = nowPoint.getLatitude();
-            longitude = nowPoint.getLongitude();
-            Log.d("JSON확인1", latitude.toString() + longitude.toString());
+        latitude = nowPoint.getLatitude();
+        longitude = nowPoint.getLongitude();
+        Log.d("JSON확인1", latitude.toString() + longitude.toString());
+        if(features != null){
+            Log.d("JSON확인3", Integer.toString(features.length()));
+        }
+
         }
     }
 
-
-}
