@@ -83,4 +83,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="음성인식 결과가 여기에 표시됩니다."
+        app:layout_constraintBottom_toTopOf="@+id/button1_nowgps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frame_29"
+        app:layout_constraintVertical_bias="0.92" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
