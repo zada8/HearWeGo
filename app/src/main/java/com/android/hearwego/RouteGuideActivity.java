@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.skt.Tmap.TMapData;
 import com.skt.Tmap.TMapGpsManager;
@@ -346,8 +347,12 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         Log.d("현재위치", nowPoint.toString());
         latitude = nowPoint.getLatitude();
         longitude = nowPoint.getLongitude();
+        Toast lo_toast = Toast.makeText(this.getApplicationContext(), "위치 바뀐당", Toast.LENGTH_SHORT);
+        lo_toast.show();
         Log.d("JSON확인1", latitude.toString() + longitude.toString());
         if(features != null){
+            Toast fe_toast = Toast.makeText(this.getApplicationContext(), "features가 생김", Toast.LENGTH_SHORT);
+            fe_toast.show();
             Log.d("JSON확인3", Integer.toString(features.length()));
         }
 
