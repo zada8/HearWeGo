@@ -54,8 +54,8 @@
             android:layout_marginEnd="137dp"
             android:layout_marginRight="137dp"
             android:background="@drawable/small_mic"
-            app:layout_constraintEnd_toEndOf="mic_button1"
-            app:layout_constraintStart_toStartOf="mic_button1" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/sttResult"

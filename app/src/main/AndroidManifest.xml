@@ -42,7 +42,7 @@
         <activity android:name=".SubwayActivity" />
         <activity android:name=".RestroomActivity" />
         <activity android:name=".AddBookmarkActivity" />
-        <activity android:name=".AddBookmarkByAddresActivity" />
+        <activity android:name=".AddBookmarkByAddressActivity" />
     </application>
 
 </manifest>
