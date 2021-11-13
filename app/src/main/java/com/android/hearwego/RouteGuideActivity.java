@@ -20,13 +20,17 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.type.LatLng;
 import com.skt.Tmap.TMapData;
 import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapView;
+import com.skt.Tmap.TmapAuthentication;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.NodeList;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -34,6 +38,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class RouteGuideActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback{
@@ -82,7 +87,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     String uu = null;
     URL url = null;
     HttpURLConnection urlConnection = null;
-    int json_length;
+    //int json_length;
 
     /*JSON 변수 선언*/
     JSONObject root = null;
@@ -251,10 +256,15 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
     }
 
+    public LatLng LatLng(){
+        return LatLng();
+    }
+
     /*Asynctask 클래스 NetworkTask 생성*/
     public class NetworkTask extends AsyncTask<Void, Void, String>{
         private String url;
         private ContentValues values;
+        ArrayList<TMapPoint> LatLngArrayList = new ArrayList<TMapPoint>();
 
         public NetworkTask(String url, ContentValues values){
             this.url = url;
@@ -282,10 +292,46 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 //전체 데이터를 제이슨 객체로 변환
                 root = new JSONObject(s);
                 Log.d("JSON확인", "제일 상위" + root);
-                //System.out.println("제일 상위" + root);
 
+                JSONArray featuresArray = root.getJSONArray("features"); //총 경로 횟수를 featuresArray에 저장
+                Log.d("JSON확인-feaIndex", Integer.toString(featuresArray.length()));
+                for(int i = 0;i<featuresArray.length();i++){
+                    JSONObject featuresIndex = (JSONObject)featuresArray.get(i);
+                    //Log.d("JSON확인-feaIndex", featuresIndex.toString());
+                    JSONObject geometry = featuresIndex.getJSONObject("geometry");
+                    //Log.d("JSON확인-geometry", geometry.toString());
+                    String type = geometry.getString("type");
+                    //Log.d("JSON확인-type", type);
+                    JSONArray coordinatesArray = geometry.getJSONArray("coordinates");
+                    //Log.d("JSON확인-coordinates", coordinatesArray.toString());
+                    //type이 LineString일 경우
+                    //coordinates의 length가 2 또는 3
+                    //length() == 2라면, 인덱스가 1인것을 coordinates에 저장
+                    //length() == 3도 마찬가지로, 인덱스가 1인것을 coordintates에 저장
+                    if(type.equals("LineString")){
+                        JSONArray pointArray = (JSONArray)coordinatesArray.get(1);
+                        //Log.d("JSON확인-pointArray1", pointArray.toString());
+                        Double f_longitude = Double.parseDouble(pointArray.get(0).toString());
+                        Double f_latitude = Double.parseDouble(pointArray.get(1).toString());
+                        //Log.d("JSON확인-feaIndex3", f_latitude.toString() + f_longitude.toString());
+                        LatLngArrayList.add(new TMapPoint(f_latitude, f_longitude));
+                    }
 
-                json_length = root.getJSONArray("features").length();//JSON 객체의 크기를 구하는 코드
+                    if(type.equals("Point")){
+                        //type이 point일 경우, coordinates의 length는 1밖에 없음
+                        //Log.d("JSON확인-pointArray2", coordinatesArray.toString());
+                        Double f_longitude = Double.parseDouble(coordinatesArray.get(0).toString());
+                        Double f_latitude = Double.parseDouble(coordinatesArray.get(1).toString());
+                        //Log.d("JSON확인-feaIndex3", f_latitude.toString() + f_longitude.toString());
+                        LatLngArrayList.add(new TMapPoint(f_latitude, f_longitude));
+                    }
+                }
+
+                System.out.println("JSON확인-feaIndex2" + LatLngArrayList);
+
+                Log.d("JSON확인-feaIndex2",  Integer.toString(LatLngArrayList.size()));
+
+                //json_length = root.getJSONArray("features").length();//JSON 객체의 크기를 구하는 코드
                 //전체 데이터중에 features 리스트의 첫번째 객체를 가지고 오기
                 features = (JSONObject)root.getJSONArray("features").get(1);
                 Log.d("JSON확인",  " 상위에서 첫번째 리스트 : " + features);
@@ -355,15 +401,15 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         if(features != null){
             Toast fe_toast = Toast.makeText(this.getApplicationContext(), "features가 생김", Toast.LENGTH_SHORT);
             fe_toast.show();
-            Log.d("JSON확인3", Integer.toString(json_length));
+            //Log.d("JSON확인3", Integer.toString(json_length));
 
         }
 
         }
 
-    /*public void getDescription(){
+    public void getDescription(){
 
-    }*/
+    }
     }
 
 
