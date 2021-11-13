@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.Location;
+import android.net.Network;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -81,13 +82,16 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     String uu = null;
     URL url = null;
     HttpURLConnection urlConnection = null;
-    int cnt = 0; //실시간 음성 안내를 구현하기 위한 카운트변수
+    int json_length;
 
     /*JSON 변수 선언*/
     JSONObject root = null;
     JSONObject features = null;
     JSONObject geometry = null;
     JSONObject properties = null;
+
+    /*실시간 음성안내를 위한 변수 선언*/
+    int index = 0;
 
 
     @Override
@@ -280,11 +284,11 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 Log.d("JSON확인", "제일 상위" + root);
                 //System.out.println("제일 상위" + root);
 
+
+                json_length = root.getJSONArray("features").length();//JSON 객체의 크기를 구하는 코드
                 //전체 데이터중에 features 리스트의 첫번째 객체를 가지고 오기
                 features = (JSONObject)root.getJSONArray("features").get(1);
-                cnt = 1;
-                int i = root.getJSONArray("features").length();//JSON 객체의 크기를 구하는 코드
-                Log.d("JSON확인", i + " 상위에서 첫번째 리스트 : " + features);
+                Log.d("JSON확인",  " 상위에서 첫번째 리스트 : " + features);
 
                 //geometry 가져오기
                 geometry = features.getJSONObject("geometry");
@@ -306,8 +310,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 guide_text = findViewById(R.id.guide_message);
                 guide_text.setText(description);
                 Log.d("JSON확인", "리스트에서 properties 객체 : " + properties);
-                Log.d("JSON확인4", Integer.toString(cnt));
-
 
 
             } catch (JSONException e) {
@@ -353,9 +355,16 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         if(features != null){
             Toast fe_toast = Toast.makeText(this.getApplicationContext(), "features가 생김", Toast.LENGTH_SHORT);
             fe_toast.show();
-            Log.d("JSON확인3", Integer.toString(features.length()));
+            Log.d("JSON확인3", Integer.toString(json_length));
+
         }
 
         }
+
+    /*public void getDescription(){
+
+    }*/
     }
+
+
 
