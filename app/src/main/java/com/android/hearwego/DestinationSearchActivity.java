@@ -261,7 +261,7 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
     @Override
     public void onLocationChange(Location location) {
         tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
-        Log.d("현재위치", tMapView.getLocationPoint().toString());
+        Log.d("현재위치-Destination", tMapView.getLocationPoint().toString());
     }
 
     @Override

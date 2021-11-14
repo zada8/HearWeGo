@@ -87,13 +87,9 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     String uu = null;
     URL url = null;
     HttpURLConnection urlConnection = null;
-    //int json_length;
 
     /*JSON 변수 선언*/
     JSONObject root = null;
-    JSONObject features = null;
-    JSONObject geometry = null;
-    JSONObject properties = null;
     ArrayList<TMapPoint> LatLngArrayList = new ArrayList<TMapPoint>();
     ArrayList<String> DescriptionList = new ArrayList<String>();
 
@@ -148,11 +144,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
 
-        /*병원 액티비티 종료*/
-        if(HospitalActivity.activity != null){
-            HospitalActivity activity = (HospitalActivity)HospitalActivity.activity;
-            activity.finish();
-        }
+
 
         /*인텐트 받아들임*/
         Intent intent = getIntent();
@@ -337,12 +329,12 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 System.out.println("JSON확인-feaIndex2" + LatLngArrayList);
                 System.out.println("JSON확인-description" + DescriptionList);
 
+
+                /*첫번째 설명, 남은 거리 구하기 위함*/
                 description = DescriptionList.get(0);
                 guide_text.setText(description);
-
                 Double g_latitude = LatLngArrayList.get(1).getLatitude(); //위도
                 Double g_longitude = LatLngArrayList.get(1).getLongitude(); //경도
-                /*남은 M 구현하기 위한 코드*/
                 reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
                 reDistance_text.setText(reDistnace);
                 Log.d("JSON확인", reDistnace);
@@ -354,6 +346,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
     }
 
+    /*남은 거리 구하는 함수*/
     public String calcDistance(double lat1, double long1, double lat2, double long2){
         double EARTH_R, Rad, radLat1, radLat2, radDist;
         double distance, ret;
@@ -381,7 +374,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
         tMapView.setCenterPoint(location.getLongitude(), location.getLatitude());
         nowPoint = tMapView.getLocationPoint();
-        Log.d("현재위치", nowPoint.toString());
+        Log.d("현재위치-RouteGuide", nowPoint.toString());
         latitude = nowPoint.getLatitude();
         longitude = nowPoint.getLongitude();
         Toast lo_toast = Toast.makeText(this.getApplicationContext(), "위치 바뀐당", Toast.LENGTH_SHORT);
@@ -413,6 +406,9 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
                 latitude_gap = Math.abs(latitude - g_latitude);
                 longitude_gap = Math.abs(longitude - g_longitude);
+
+                reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
+                reDistance_text.setText(reDistnace);
 
 
                 if(latitude_gap <= 0.00005 || longitude_gap <= 0.00005){

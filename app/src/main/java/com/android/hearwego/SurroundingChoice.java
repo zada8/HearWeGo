@@ -88,6 +88,7 @@ public class SurroundingChoice extends AppCompatActivity {
         distanceData = intent.getStringExtra("distance");
         latData = intent.getStringExtra("latitude");
         longData = intent.getStringExtra("longitude");
+
         ((LogoActivity) LogoActivity.context_logo).latitude = Double.parseDouble(intent.getStringExtra("latitude"));
         ((LogoActivity) LogoActivity.context_logo).longitude = Double.parseDouble(intent.getStringExtra("longitude"));
 
