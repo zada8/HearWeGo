@@ -77,8 +77,8 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
                     Manifest.permission.RECORD_AUDIO},PERMISSION);
         }
         // xml의 버튼과 텍스트 뷰 연결
-        textView = (TextView)findViewById(R.id.sttResult);
-        sttBtn = (Button) findViewById(R.id.mic_button);
+        textView = (TextView)findViewById(R.id.sttResult_des);
+        sttBtn = (Button) findViewById(R.id.mic_button_des);
         startBtn = (Button) findViewById(R.id.search_start_button);
 
         // RecognizerIntent 객체 생성
@@ -87,14 +87,14 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
         // 버튼을 클릭 이벤트 - 객체에 Context와 listener를 할당한 후 실행
-        /*sttBtn.setOnClickListener(new View.OnClickListener() {
+        sttBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 mRecognizer = SpeechRecognizer.createSpeechRecognizer(DestinationSearchActivity.this);
                 mRecognizer.setRecognitionListener(listener);
                 mRecognizer.startListening(intent);
             }
-        });*/
+        });
 
         //TextToSpeech 기본 설정
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
