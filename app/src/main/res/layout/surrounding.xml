@@ -67,7 +67,7 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/default_yellow"
             android:fontFamily="@font/inter_medium"
-            android:text="화장실"
+            android:text="편의점"
             android:textColor="@color/yellow"
             android:textSize="36sp"
             android:textStyle="bold" />
