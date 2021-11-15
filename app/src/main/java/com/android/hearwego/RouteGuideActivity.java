@@ -399,7 +399,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             Log.d("JSON실행-gLngLat", Double.toString(g_latitude) + Double.toString(g_longitude));
             //Log.d("JSON실행?-남은m", reDistnace+"m");
 
-            if(latitude_gap <= 0.00002 || longitude_gap <= 0.00002){
+            if(latitude_gap <= 0.00001 || longitude_gap <= 0.00001){
                 //Log.d("JSON실행?3", "실행됐니");
                 g_latitude = LatLngArrayList.get(index+2).getLatitude();
                 g_longitude = LatLngArrayList.get(index+2).getLongitude();
