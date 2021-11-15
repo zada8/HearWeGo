@@ -59,10 +59,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     TMapData tMapData = null;
     TMapPoint nowPoint = null;
 
-    /*SKT 타워 위도와 현재 위치의 위도를 비교하기 위한 변수*/
-    String SKT_latitude = Double.toString(37.566474);
-    String n_latitude = null;
-
     /*TTS 변수 설정*/
     TextToSpeech textToSpeech;
 
@@ -94,9 +90,11 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     ArrayList<String> DescriptionList = new ArrayList<String>();
 
     /*실시간 음성안내를 위한 변수 선언*/
-    int index = 1;
-    int check = 1;
-    //int onLocationcheck = 1;
+    int index = 0;
+    int check = 0;
+    int ep_distance = 0;
+    Double g_latitude = 0.0;
+    Double g_longitude = 0.0;
     String description = "";
 
 
@@ -252,10 +250,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
     }
 
-    public LatLng LatLng(){
-        return LatLng();
-    }
-
     /*Asynctask 클래스 NetworkTask 생성*/
     public class NetworkTask extends AsyncTask<Void, Void, String>{
         private String url;
@@ -305,7 +299,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                     //coordinates의 length가 2 또는 3
                     //length() == 2라면, 인덱스가 1인것을 coordinates에 저장
                     //length() == 3도 마찬가지로, 인덱스가 1인것을 coordintates에 저장
-                    /*if(type.equals("LineString")){
+                    /*if(i == featuresArray.length()-2){
                         JSONArray pointArray = (JSONArray)coordinatesArray.get(1);
                         //Log.d("JSON확인-pointArray1", pointArray.toString());
                         Double f_longitude = Double.parseDouble(pointArray.get(0).toString());
@@ -322,9 +316,13 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                         String description = properties.getString("description");
                         DescriptionList.add(description);
                         LatLngArrayList.add(new TMapPoint(f_latitude, f_longitude));
+                        if(i==featuresArray.length()-1){
+                            LatLngArrayList.add(new TMapPoint(f_latitude, f_longitude));
+                        }
                     }
                 }
 
+                System.out.println("JSON확인-distance"+ ep_distance);
                 System.out.println("JSON확인-feaIndex2" + LatLngArrayList);
                 System.out.println("JSON확인-description" + DescriptionList);
 
@@ -332,11 +330,12 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 /*첫번째 설명, 남은 거리 구하기 위함*/
                 description = DescriptionList.get(0);
                 guide_text.setText(description);
-                Double g_latitude = LatLngArrayList.get(1).getLatitude(); //위도
-                Double g_longitude = LatLngArrayList.get(1).getLongitude(); //경도
+                g_latitude = LatLngArrayList.get(1).getLatitude(); //위도
+                g_longitude = LatLngArrayList.get(1).getLongitude(); //경도
                 reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
-                reDistance_text.setText(reDistnace);
-                Log.d("JSON확인", reDistnace);
+                reDistance_text.setText(reDistnace + "m");
+                //Log.d("JSON확인", reDistnace);
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -361,7 +360,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         ret = EARTH_R * Math.acos(distance);
 
         double rslt = Math.round(ret);
-        String result = rslt + "m";
+        String result = Double.toString(rslt);
 
         return result;
     }
@@ -373,52 +372,49 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
         tMapView.setCenterPoint(location.getLongitude(), location.getLatitude());
         nowPoint = tMapView.getLocationPoint();
-        Log.d("현재위치-RouteGuide", nowPoint.toString());
+         //Log.d("현재위치-RouteGuide", nowPoint.toString());
         latitude = nowPoint.getLatitude();
         longitude = nowPoint.getLongitude();
-        Toast lo_toast = Toast.makeText(this.getApplicationContext(), "위치 바뀐당", Toast.LENGTH_SHORT);
-        lo_toast.show();
-        Log.d("JSON확인1", latitude.toString() + longitude.toString());
+         //Log.d("JSON확인1", latitude.toString() + longitude.toString());
         if(root != null){
-            Log.d("JSON실행?", "실행됐니");
-            Toast fe_toast = Toast.makeText(this.getApplicationContext(), "features가 생김", Toast.LENGTH_SHORT);
-            fe_toast.show();
             getDescription();
-
         }
-
-        }
+    }
 
     public void getDescription(){
         Double latitude_gap = 0.0;
         Double longitude_gap = 0.0;
-        Double g_latitude = 0.0;
-        Double g_longitude = 0.0;
 
+        if(index < LatLngArrayList.size()-1){;
+            if(index == LatLngArrayList.size()-2){
+                Log.d("JSON확인-check", Integer.toString(check));
+                tMapGpsManager.CloseGps();
+            }
+            //Log.d("JSON실행?-4", "실행O");
+            latitude_gap = Math.abs(latitude - g_latitude);
+            longitude_gap = Math.abs(longitude - g_longitude);
+            //Log.d("JSON실행?", "실행O");
+            reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
+            reDistance_text.setText(reDistnace+"m");
+            Log.d("JSON실행-gLngLat", Double.toString(g_latitude) + Double.toString(g_longitude));
+            //Log.d("JSON실행?-남은m", reDistnace+"m");
 
-        if(index < LatLngArrayList.size()){
-            if(index == check){
-                if(index < LatLngArrayList.size()-1){
-                    g_latitude = LatLngArrayList.get(index+1).getLatitude();
-                    g_longitude = LatLngArrayList.get(index+1).getLongitude();
+            if(latitude_gap <= 0.00002 || longitude_gap <= 0.00002){
+                //Log.d("JSON실행?3", "실행됐니");
+                g_latitude = LatLngArrayList.get(index+2).getLatitude();
+                g_longitude = LatLngArrayList.get(index+2).getLongitude();
+                reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
+                reDistance_text.setText(reDistnace+"m");
+                Log.d("JSON실행-gLngLat", Double.toString(g_latitude) + Double.toString(g_longitude));
+                //Log.d("JSON실행?-남은m", reDistnace+"m");
+
+                if(index < LatLngArrayList.size() -2){
+                    guide_text.setText(DescriptionList.get(index+1));
                 }
 
-                latitude_gap = Math.abs(latitude - g_latitude);
-                longitude_gap = Math.abs(longitude - g_longitude);
-
-                reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
-                reDistance_text.setText(reDistnace);
-
-
-                if(latitude_gap <= 0.00005 || longitude_gap <= 0.00005){
-
-                    guide_text.setText(DescriptionList.get(index));
-
-                    reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
-                    reDistance_text.setText(reDistnace);
-
-                    index++;
-                    check++;
+                if(index < LatLngArrayList.size()-2){
+                    index = index +1;
+                    check = check + 1;
                 }
             }
         }
