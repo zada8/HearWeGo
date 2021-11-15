@@ -96,6 +96,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     /*실시간 음성안내를 위한 변수 선언*/
     int index = 1;
     int check = 1;
+    //int onLocationcheck = 1;
     String description = "";
 
 
@@ -143,8 +144,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         setStart_btn = findViewById(R.id.button_setStartPoint);
         button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
-
-
 
         /*인텐트 받아들임*/
         Intent intent = getIntent();
