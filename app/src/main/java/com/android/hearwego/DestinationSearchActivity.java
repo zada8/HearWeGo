@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -70,31 +71,7 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
 
-        //stt
-        // 퍼미션 체크
-        if ( Build.VERSION.SDK_INT >= 23 ) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET,
-                    Manifest.permission.RECORD_AUDIO},PERMISSION);
-        }
-        // xml의 버튼과 텍스트 뷰 연결
-        textView = (TextView)findViewById(R.id.sttResult_des);
-        sttBtn = (Button) findViewById(R.id.mic_button_des);
-        startBtn = (Button) findViewById(R.id.search_start_button);
 
-        // RecognizerIntent 객체 생성
-        intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
-
-        // 버튼을 클릭 이벤트 - 객체에 Context와 listener를 할당한 후 실행
-        sttBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                mRecognizer = SpeechRecognizer.createSpeechRecognizer(DestinationSearchActivity.this);
-                mRecognizer.setRecognitionListener(listener);
-                mRecognizer.startListening(intent);
-            }
-        });
 
         //TextToSpeech 기본 설정
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
@@ -162,6 +139,43 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
         });
 
 
+        //stt
+        // 퍼미션 체크
+        if ( Build.VERSION.SDK_INT >= 23 ) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET,
+                    Manifest.permission.RECORD_AUDIO},PERMISSION);
+        }
+        // xml의 버튼과 텍스트 뷰 연결
+        textView = (TextView)findViewById(R.id.sttResult_des);
+        sttBtn = (Button) findViewById(R.id.mic_button_des);
+        startBtn = (Button) findViewById(R.id.search_start_button);
+
+        // RecognizerIntent 객체 생성
+        intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
+
+        // 버튼을 클릭 이벤트 - 객체에 Context와 listener를 할당한 후 실행
+        sttBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                textToSpeech.speak("목적지 키워드를 음성으로 입력해주세요", TextToSpeech.QUEUE_FLUSH, null);
+                // 딜레이를 1초 주기
+                textToSpeech.playSilence(1000, TextToSpeech.QUEUE_ADD, null);
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mRecognizer = SpeechRecognizer.createSpeechRecognizer(DestinationSearchActivity.this);
+                        mRecognizer.setRecognitionListener(listener);
+                        mRecognizer.startListening(intent);
+                    }
+                }, 3000); //딜레이 타임 조절
+/*
+  */
+            }
+        });
 
 
     }
