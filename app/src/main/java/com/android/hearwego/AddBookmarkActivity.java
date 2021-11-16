@@ -21,6 +21,8 @@ import androidx.core.app.ActivityCompat;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
 
@@ -32,7 +34,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
     TextView textView;
     Button bookmarkBtn;
     final int PERMISSION = 1;
-
+    public String keyword;
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
 
@@ -122,8 +124,8 @@ public class AddBookmarkActivity extends AppCompatActivity{
                     results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
             for (int i = 0; i < matches.size(); i++){
-                ((LogoActivity) LogoActivity.context_logo).keyword = matches.get(i);
-                textView.setText(((LogoActivity) LogoActivity.context_logo).keyword);   // 음성 인식한 데이터를 text로 변환해 표시
+                keyword = matches.get(i);
+                textView.setText(keyword);   // 음성 인식한 데이터 (키워드)를 text로 변환해 표시
             }
         }
         @Override
@@ -141,7 +143,8 @@ public class AddBookmarkActivity extends AppCompatActivity{
                 @Override
                 public void onClick(View v){
                     Intent intent = new Intent(AddBookmarkActivity.this, HomeActivity.class);
-                    addKeywordData();
+                    ((LogoActivity) LogoActivity.context_logo).ref
+                            .update("keyword", FieldValue.arrayUnion(keyword));
                     startActivity(intent);
                 }
             });
@@ -197,32 +200,5 @@ public class AddBookmarkActivity extends AppCompatActivity{
         @Override
         public void onEvent(int eventType, Bundle params) {}
     };
-
-    private void addKeywordData()
-    {
-        ((LogoActivity) LogoActivity.context_logo).user.put("userID",((LogoActivity) LogoActivity.context_logo).userID);
-        ((LogoActivity) LogoActivity.context_logo).user.put("userName",((LogoActivity) LogoActivity.context_logo).userName);
-        ((LogoActivity) LogoActivity.context_logo).user.put("latitude", ((LogoActivity) LogoActivity.context_logo).latitude);
-        ((LogoActivity) LogoActivity.context_logo).user.put("longitude", ((LogoActivity) LogoActivity.context_logo).longitude);
-        ((LogoActivity) LogoActivity.context_logo).user.put("keyword", ((LogoActivity) LogoActivity.context_logo).keyword);
-        ((LogoActivity) LogoActivity.context_logo).db.collection("users")
-                .add(((LogoActivity) LogoActivity.context_logo).user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>()
-                {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference)
-                    {
-                        Log.d("tag", "Document ID = " + documentReference.get());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener()
-                {
-                    @Override
-                    public void onFailure(@NonNull Exception e)
-                    {
-                        Log.d("tag", "Document Error!!");
-                    }
-                });
-    }
 
 }

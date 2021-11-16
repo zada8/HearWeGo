@@ -2,6 +2,7 @@ package com.android.hearwego;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,14 +10,19 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -26,11 +32,11 @@ public class SurroundingChoice extends AppCompatActivity {
 
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
-    String addressData;
-    String nameData;
-    String distanceData;
-    String latData;
-    String longData;
+    public String addressData;
+    public String nameData;
+    public String distanceData;
+    public String latData;
+    public String longData;
 
     /*텍스트뷰 선언*/
     TextView nameText;
@@ -89,8 +95,7 @@ public class SurroundingChoice extends AppCompatActivity {
         latData = intent.getStringExtra("latitude");
         longData = intent.getStringExtra("longitude");
 
-        ((LogoActivity) LogoActivity.context_logo).latitude = Double.parseDouble(intent.getStringExtra("latitude"));
-        ((LogoActivity) LogoActivity.context_logo).longitude = Double.parseDouble(intent.getStringExtra("longitude"));
+
 
         Log.d("현재-위치!", nameData + addressData);
 
@@ -109,8 +114,6 @@ public class SurroundingChoice extends AppCompatActivity {
                 dest_intent.putExtra("name", nameData);
                 dest_intent.putExtra("latitude", latData);
                 dest_intent.putExtra("longitude", longData);
-                //dest_intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).latitude);
-                //dest_intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).longitude);
                 startActivity(dest_intent);
             }
 
@@ -120,11 +123,14 @@ public class SurroundingChoice extends AppCompatActivity {
         button_add_bookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //인텐트 보내기
                 Intent bookmark_intent = new Intent(SurroundingChoice.this, AddBookmarkActivity.class);
-                bookmark_intent.putExtra("name", nameData);
-                bookmark_intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).latitude);
-                bookmark_intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).longitude);
+
+                ((LogoActivity) LogoActivity.context_logo).ref
+                        .update("locname", FieldValue.arrayUnion(nameData));
+                ((LogoActivity) LogoActivity.context_logo).ref
+                        .update("latitude", FieldValue.arrayUnion(latData));
+                ((LogoActivity) LogoActivity.context_logo).ref
+                        .update("longtitude", FieldValue.arrayUnion(longData));
                 startActivity(bookmark_intent);
             }
         });

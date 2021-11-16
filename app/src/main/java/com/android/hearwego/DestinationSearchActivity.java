@@ -197,8 +197,9 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
                     results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
             for (int i = 0; i < matches.size(); i++){
-                ((LogoActivity) LogoActivity.context_logo).keyword = matches.get(i);
-                textView.setText(((LogoActivity) LogoActivity.context_logo).keyword);   // 음성 인식한 데이터를 text로 변환해 표시
+                String s;
+                s = matches.get(i);
+                textView.setText(s);   // 음성 인식한 데이터를 text로 변환해 표시
             }
         }
         @Override

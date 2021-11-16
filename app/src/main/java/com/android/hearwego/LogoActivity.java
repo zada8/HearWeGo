@@ -7,9 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,27 +26,24 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-
-
 
 
 public class LogoActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -62,13 +56,11 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
     public GoogleApiClient googleApiClient; //구글 API 클라리언트 객체
     private static final int REQ_SIGN_GOOGLE = 100; //구글 로그인 결과 코드
     public FirebaseFirestore db = FirebaseFirestore.getInstance();  // 데이터베이스
-    public String userID;
-    public String userName;
-    public Double latitude;
-    public Double longitude;
-    public String keyword;
-    public Map<String, Object> user = new HashMap<>();
     public static Context context_logo;
+    public String userName;
+    public String userID;
+    public User user;
+    public DocumentReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,9 +109,11 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                 startActivityForResult(signInIntent, REQ_SIGN_GOOGLE);
             }
         });
+        // 사용자 정보가 DB에 없는 경우 새 레코드를 추가
+
+
 
     }
-    
 
     //구글 로그인 요청했을 때 결과값을 되돌려받는 곳
     @Override
@@ -133,10 +127,17 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                 resultLogin(account); //로그인 결과 값 출력 수행하는 메소드 호출
                 userID = account.getIdToken();
                 userName = account.getDisplayName();
+                user = new User (userName);
+                db.collection("users").document(userID).get().
+                        addOnSuccessListener(this::onSuccess);
             } else {
                 Log.v("알림", result.isSuccess() +" Google Sign In failed. Because : " + result.getStatus().toString());
             }
         }
+    }
+
+    public void addUserToFireStore(FirebaseAuth auth, FirebaseFirestore db) {
+        db.collection("users").document(userID).set(user);
     }
 
     //로그인 결과 값 출력 수행하는 메소드
@@ -231,5 +232,30 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
         auth.getCurrentUser().delete();
     }
 
+
+    private void onSuccess(DocumentSnapshot snapShotData) {
+        if (snapShotData.exists()) {
+            Log.d("TAG", "uid is exists. : " + auth.getUid());
+            ref = db.collection("users").document(userID);
+            ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d("TAG", "DocumentSnapshot data: ");
+                        } else {
+                            Log.d("TAG", "No such document");
+                        }
+                    } else {
+                        Log.d("TAG", "get failed with ", task.getException());
+                    }
+                }
+            });
+        } else {
+            Log.d("TAG", "there is no uid. need to add data");
+            addUserToFireStore(auth, db);
+        }
+    }
 }
 
