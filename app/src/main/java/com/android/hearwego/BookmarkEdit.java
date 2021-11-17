@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class BookmarkEdit extends AppCompatActivity {
     private View decorView; //full screen 객체 선언
@@ -18,8 +19,6 @@ public class BookmarkEdit extends AppCompatActivity {
     String locname = intent.getStringExtra("locname");
     String latitude = intent.getStringExtra("latitude");
     String longtitude = intent.getStringExtra("longtitude");
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +42,11 @@ public class BookmarkEdit extends AppCompatActivity {
 
         Button button_delete_bookmark = findViewById(R.id.delete_bookmark);
         Button button_set_destination = findViewById(R.id.set_destination);
+        TextView bookmark = findViewById(R.id.bookmark);
+        bookmark.setText(keyword);
+        TextView bookmark_address = findViewById(R.id.bookmark_address);
+        bookmark.setText(locname);
+
 
         Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         Button button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
