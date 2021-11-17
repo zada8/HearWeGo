@@ -26,6 +26,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -35,8 +36,10 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -237,6 +240,27 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
         if (snapShotData.exists()) {
             Log.d("TAG", "uid is exists. : " + auth.getUid());
             ref = db.collection("users").document(userID);
+            /*ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    user = documentSnapshot.toObject(User.class);
+                }*/
+            ref.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot snapshot,
+                                    @Nullable FirebaseFirestoreException e) {
+                    if (e != null) {
+                        Log.w("TAG", "Listen failed.", e);
+                        return;
+                    }
+
+                    if (snapshot != null && snapshot.exists()) {
+                        Log.d("TAG", "Current data: " + snapshot.getData());
+                    } else {
+                        Log.d("TAG", "Current data: null");
+                    }
+                }
+            });
             ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {

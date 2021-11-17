@@ -27,7 +27,6 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.ArrayList;
 
 public class AddBookmarkActivity extends AppCompatActivity{
-
     Intent intent;
     SpeechRecognizer mRecognizer;
     Button sttBtn;

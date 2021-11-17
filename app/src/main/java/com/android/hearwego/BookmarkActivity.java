@@ -10,9 +10,18 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+
+import java.util.ArrayList;
+
 public class BookmarkActivity extends AppCompatActivity {
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
+    public int size;
+    public Button[] button_bookmark = new Button[10];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,24 +42,41 @@ public class BookmarkActivity extends AppCompatActivity {
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
 
+        button_bookmark[0] = findViewById(R.id.bookmark1);
+        button_bookmark[1] = findViewById(R.id.bookmark2);
+        button_bookmark[2] = findViewById(R.id.bookmark3);
+        button_bookmark[3] = findViewById(R.id.bookmark4);
+        button_bookmark[4] = findViewById(R.id.bookmark5);
+        button_bookmark[5] = findViewById(R.id.bookmark6);
+        button_bookmark[6] = findViewById(R.id.bookmark7);
+        button_bookmark[7] = findViewById(R.id.bookmark8);
+        button_bookmark[8] = findViewById(R.id.bookmark9);
+        button_bookmark[9] = findViewById(R.id.bookmark10);
 
-        Button button_bookmark1 = findViewById(R.id.bookmark1);
-        Button button_bookmark2 = findViewById(R.id.bookmark2);
-        Button button_bookmark3 = findViewById(R.id.bookmark3);
-        Button button_bookmark4 = findViewById(R.id.bookmark4);
-        Button button_bookmark5 = findViewById(R.id.bookmark5);
-        Button button_bookmark6 = findViewById(R.id.bookmark6);
-        Button button_bookmark7 = findViewById(R.id.bookmark7);
-        Button button_bookmark8 = findViewById(R.id.bookmark8);
-        Button button_bookmark9 = findViewById(R.id.bookmark9);
-        Button button_bookmark10 = findViewById(R.id.bookmark10);
 
+        ((LogoActivity) LogoActivity.context_logo).ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                ((LogoActivity) LogoActivity.context_logo).user = documentSnapshot.toObject(User.class);
+            }
+        });
+
+        if(((LogoActivity) LogoActivity.context_logo).user.locname != null){
+            size = ((LogoActivity) LogoActivity.context_logo).user.locname.size();
+        }
+        else{
+            size = 0;
+        }
+
+        for (int i = 0; i <size; i++){
+            button_bookmark[i].setText(((LogoActivity) LogoActivity.context_logo).user.keyword.get(i));
+        }
 
         Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         Button button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
 
         //즐겨찾기 버튼
-        button_bookmark1.setOnClickListener(new View.OnClickListener() {
+        button_bookmark[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);

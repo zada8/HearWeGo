@@ -13,6 +13,13 @@ import android.widget.ImageButton;
 public class BookmarkEdit extends AppCompatActivity {
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
+    Intent intent = getIntent();
+    String keyword = intent.getStringExtra("keyword");
+    String locname = intent.getStringExtra("locname");
+    String latitude = intent.getStringExtra("latitude");
+    String longtitude = intent.getStringExtra("longtitude");
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
