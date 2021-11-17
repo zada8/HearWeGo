@@ -14,11 +14,11 @@ import android.widget.TextView;
 public class BookmarkEdit extends AppCompatActivity {
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
-    Intent intent = getIntent();
+    /*Intent intent = getIntent();
     String keyword = intent.getStringExtra("keyword");
     String locname = intent.getStringExtra("locname");
     String latitude = intent.getStringExtra("latitude");
-    String longtitude = intent.getStringExtra("longtitude");
+    String longtitude = intent.getStringExtra("longtitude");*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +43,9 @@ public class BookmarkEdit extends AppCompatActivity {
         Button button_delete_bookmark = findViewById(R.id.delete_bookmark);
         Button button_set_destination = findViewById(R.id.set_destination);
         TextView bookmark = findViewById(R.id.bookmark);
-        bookmark.setText(keyword);
+        //bookmark.setText();
         TextView bookmark_address = findViewById(R.id.bookmark_address);
-        bookmark.setText(locname);
+        //bookmark.setText();
 
 
         Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조

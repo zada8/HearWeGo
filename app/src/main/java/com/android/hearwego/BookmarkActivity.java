@@ -20,12 +20,7 @@ import java.util.List;
 public class BookmarkActivity extends AppCompatActivity {
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
-    public int size;
     public Button[] button_bookmark = new Button[10];
-    public List<String> locname = ((LogoActivity) LogoActivity.context_logo).user.locname;
-    public List<String> latitude = ((LogoActivity) LogoActivity.context_logo).user.latitude;
-    public List<String> longtitude = ((LogoActivity) LogoActivity.context_logo).user.longtitude;
-    public List<String> keyword = ((LogoActivity) LogoActivity.context_logo).user.keyword;
 
 
     @Override
@@ -57,16 +52,10 @@ public class BookmarkActivity extends AppCompatActivity {
         button_bookmark[7] = findViewById(R.id.bookmark8);
         button_bookmark[8] = findViewById(R.id.bookmark9);
         button_bookmark[9] = findViewById(R.id.bookmark10);
-        if(((LogoActivity) LogoActivity.context_logo).user.locname != null){
-            size = ((LogoActivity) LogoActivity.context_logo).user.locname.size();
-        }
-        else{
-            size = 0;
-        }
 
-        for (int i = 0; i <size; i++){
-            button_bookmark[i].setText(keyword.get(i));
-        }
+        /*for (int i = 0; i <size; i++){
+            button_bookmark[i].setText();
+        }*/
 
         Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         Button button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
@@ -76,10 +65,10 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                intent.putExtra("keyword", keyword.get(0));
-                intent.putExtra("locname", locname.get(0));
-                intent.putExtra("latitude", latitude.get(0));
-                intent.putExtra("longtitude", longtitude.get(0));
+                /*intent.putExtra("keyword", ((LogoActivity) LogoActivity.context_logo).user.keyword.get(0));
+                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locname.get(0));
+                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.latitude.get(0));
+                intent.putExtra("longtitude", ((LogoActivity) LogoActivity.context_logo).user.longtitude.get(0));*/
                 startActivity(intent);
                 finish();
             }
