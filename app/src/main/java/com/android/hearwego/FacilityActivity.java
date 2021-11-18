@@ -51,6 +51,8 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
     Button button_facility9;
     Button button_facility10;
 
+    /*onLocationChanged() 실행 멈추는 변수*/
+    int onLocationCheck_fac = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +90,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(uiOption);
 
-        /*카테고리 버튼 id 지정*/
+        /*공공기관 버튼 id 지정*/
         button_facility1 = findViewById(R.id.facility1);
         button_facility2 = findViewById(R.id.facility2);
         button_facility3 = findViewById(R.id.facility3);
@@ -134,7 +136,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
         Log.d("공공기관-현재위치", nowPoint.toString());
 
         /*Tmap 기본 위치가 SKT 타워로 설정되어있음.
-         * SKT 타워 주변의 병원이 뜨지 않게 만들기 위해서
+         * SKT 타워 주변의 공공기관이 뜨지 않게 만들기 위해서
          * SKT 타워 경도와 진짜 현재 위치의 경도를 비교*/
         n_latitude = Double.toString(nowPoint.getLatitude());
         if(n_latitude.equals(SKT_latitude) == true){
@@ -142,50 +144,184 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
         } else{
             //현재 위치 탐색 완료 후 주변 공공기관 찾기 시작
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
-            //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 공공기관을 가져온다.
-            tMapData.findAroundNamePOI(nowPoint, "공공기관", 2, 10, new TMapData.FindAroundNamePOIListenerCallback() {
-                @Override
-                public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
-                    for(int i = 0;i<10;i++){
-                        TMapPOIItem item = arrayList.get(i);
-                        Log.d("공공기관-현재위치이름", item.getPOIName());
-                        switch (i){
-                            case 0:
-                                button_facility1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 1:
-                                button_facility2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 2:
-                                button_facility3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 3:
-                                button_facility4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 4:
-                                button_facility5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 5:
-                                button_facility6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 6:
-                                button_facility7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 7:
-                                button_facility8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 8:
-                                button_facility9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 9:
-                                button_facility10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            default:
-                                Log.d("공공기관-오류", "해당하는 버튼이 없습니다.");
+            if(onLocationCheck_fac==1){
+                onLocationCheck_fac=2;
+                //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 공공기관을 가져온다.
+                tMapData.findAroundNamePOI(nowPoint, "공공기관", 2, 10, new TMapData.FindAroundNamePOIListenerCallback() {
+                    @Override
+                    public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
+                        for(int i = 0;i<10;i++){
+                            TMapPOIItem item = arrayList.get(i);
+                            Log.d("공공기관-현재위치이름", item.getPOIName());
+                            switch (i){
+                                case 0:
+                                    button_facility1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_facility1.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                            fac_intent.putExtra("name", item.getPOIName());
+                                            fac_intent.putExtra("address", item.getPOIAddress());
+                                            fac_intent.putExtra("latitude", item.noorLat);
+                                            fac_intent.putExtra("longitude", item.noorLon);
+                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                            startActivity(fac_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 1:
+                                    button_facility2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_facility2.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                            fac_intent.putExtra("name", item.getPOIName());
+                                            fac_intent.putExtra("address", item.getPOIAddress());
+                                            fac_intent.putExtra("latitude", item.noorLat);
+                                            fac_intent.putExtra("longitude", item.noorLon);
+                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                            startActivity(fac_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 2:
+                                    button_facility3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_facility3.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                            fac_intent.putExtra("name", item.getPOIName());
+                                            fac_intent.putExtra("address", item.getPOIAddress());
+                                            fac_intent.putExtra("latitude", item.noorLat);
+                                            fac_intent.putExtra("longitude", item.noorLon);
+                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                            startActivity(fac_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 3:
+                                    button_facility4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_facility4.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                            fac_intent.putExtra("name", item.getPOIName());
+                                            fac_intent.putExtra("address", item.getPOIAddress());
+                                            fac_intent.putExtra("latitude", item.noorLat);
+                                            fac_intent.putExtra("longitude", item.noorLon);
+                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                            startActivity(fac_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 4:
+                                    button_facility5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_facility5.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                            fac_intent.putExtra("name", item.getPOIName());
+                                            fac_intent.putExtra("address", item.getPOIAddress());
+                                            fac_intent.putExtra("latitude", item.noorLat);
+                                            fac_intent.putExtra("longitude", item.noorLon);
+                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                            startActivity(fac_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 5:
+                                    button_facility6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_facility6.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                            fac_intent.putExtra("name", item.getPOIName());
+                                            fac_intent.putExtra("address", item.getPOIAddress());
+                                            fac_intent.putExtra("latitude", item.noorLat);
+                                            fac_intent.putExtra("longitude", item.noorLon);
+                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                            startActivity(fac_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 6:
+                                    button_facility7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_facility7.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                            fac_intent.putExtra("name", item.getPOIName());
+                                            fac_intent.putExtra("address", item.getPOIAddress());
+                                            fac_intent.putExtra("latitude", item.noorLat);
+                                            fac_intent.putExtra("longitude", item.noorLon);
+                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                            startActivity(fac_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 7:
+                                    button_facility8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_facility8.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                            fac_intent.putExtra("name", item.getPOIName());
+                                            fac_intent.putExtra("address", item.getPOIAddress());
+                                            fac_intent.putExtra("latitude", item.noorLat);
+                                            fac_intent.putExtra("longitude", item.noorLon);
+                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                            startActivity(fac_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 8:
+                                    button_facility9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_facility9.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                            fac_intent.putExtra("name", item.getPOIName());
+                                            fac_intent.putExtra("address", item.getPOIAddress());
+                                            fac_intent.putExtra("latitude", item.noorLat);
+                                            fac_intent.putExtra("longitude", item.noorLon);
+                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                            startActivity(fac_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 9:
+                                    button_facility10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_facility10.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                            fac_intent.putExtra("name", item.getPOIName());
+                                            fac_intent.putExtra("address", item.getPOIAddress());
+                                            fac_intent.putExtra("latitude", item.noorLat);
+                                            fac_intent.putExtra("longitude", item.noorLon);
+                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                            startActivity(fac_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                default:
+                                    Log.d("공공기관-오류", "해당하는 버튼이 없습니다.");
+                            }
                         }
                     }
-                }
-            });
+                });
+            }
+
         }
 
     }

@@ -51,6 +51,9 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
     Button button_subway9;
     Button button_subway10;
 
+    /*onLocationChanged() 실행 멈추는 변수*/
+    int onLocationCheck_sub = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,10 +130,10 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
     public void onLocationChange(Location location) {
         tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
         nowPoint = tMapView.getLocationPoint();
-        Log.d("지하철-현재위치", nowPoint.toString());
+        Log.d("지하철역-현재위치", nowPoint.toString());
 
         /*Tmap 기본 위치가 SKT 타워로 설정되어있음.
-         * SKT 타워 주변의 병원이 뜨지 않게 만들기 위해서
+         * SKT 타워 주변의 지하철역이 뜨지 않게 만들기 위해서
          * SKT 타워 경도와 진짜 현재 위치의 경도를 비교*/
         n_latitude = Double.toString(nowPoint.getLatitude());
         if(n_latitude.equals(SKT_latitude) == true){
@@ -138,50 +141,174 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
         } else{
             //현재 위치 탐색 완료 후 주변 공공기관 찾기 시작
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
-            //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 공공기관을 가져온다.
-            tMapData.findAroundNamePOI(nowPoint, "지하철", 10, 10, new TMapData.FindAroundNamePOIListenerCallback() {
-                @Override
-                public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
-                    for(int i = 0;i<10;i++){
-                        TMapPOIItem item = arrayList.get(i);
-                        Log.d("지하철-현재위치이름", item.getPOIName() + item.getDistance(nowPoint));
-                        switch (i){
-                            case 0:
-                                button_subway1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 1:
-                                button_subway2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 2:
-                                button_subway3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 3:
-                                button_subway4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 4:
-                                button_subway5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 5:
-                                button_subway6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 6:
-                                button_subway7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 7:
-                                button_subway8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 8:
-                                button_subway9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            case 9:
-                                button_subway10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                break;
-                            default:
-                                Log.d("지하철-오류", "해당하는 버튼이 없습니다.");
+            if(onLocationCheck_sub == 1){
+                onLocationCheck_sub =2;
+                //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 공공기관을 가져온다.
+                tMapData.findAroundNamePOI(nowPoint, "지하철", 10, 10, new TMapData.FindAroundNamePOIListenerCallback() {
+                    @Override
+                    public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
+                        for(int i = 0;i<10;i++){
+                            TMapPOIItem item = arrayList.get(i);
+                            Log.d("지하철역-현재위치이름", item.getPOIName() + item.getDistance(nowPoint));
+                            switch (i){
+                                case 0:
+                                    button_subway1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_subway1.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                            sub_intent.putExtra("name", item.getPOIName());
+                                            sub_intent.putExtra("address", item.getPOIAddress());
+                                            sub_intent.putExtra("latitude", item.noorLat);
+                                            sub_intent.putExtra("longitude", item.noorLon);
+                                            startActivity(sub_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 1:
+                                    button_subway2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_subway2.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                            sub_intent.putExtra("name", item.getPOIName());
+                                            sub_intent.putExtra("address", item.getPOIAddress());
+                                            sub_intent.putExtra("latitude", item.noorLat);
+                                            sub_intent.putExtra("longitude", item.noorLon);
+                                            startActivity(sub_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 2:
+                                    button_subway3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_subway3.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                            sub_intent.putExtra("name", item.getPOIName());
+                                            sub_intent.putExtra("address", item.getPOIAddress());
+                                            sub_intent.putExtra("latitude", item.noorLat);
+                                            sub_intent.putExtra("longitude", item.noorLon);
+                                            startActivity(sub_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 3:
+                                    button_subway4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_subway4.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                            sub_intent.putExtra("name", item.getPOIName());
+                                            sub_intent.putExtra("address", item.getPOIAddress());
+                                            sub_intent.putExtra("latitude", item.noorLat);
+                                            sub_intent.putExtra("longitude", item.noorLon);
+                                            startActivity(sub_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 4:
+                                    button_subway5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_subway5.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                            sub_intent.putExtra("name", item.getPOIName());
+                                            sub_intent.putExtra("address", item.getPOIAddress());
+                                            sub_intent.putExtra("latitude", item.noorLat);
+                                            sub_intent.putExtra("longitude", item.noorLon);
+                                            startActivity(sub_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 5:
+                                    button_subway6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_subway6.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                            sub_intent.putExtra("name", item.getPOIName());
+                                            sub_intent.putExtra("address", item.getPOIAddress());
+                                            sub_intent.putExtra("latitude", item.noorLat);
+                                            sub_intent.putExtra("longitude", item.noorLon);
+                                            startActivity(sub_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 6:
+                                    button_subway7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_subway7.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                            sub_intent.putExtra("name", item.getPOIName());
+                                            sub_intent.putExtra("address", item.getPOIAddress());
+                                            sub_intent.putExtra("latitude", item.noorLat);
+                                            sub_intent.putExtra("longitude", item.noorLon);
+                                            startActivity(sub_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 7:
+                                    button_subway8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_subway8.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                            sub_intent.putExtra("name", item.getPOIName());
+                                            sub_intent.putExtra("address", item.getPOIAddress());
+                                            sub_intent.putExtra("latitude", item.noorLat);
+                                            sub_intent.putExtra("longitude", item.noorLon);
+                                            startActivity(sub_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 8:
+                                    button_subway9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_subway9.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                            sub_intent.putExtra("name", item.getPOIName());
+                                            sub_intent.putExtra("address", item.getPOIAddress());
+                                            sub_intent.putExtra("latitude", item.noorLat);
+                                            sub_intent.putExtra("longitude", item.noorLon);
+                                            startActivity(sub_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                case 9:
+                                    button_subway10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                    button_subway10.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                            sub_intent.putExtra("name", item.getPOIName());
+                                            sub_intent.putExtra("address", item.getPOIAddress());
+                                            sub_intent.putExtra("latitude", item.noorLat);
+                                            sub_intent.putExtra("longitude", item.noorLon);
+                                            startActivity(sub_intent);
+                                            finish();
+                                        }
+                                    });
+                                    break;
+                                default:
+                                    Log.d("지하철-오류", "해당하는 버튼이 없습니다.");
+                            }
                         }
                     }
-                }
-            });
+                });
+            }
+
         }
     }
 }

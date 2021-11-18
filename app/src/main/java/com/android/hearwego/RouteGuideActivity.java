@@ -318,6 +318,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                         LatLngArrayList.add(new TMapPoint(f_latitude, f_longitude));
                         if(i==featuresArray.length()-1){
                             LatLngArrayList.add(new TMapPoint(f_latitude, f_longitude));
+                            DescriptionList.add(description);
                         }
                     }
                 }
@@ -377,7 +378,9 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         longitude = nowPoint.getLongitude();
          //Log.d("JSON확인1", latitude.toString() + longitude.toString());
         if(root != null){
-            getDescription();
+            if(index<LatLngArrayList.size()-2){
+                getDescription();
+            }
         }
     }
 
@@ -385,37 +388,35 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         Double latitude_gap = 0.0;
         Double longitude_gap = 0.0;
 
-        if(index < LatLngArrayList.size()-1){;
-            if(index == LatLngArrayList.size()-2){
-                Log.d("JSON확인-check", Integer.toString(check));
-                tMapGpsManager.CloseGps();
-            }
-            //Log.d("JSON실행?-4", "실행O");
-            latitude_gap = Math.abs(latitude - g_latitude);
-            longitude_gap = Math.abs(longitude - g_longitude);
-            //Log.d("JSON실행?", "실행O");
+        if(index == LatLngArrayList.size()-3){
+            Log.d("JSON확인-check", Integer.toString(check));
+            tMapGpsManager.CloseGps();
+        }
+        //Log.d("JSON실행?-4", "실행O");
+        latitude_gap = Math.abs(latitude - g_latitude);
+        longitude_gap = Math.abs(longitude - g_longitude);
+        //Log.d("JSON실행?", "실행O");
+        reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
+        reDistance_text.setText(reDistnace+"m");
+        Log.d("JSON실행-gLngLat", Double.toString(g_latitude) + Double.toString(g_longitude));
+        //Log.d("JSON실행?-남은m", reDistnace+"m");
+
+        if(latitude_gap <= 0.00005 || longitude_gap <= 0.00005){
+            //Log.d("JSON실행?3", "실행됐니");
+            g_latitude = LatLngArrayList.get(index+2).getLatitude();
+            g_longitude = LatLngArrayList.get(index+2).getLongitude();
             reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
             reDistance_text.setText(reDistnace+"m");
             Log.d("JSON실행-gLngLat", Double.toString(g_latitude) + Double.toString(g_longitude));
             //Log.d("JSON실행?-남은m", reDistnace+"m");
 
-            if(latitude_gap <= 0.00001 || longitude_gap <= 0.00001){
-                //Log.d("JSON실행?3", "실행됐니");
-                g_latitude = LatLngArrayList.get(index+2).getLatitude();
-                g_longitude = LatLngArrayList.get(index+2).getLongitude();
-                reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
-                reDistance_text.setText(reDistnace+"m");
-                Log.d("JSON실행-gLngLat", Double.toString(g_latitude) + Double.toString(g_longitude));
-                //Log.d("JSON실행?-남은m", reDistnace+"m");
+            if(index < LatLngArrayList.size() -2){
+                guide_text.setText(DescriptionList.get(index+1));
+            }
 
-                if(index < LatLngArrayList.size() -2){
-                    guide_text.setText(DescriptionList.get(index+1));
-                }
-
-                if(index < LatLngArrayList.size()-2){
-                    index = index +1;
-                    check = check + 1;
-                }
+            if(index < LatLngArrayList.size()-2){
+                index = index +1;
+                check = check + 1;
             }
         }
 
