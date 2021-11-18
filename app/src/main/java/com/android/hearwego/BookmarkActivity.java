@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,8 +58,9 @@ public class BookmarkActivity extends AppCompatActivity {
             button_bookmark[i].setText();
         }*/
 
-        Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
-        Button button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
+        Button button_save = findViewById(R.id.save_bookmark); //즐겨찾기 등록 버튼 참조
+        Button button_previous = findViewById(R.id.previous); //이전 버튼 객체 참조
+        Button button_home = findViewById(R.id.home); // 홈 버튼 객체 참조
 
         //즐겨찾기 버튼
         button_bookmark[0].setOnClickListener(new View.OnClickListener() {
@@ -74,6 +76,15 @@ public class BookmarkActivity extends AppCompatActivity {
             }
         });
 
+        //즐겨찾기 등록 버튼 누를 시 화면 전환
+        button_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookmarkActivity.this, AddBookmarkByAddressActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         //이전 버튼 누를 시 화면 전환
         button_previous.setOnClickListener(new View.OnClickListener() {
