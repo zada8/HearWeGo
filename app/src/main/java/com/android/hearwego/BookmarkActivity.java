@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -31,7 +33,8 @@ import java.util.List;
 public class BookmarkActivity extends AppCompatActivity {
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
-    User buser;
+    final String TAG = "BookmarkActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,29 +67,16 @@ public class BookmarkActivity extends AppCompatActivity {
         button_bookmark[8] = findViewById(R.id.bookmark9);
         button_bookmark[9] = findViewById(R.id.bookmark10);
 
+        /*
         CollectionReference cref = ((LogoActivity) LogoActivity.context_logo).db.
+
                 collection("users");
 
-        DocumentReference docRef = ((LogoActivity) LogoActivity.context_logo).db
-                .collection("users")
-                .document(((LogoActivity) LogoActivity.context_logo).userID);
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                buser = documentSnapshot.toObject(User.class);
-            }
-        });
+        Query name = cref.document(((LogoActivity) LogoActivity.context_logo).userID).collection("name");
+        button_bookmark[0].setText(name.toString());
+        Query keywords = ((LogoActivity) LogoActivity.context_logo).keywordref;*/
 
-        ((LogoActivity) LogoActivity.context_logo).keywordref
-                .whereNotIn("keywords", Arrays.asList(""));
 
-        List<String> bookmarkList = new ArrayList<>();
-        for (String s : buser.keywords){
-            bookmarkList.add(s);
-        }
-        for (int i = 0; i < 10 ; i++){
-            button_bookmark[i].setText(bookmarkList.get(i));
-        }
 
         Button button_save = findViewById(R.id.save_bookmark); //즐겨찾기 등록 버튼 참조
         Button button_previous = findViewById(R.id.previous); //이전 버튼 객체 참조

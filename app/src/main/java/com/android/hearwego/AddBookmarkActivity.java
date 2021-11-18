@@ -165,6 +165,9 @@ public class AddBookmarkActivity extends AppCompatActivity{
                             document(((LogoActivity) LogoActivity.context_logo).userID)
                             .set(docData, SetOptions.merge());
                     ((LogoActivity) LogoActivity.context_logo).ref.update("keywords", FieldValue.arrayUnion(keyword));
+                    /*((LogoActivity) LogoActivity.context_logo).db.collection("users").
+                            document(((LogoActivity) LogoActivity.context_logo).userID).
+                            collection(keyword).add(docData);*/
 
                     Intent intent = new Intent(AddBookmarkActivity.this, HomeActivity.class);
                     startActivity(intent);
