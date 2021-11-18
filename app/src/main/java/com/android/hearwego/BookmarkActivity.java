@@ -3,26 +3,35 @@ package com.android.hearwego;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BookmarkActivity extends AppCompatActivity {
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
-    public Button[] button_bookmark = new Button[10];
-
+    User buser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +52,7 @@ public class BookmarkActivity extends AppCompatActivity {
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
 
+        Button[] button_bookmark = new Button[10];
         button_bookmark[0] = findViewById(R.id.bookmark1);
         button_bookmark[1] = findViewById(R.id.bookmark2);
         button_bookmark[2] = findViewById(R.id.bookmark3);
@@ -54,9 +64,29 @@ public class BookmarkActivity extends AppCompatActivity {
         button_bookmark[8] = findViewById(R.id.bookmark9);
         button_bookmark[9] = findViewById(R.id.bookmark10);
 
-        /*for (int i = 0; i <size; i++){
-            button_bookmark[i].setText();
-        }*/
+        CollectionReference cref = ((LogoActivity) LogoActivity.context_logo).db.
+                collection("users");
+
+        DocumentReference docRef = ((LogoActivity) LogoActivity.context_logo).db
+                .collection("users")
+                .document(((LogoActivity) LogoActivity.context_logo).userID);
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                buser = documentSnapshot.toObject(User.class);
+            }
+        });
+
+        ((LogoActivity) LogoActivity.context_logo).keywordref
+                .whereNotIn("keywords", Arrays.asList(""));
+
+        List<String> bookmarkList = new ArrayList<>();
+        for (String s : buser.keywords){
+            bookmarkList.add(s);
+        }
+        for (int i = 0; i < 10 ; i++){
+            button_bookmark[i].setText(bookmarkList.get(i));
+        }
 
         Button button_save = findViewById(R.id.save_bookmark); //즐겨찾기 등록 버튼 참조
         Button button_previous = findViewById(R.id.previous); //이전 버튼 객체 참조
