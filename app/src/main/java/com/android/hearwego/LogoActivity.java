@@ -26,6 +26,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -40,6 +41,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.SetOptions;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -63,7 +65,9 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
     public String userName;
     public String userID;
     public User user;
+    public FirebaseUser firebaseUser;
     public DocumentReference ref;
+    final String TAG = "LogoActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +111,7 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
         btn_Google.setOnClickListener(new View.OnClickListener() { //구글 로그인 버튼 클릭시 동작
             @Override
             public void onClick(View v) {
-                Log.v("알림", "구글 LOGIN");
+                Log.v(TAG, "구글 LOGIN");
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
                 startActivityForResult(signInIntent, REQ_SIGN_GOOGLE);
             }
@@ -125,19 +129,72 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
         if(requestCode == REQ_SIGN_GOOGLE){
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if(result.isSuccess()){ //인증 결과가 성공적이면 실행
-                Log.v("알림", "google sign 성공, FireBase Auth.");
+                Log.v(TAG, "google sign 성공, FireBase Auth.");
                 GoogleSignInAccount account = result.getSignInAccount(); //구글 로그인 정보를 담고 있는 변수 (닉네임, 이메일 주소, 등)
                 resultLogin(account); //로그인 결과 값 출력 수행하는 메소드 호출
-                userID = account.getIdToken();
+                userID = account.getId();
                 userName = account.getDisplayName();
-                user = new User (userName);
+                Log.d(TAG, "uid is exists. : " + userID);
+                user = new User(userName);
                 db.collection("users").document(userID).get().
                         addOnSuccessListener(this::onSuccess);
+                ref = db.collection("users").document(userID);
             } else {
-                Log.v("알림", result.isSuccess() +" Google Sign In failed. Because : " + result.getStatus().toString());
+                Log.v(TAG, result.isSuccess() +" Google Sign In failed. Because : " + result.getStatus().toString());
             }
         }
     }
+
+    public void addUserIfNotExists(FirebaseUser firebaseUser){
+
+    }
+
+    private void onSuccess(DocumentSnapshot snapShotData) {
+        if (snapShotData.exists()) {
+            Log.d(TAG, "uid is exists. : " + userID);
+            db.collection("users").document(userID).set(user, SetOptions.merge());
+            user = snapShotData.toObject(User.class);
+            ref.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot snapshot,
+                                    @Nullable FirebaseFirestoreException e) {
+                    if (e != null) {
+                        Log.w(TAG, "Listen failed.", e);
+                        return;
+                    }
+
+                    if (snapshot != null && snapshot.exists()) {
+                        Log.d(TAG, "Current data: " + snapshot.getData());
+                    } else {
+                        Log.d(TAG, "Current data: null");
+                    }
+                }
+            });
+            ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d(TAG, "DocumentSnapshot data: ");
+                        } else {
+                            Log.d(TAG, "No such document");
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                }
+            });
+        } else {
+            Log.d(TAG, "there is no uid. need to add data");
+            addUserToFireStore(auth, db);
+        }
+    }
+
+    public void addUserToFireStore(FirebaseAuth auth, FirebaseFirestore db) {
+        db.collection("users").document(userID).set(user);
+    }
+
 
     //로그인 결과 값 출력 수행하는 메소드
     private void resultLogin(GoogleSignInAccount account) {
@@ -173,7 +230,7 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                             Toast.makeText(LogoActivity.this, "인증 실패", Toast.LENGTH_SHORT).show();
                         }else {
                             Log.v("알림", "task.isSuccessful()");
-                            FirebaseUser user = auth.getCurrentUser();
+                            firebaseUser = auth.getCurrentUser();
                             Toast.makeText(LogoActivity.this, "인증 성공", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -229,56 +286,7 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
         googleSignInClient.revokeAccess();
         auth = FirebaseAuth.getInstance();
         auth.getCurrentUser().delete();
-    }
-
-
-    private void onSuccess(DocumentSnapshot snapShotData) {
-        if (snapShotData.exists()) {
-            Log.d("TAG", "uid is exists. : " + auth.getUid());
-            ref = db.collection("users").document(userID);
-            /*ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    user = documentSnapshot.toObject(User.class);
-                }*/
-            ref.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable DocumentSnapshot snapshot,
-                            @Nullable FirebaseFirestoreException e) {
-                        if (e != null) {
-                            Log.w("TAG", "Listen failed.", e);
-                            return;
-                        }
-
-                        if (snapshot != null && snapshot.exists()) {
-                            Log.d("TAG", "Current data: " + snapshot.getData());
-                        } else {
-                            Log.d("TAG", "Current data: null");
-                        }
-                    }
-            });
-            ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            Log.d("TAG", "DocumentSnapshot data: ");
-                        } else {
-                            Log.d("TAG", "No such document");
-                        }
-                    } else {
-                        Log.d("TAG", "get failed with ", task.getException());
-                    }
-                }
-            });
-        } else {
-            Log.d("TAG", "there is no uid. need to add data");
-            addUserToFireStore(auth, db);
-        }
-    }
-    public void addUserToFireStore(FirebaseAuth auth, FirebaseFirestore db) {
-        db.collection("users").document(userID).set(user);
+        // DB 삭제
     }
 }
 

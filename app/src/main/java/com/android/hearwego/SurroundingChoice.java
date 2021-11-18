@@ -125,12 +125,15 @@ public class SurroundingChoice extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent bookmark_intent = new Intent(SurroundingChoice.this, AddBookmarkActivity.class);
-                ((LogoActivity) LogoActivity.context_logo).ref
+                /*((LogoActivity) LogoActivity.context_logo).ref
                         .update("locname", FieldValue.arrayUnion(nameData)); // 문제: 중복된 데이터는 추가를 안 함
                 ((LogoActivity) LogoActivity.context_logo).ref
                         .update("latitude", FieldValue.arrayUnion(latData));
                 ((LogoActivity) LogoActivity.context_logo).ref
-                        .update("longtitude", FieldValue.arrayUnion(longData));
+                        .update("longtitude", FieldValue.arrayUnion(longData));*/
+                bookmark_intent.putExtra("locname", nameData);
+                bookmark_intent.putExtra("latitude", latData);
+                bookmark_intent.putExtra("longtitude", longData);
                 startActivity(bookmark_intent);
             }
         });

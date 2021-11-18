@@ -20,14 +20,18 @@ import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddBookmarkActivity extends AppCompatActivity{
-    Intent intent;
     SpeechRecognizer mRecognizer;
     Button sttBtn;
     TextView textView;
@@ -68,6 +72,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
         bookmarkBtn = (Button) findViewById(R.id.save_bookmark);
 
         // RecognizerIntent 객체 생성
+        Intent intent;
         intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
@@ -141,9 +146,27 @@ public class AddBookmarkActivity extends AppCompatActivity{
             bookmarkBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
+                    Intent getIntent = getIntent();
+                    String locname = getIntent.getStringExtra("locname"); // SurroungdingChoice로부터 장소명 전달받음
+                    Double latitude = Double.parseDouble(getIntent.getStringExtra("latitude")); // SurroungdingChoice로부터 위도 전달받음
+                    Double longtitude = Double.parseDouble(getIntent.getStringExtra("longtitude")); // SurroungdingChoice로부터 경도 전달받음;
+
+                    GeoPoint geoPoint = new GeoPoint(latitude, longtitude);
+
+                    Map<String, Object> docData = new HashMap<>();
+                    Map<String, String> lnData = new HashMap<>();
+                    Map<String, GeoPoint> geoData = new HashMap<>();
+                    lnData.put(keyword,locname);
+                    geoData.put(keyword,geoPoint);
+
+                    docData.put("locnames",lnData);
+                    docData.put("geopoints",geoData);
+                    ((LogoActivity) LogoActivity.context_logo).db.collection("users").
+                            document(((LogoActivity) LogoActivity.context_logo).userID)
+                            .set(docData, SetOptions.merge());
+                    ((LogoActivity) LogoActivity.context_logo).ref.update("keywords", FieldValue.arrayUnion(keyword));
+
                     Intent intent = new Intent(AddBookmarkActivity.this, HomeActivity.class);
-                    ((LogoActivity) LogoActivity.context_logo).ref
-                            .update("keyword", FieldValue.arrayUnion(keyword));
                     startActivity(intent);
                 }
             });

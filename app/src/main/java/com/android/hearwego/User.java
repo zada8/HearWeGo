@@ -8,13 +8,12 @@ import java.util.Map;
 public class User {
 
     public String name;
-    //public Map<String, String> locname;
-    public List<String> locname;
-    public List<String> keyword;
-    public List<String> latitude;
-    public List<String> longtitude;
+    public List<String> keywords;
+    public Map<String, String> locnames;
+    public Map<String, GeoPoint> geopoints;
     public User() {}
     public User(String name){
         this.name = name;
     }
+
 }
