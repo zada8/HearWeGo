@@ -51,9 +51,6 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
     Button button_facility9;
     Button button_facility10;
 
-    /*onLocationChanged() 실행 멈추는 변수*/
-    int onLocationCheck_fac = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,8 +141,6 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
         } else{
             //현재 위치 탐색 완료 후 주변 공공기관 찾기 시작
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
-            if(onLocationCheck_fac==1){
-                onLocationCheck_fac=2;
                 //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 공공기관을 가져온다.
                 tMapData.findAroundNamePOI(nowPoint, "공공기관", 2, 10, new TMapData.FindAroundNamePOIListenerCallback() {
                     @Override
@@ -159,6 +154,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                                     button_facility1.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
                                             fac_intent.putExtra("name", item.getPOIName());
                                             fac_intent.putExtra("address", item.getPOIAddress());
@@ -175,6 +171,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                                     button_facility2.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
                                             fac_intent.putExtra("name", item.getPOIName());
                                             fac_intent.putExtra("address", item.getPOIAddress());
@@ -191,6 +188,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                                     button_facility3.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
                                             fac_intent.putExtra("name", item.getPOIName());
                                             fac_intent.putExtra("address", item.getPOIAddress());
@@ -207,6 +205,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                                     button_facility4.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
                                             fac_intent.putExtra("name", item.getPOIName());
                                             fac_intent.putExtra("address", item.getPOIAddress());
@@ -223,6 +222,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                                     button_facility5.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
                                             fac_intent.putExtra("name", item.getPOIName());
                                             fac_intent.putExtra("address", item.getPOIAddress());
@@ -239,6 +239,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                                     button_facility6.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
                                             fac_intent.putExtra("name", item.getPOIName());
                                             fac_intent.putExtra("address", item.getPOIAddress());
@@ -255,6 +256,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                                     button_facility7.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
                                             fac_intent.putExtra("name", item.getPOIName());
                                             fac_intent.putExtra("address", item.getPOIAddress());
@@ -271,6 +273,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                                     button_facility8.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
                                             fac_intent.putExtra("name", item.getPOIName());
                                             fac_intent.putExtra("address", item.getPOIAddress());
@@ -287,6 +290,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                                     button_facility9.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
                                             fac_intent.putExtra("name", item.getPOIName());
                                             fac_intent.putExtra("address", item.getPOIAddress());
@@ -303,6 +307,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                                     button_facility10.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
                                             fac_intent.putExtra("name", item.getPOIName());
                                             fac_intent.putExtra("address", item.getPOIAddress());
@@ -325,5 +330,4 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
         }
 
     }
-}
 

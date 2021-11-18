@@ -54,9 +54,6 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
     Button button_restroom9;
     Button button_restroom10;
 
-    /*onLocationChanged() 실행 멈추는 변수*/
-    int onLocationCheck_st = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,8 +141,6 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
         } else{
             //현재 위치 탐색 완료 후 주변 편의점 찾기 시작
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
-            if(onLocationCheck_st == 1){
-                onLocationCheck_st=2;
                 //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 편의점을 가져온다.
                 tMapData.findAroundNamePOI(nowPoint, "편의점", 10, 10, new TMapData.FindAroundNamePOIListenerCallback() {
                     @Override
@@ -159,6 +154,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
                                     button_restroom1.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent st_intent = new Intent(RestroomActivity.this, SurroundingChoice.class);
                                             st_intent.putExtra("name", item.getPOIName());
                                             st_intent.putExtra("address", item.getPOIAddress());
@@ -175,6 +171,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
                                     button_restroom2.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent st_intent = new Intent(RestroomActivity.this, SurroundingChoice.class);
                                             st_intent.putExtra("name", item.getPOIName());
                                             st_intent.putExtra("address", item.getPOIAddress());
@@ -191,6 +188,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
                                     button_restroom3.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent st_intent = new Intent(RestroomActivity.this, SurroundingChoice.class);
                                             st_intent.putExtra("name", item.getPOIName());
                                             st_intent.putExtra("address", item.getPOIAddress());
@@ -207,6 +205,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
                                     button_restroom4.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent st_intent = new Intent(RestroomActivity.this, SurroundingChoice.class);
                                             st_intent.putExtra("name", item.getPOIName());
                                             st_intent.putExtra("address", item.getPOIAddress());
@@ -223,6 +222,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
                                     button_restroom5.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent st_intent = new Intent(RestroomActivity.this, SurroundingChoice.class);
                                             st_intent.putExtra("name", item.getPOIName());
                                             st_intent.putExtra("address", item.getPOIAddress());
@@ -239,6 +239,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
                                     button_restroom6.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent st_intent = new Intent(RestroomActivity.this, SurroundingChoice.class);
                                             st_intent.putExtra("name", item.getPOIName());
                                             st_intent.putExtra("address", item.getPOIAddress());
@@ -255,6 +256,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
                                     button_restroom7.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent st_intent = new Intent(RestroomActivity.this, SurroundingChoice.class);
                                             st_intent.putExtra("name", item.getPOIName());
                                             st_intent.putExtra("address", item.getPOIAddress());
@@ -271,6 +273,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
                                     button_restroom8.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent st_intent = new Intent(RestroomActivity.this, SurroundingChoice.class);
                                             st_intent.putExtra("name", item.getPOIName());
                                             st_intent.putExtra("address", item.getPOIAddress());
@@ -287,6 +290,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
                                     button_restroom9.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent st_intent = new Intent(RestroomActivity.this, SurroundingChoice.class);
                                             st_intent.putExtra("name", item.getPOIName());
                                             st_intent.putExtra("address", item.getPOIAddress());
@@ -303,6 +307,7 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
                                     button_restroom10.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent st_intent = new Intent(RestroomActivity.this, SurroundingChoice.class);
                                             st_intent.putExtra("name", item.getPOIName());
                                             st_intent.putExtra("address", item.getPOIAddress());
@@ -323,6 +328,5 @@ public class RestroomActivity extends AppCompatActivity implements TMapGpsManage
             }
         }
     }
-}
 
 

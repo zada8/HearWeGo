@@ -51,9 +51,6 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
     Button button_subway9;
     Button button_subway10;
 
-    /*onLocationChanged() 실행 멈추는 변수*/
-    int onLocationCheck_sub = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,8 +138,6 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
         } else{
             //현재 위치 탐색 완료 후 주변 공공기관 찾기 시작
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
-            if(onLocationCheck_sub == 1){
-                onLocationCheck_sub =2;
                 //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 공공기관을 가져온다.
                 tMapData.findAroundNamePOI(nowPoint, "지하철", 10, 10, new TMapData.FindAroundNamePOIListenerCallback() {
                     @Override
@@ -156,6 +151,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                     button_subway1.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
                                             sub_intent.putExtra("name", item.getPOIName());
                                             sub_intent.putExtra("address", item.getPOIAddress());
@@ -171,6 +167,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                     button_subway2.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
                                             sub_intent.putExtra("name", item.getPOIName());
                                             sub_intent.putExtra("address", item.getPOIAddress());
@@ -186,6 +183,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                     button_subway3.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
                                             sub_intent.putExtra("name", item.getPOIName());
                                             sub_intent.putExtra("address", item.getPOIAddress());
@@ -201,6 +199,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                     button_subway4.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
                                             sub_intent.putExtra("name", item.getPOIName());
                                             sub_intent.putExtra("address", item.getPOIAddress());
@@ -216,6 +215,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                     button_subway5.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
                                             sub_intent.putExtra("name", item.getPOIName());
                                             sub_intent.putExtra("address", item.getPOIAddress());
@@ -231,6 +231,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                     button_subway6.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
                                             sub_intent.putExtra("name", item.getPOIName());
                                             sub_intent.putExtra("address", item.getPOIAddress());
@@ -246,6 +247,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                     button_subway7.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
                                             sub_intent.putExtra("name", item.getPOIName());
                                             sub_intent.putExtra("address", item.getPOIAddress());
@@ -261,6 +263,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                     button_subway8.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
                                             sub_intent.putExtra("name", item.getPOIName());
                                             sub_intent.putExtra("address", item.getPOIAddress());
@@ -276,6 +279,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                     button_subway9.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
                                             sub_intent.putExtra("name", item.getPOIName());
                                             sub_intent.putExtra("address", item.getPOIAddress());
@@ -291,6 +295,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                     button_subway10.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
                                             sub_intent.putExtra("name", item.getPOIName());
                                             sub_intent.putExtra("address", item.getPOIAddress());
@@ -311,5 +316,4 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
 
         }
     }
-}
 
