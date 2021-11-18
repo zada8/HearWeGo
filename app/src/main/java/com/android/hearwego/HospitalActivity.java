@@ -53,7 +53,6 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
 
     /*switch문 사용 위한 변수*/
     int num=-1;
-    int onLocationcheck_hs = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,8 +146,6 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
         }else{
             //현재 위치 탐색 완료 후 주변 병원 찾기 시작
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
-            if(onLocationcheck_hs == 1){
-                onLocationcheck_hs = 2;
                 //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 8개라 8개의 병원을 가져온다.
                 tMapData.findAroundNamePOI(nowPoint, "병원", 2, 20, new TMapData.FindAroundNamePOIListenerCallback() {
                     @Override
@@ -170,6 +167,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                     button_hospital1.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
                                             hs1_intent.putExtra("name", item.getPOIName());
                                             hs1_intent.putExtra("address", item.getPOIAddress());
@@ -186,6 +184,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                     button_hospital2.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
                                             hs1_intent.putExtra("name", item.getPOIName());
                                             hs1_intent.putExtra("address", item.getPOIAddress());
@@ -202,6 +201,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                     button_hospital3.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
                                             hs1_intent.putExtra("name", item.getPOIName());
                                             hs1_intent.putExtra("address", item.getPOIAddress());
@@ -218,6 +218,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                     button_hospital4.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
                                             hs1_intent.putExtra("name", item.getPOIName());
                                             hs1_intent.putExtra("address", item.getPOIAddress());
@@ -234,6 +235,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                     button_hospital5.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
                                             hs1_intent.putExtra("name", item.getPOIName());
                                             hs1_intent.putExtra("address", item.getPOIAddress());
@@ -250,6 +252,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                     button_hospital6.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
                                             hs1_intent.putExtra("name", item.getPOIName());
                                             hs1_intent.putExtra("address", item.getPOIAddress());
@@ -266,6 +269,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                     button_hospital7.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
                                             hs1_intent.putExtra("name", item.getPOIName());
                                             hs1_intent.putExtra("address", item.getPOIAddress());
@@ -282,6 +286,7 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                                     button_hospital8.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
                                             hs1_intent.putExtra("name", item.getPOIName());
                                             hs1_intent.putExtra("address", item.getPOIAddress());
@@ -304,7 +309,5 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
 
 
     }
-
-}
 
 

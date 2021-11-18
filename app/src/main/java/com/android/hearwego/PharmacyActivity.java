@@ -53,7 +53,6 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
 
     /*switch문 사용 위한 변수*/
     int num=-1;
-    int onLocationcheck_ph = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,8 +141,6 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
         } else{
             //현재 위치 탐색 완료 후 주변 약국 찾기 시작
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
-            if(onLocationcheck_ph ==1){
-                onLocationcheck_ph = 2;
                 //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 약국을 가져온다.
                 tMapData.findAroundNamePOI(nowPoint, "약국", 2, 20, new TMapData.FindAroundNamePOIListenerCallback() {
                     @Override
@@ -165,6 +162,7 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                                     button_pharmacy1.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
                                             ph_intent.putExtra("name", item.getPOIName());
                                             ph_intent.putExtra("address", item.getPOIAddress());
@@ -181,6 +179,7 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                                     button_pharmacy2.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
                                             ph_intent.putExtra("name", item.getPOIName());
                                             ph_intent.putExtra("address", item.getPOIAddress());
@@ -188,6 +187,7 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                                             ph_intent.putExtra("longitude", item.noorLon);
                                             ph_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                             startActivity(ph_intent);
+
                                             finish();
                                         }
                                     });
@@ -197,6 +197,7 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                                     button_pharmacy3.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
                                             ph_intent.putExtra("name", item.getPOIName());
                                             ph_intent.putExtra("address", item.getPOIAddress());
@@ -213,6 +214,7 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                                     button_pharmacy4.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
                                             ph_intent.putExtra("name", item.getPOIName());
                                             ph_intent.putExtra("address", item.getPOIAddress());
@@ -229,6 +231,7 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                                     button_pharmacy5.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
                                             ph_intent.putExtra("name", item.getPOIName());
                                             ph_intent.putExtra("address", item.getPOIAddress());
@@ -245,6 +248,7 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                                     button_pharmacy6.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
                                             ph_intent.putExtra("name", item.getPOIName());
                                             ph_intent.putExtra("address", item.getPOIAddress());
@@ -261,6 +265,7 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                                     button_pharmacy7.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
                                             ph_intent.putExtra("name", item.getPOIName());
                                             ph_intent.putExtra("address", item.getPOIAddress());
@@ -277,6 +282,7 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                                     button_pharmacy8.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
                                             ph_intent.putExtra("name", item.getPOIName());
                                             ph_intent.putExtra("address", item.getPOIAddress());
@@ -293,6 +299,7 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                                     button_pharmacy9.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
                                             ph_intent.putExtra("name", item.getPOIName());
                                             ph_intent.putExtra("address", item.getPOIAddress());
@@ -309,6 +316,7 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                                     button_pharmacy10.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
+                                            tMapGps.CloseGps();
                                             Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
                                             ph_intent.putExtra("name", item.getPOIName());
                                             ph_intent.putExtra("address", item.getPOIAddress());
@@ -329,5 +337,4 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
             }
         }
     }
-}
 
