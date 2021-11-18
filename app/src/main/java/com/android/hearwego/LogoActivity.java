@@ -139,10 +139,6 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
         }
     }
 
-    public void addUserToFireStore(FirebaseAuth auth, FirebaseFirestore db) {
-        db.collection("users").document(userID).set(user);
-    }
-
     //로그인 결과 값 출력 수행하는 메소드
     private void resultLogin(GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
@@ -246,20 +242,20 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                     user = documentSnapshot.toObject(User.class);
                 }*/
             ref.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                @Override
-                public void onEvent(@Nullable DocumentSnapshot snapshot,
-                                    @Nullable FirebaseFirestoreException e) {
-                    if (e != null) {
-                        Log.w("TAG", "Listen failed.", e);
-                        return;
-                    }
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot snapshot,
+                            @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w("TAG", "Listen failed.", e);
+                            return;
+                        }
 
-                    if (snapshot != null && snapshot.exists()) {
-                        Log.d("TAG", "Current data: " + snapshot.getData());
-                    } else {
-                        Log.d("TAG", "Current data: null");
+                        if (snapshot != null && snapshot.exists()) {
+                            Log.d("TAG", "Current data: " + snapshot.getData());
+                        } else {
+                            Log.d("TAG", "Current data: null");
+                        }
                     }
-                }
             });
             ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -280,6 +276,9 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
             Log.d("TAG", "there is no uid. need to add data");
             addUserToFireStore(auth, db);
         }
+    }
+    public void addUserToFireStore(FirebaseAuth auth, FirebaseFirestore db) {
+        db.collection("users").document(userID).set(user);
     }
 }
 
