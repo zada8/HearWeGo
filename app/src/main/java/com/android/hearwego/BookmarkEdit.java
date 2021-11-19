@@ -1,15 +1,20 @@
 package com.android.hearwego;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.GeoPoint;
 
 import static java.lang.Double.parseDouble;
@@ -17,6 +22,7 @@ import static java.lang.Double.parseDouble;
 public class BookmarkEdit extends AppCompatActivity {
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
+    final String TAG = "BookmarkEdit";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +60,43 @@ public class BookmarkEdit extends AppCompatActivity {
 
         Button button_delete_bookmark = findViewById(R.id.delete_bookmark);
         Button button_set_destination = findViewById(R.id.set_destination);
-        TextView bookmark = findViewById(R.id.keyword_text);
-        //bookmark.setText();
-        TextView bookmark_address = findViewById(R.id.locname_text);
-        //bookmark.setText();
+
+        // 삭제
+        button_delete_bookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               /* ((LogoActivity) LogoActivity.context_logo).ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        ((LogoActivity) LogoActivity.context_logo).user = documentSnapshot.toObject(User.class);
+                    }
+                });
+                ((LogoActivity) LogoActivity.context_logo).user.keywords.remove(keyword);
+                ((LogoActivity) LogoActivity.context_logo).user.locnames.remove(keyword);
+                ((LogoActivity) LogoActivity.context_logo).user.geopoints.remove(keyword);
+                ((LogoActivity) LogoActivity.context_logo).ref.delete();
+                ((LogoActivity) LogoActivity.context_logo).db.collection("users")
+                        .document(((LogoActivity) LogoActivity.context_logo).userID)
+                        .set(((LogoActivity) LogoActivity.context_logo).user)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "DocumentSnapshot successfully written!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error writing document", e);
+                            }
+                        });*/
+
+
+                Intent intent = new Intent(BookmarkEdit.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
         Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조

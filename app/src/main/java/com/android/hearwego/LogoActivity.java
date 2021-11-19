@@ -139,6 +139,7 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                 resultLogin(account); //로그인 결과 값 출력 수행하는 메소드 호출
                 userID = account.getId();
                 userName = account.getDisplayName();
+                user = new User(userName);
                 Log.d(TAG, "uid is exists. : " + userID);
                 db.collection("users").document(userID).get().
                         addOnSuccessListener(this::onSuccess);
@@ -208,15 +209,24 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                 }
             });
         } else {
+            // add user to FireStore
             Log.d(TAG, "there is no uid. need to add data");
-            addUserToFireStore(auth, db);
+            db.collection("users").document(userID)
+                    .set(user)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "DocumentSnapshot successfully written!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error writing document", e);
+                        }
+                    });
         }
     }
-
-    public void addUserToFireStore(FirebaseAuth auth, FirebaseFirestore db) {
-        db.collection("users").document(userID).set(user);
-    }
-
 
     //로그인 결과 값 출력 수행하는 메소드
     private void resultLogin(GoogleSignInAccount account) {

@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.SetOptions;
@@ -165,10 +166,12 @@ public class AddBookmarkActivity extends AppCompatActivity{
                             document(((LogoActivity) LogoActivity.context_logo).userID)
                             .set(docData, SetOptions.merge());
                     ((LogoActivity) LogoActivity.context_logo).ref.update("keywords", FieldValue.arrayUnion(keyword));
-                    /*((LogoActivity) LogoActivity.context_logo).db.collection("users").
-                            document(((LogoActivity) LogoActivity.context_logo).userID).
-                            collection(keyword).add(docData);*/
-
+                    ((LogoActivity) LogoActivity.context_logo).ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            ((LogoActivity) LogoActivity.context_logo).user = documentSnapshot.toObject(User.class);
+                        }
+                    });
                     Intent intent = new Intent(AddBookmarkActivity.this, HomeActivity.class);
                     startActivity(intent);
                 }
