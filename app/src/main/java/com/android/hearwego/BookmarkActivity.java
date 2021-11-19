@@ -39,7 +39,6 @@ public class BookmarkActivity extends AppCompatActivity {
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
     final String TAG = "BookmarkActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,38 +77,148 @@ public class BookmarkActivity extends AppCompatActivity {
         button_bookmark[8] = findViewById(R.id.bookmark9);
         button_bookmark[9] = findViewById(R.id.bookmark10);
 
-        button_bookmark[0].setText(((LogoActivity) LogoActivity.context_logo).user.keywords.get(0));
-/*
-        CollectionReference cref = ((LogoActivity) LogoActivity.context_logo).db
-                .collection("users")
-                .document(((LogoActivity) LogoActivity.context_logo).userID)
-                .collection("");
-        cref.get();
-        Query name = cref.document(((LogoActivity) LogoActivity.context_logo).userID).collection("name");
-
-        button_bookmark[0].setText(name.toString());
-        Query keywords = ((LogoActivity) LogoActivity.context_logo).keywordref;*/
-
-
+        for (int i = 0; i < ((LogoActivity) LogoActivity.context_logo).user.keywords.size() ; i++){
+            button_bookmark[i].setText(((LogoActivity) LogoActivity.context_logo).user.keywords.get(i));
+        }
 
         Button button_save = findViewById(R.id.save_bookmark); //즐겨찾기 등록 버튼 참조
         Button button_previous = findViewById(R.id.previous); //이전 버튼 객체 참조
         Button button_home = findViewById(R.id.home); // 홈 버튼 객체 참조
 
-        //즐겨찾기 버튼
+        //즐겨찾기 버튼 클릭 이벤트
         button_bookmark[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                /*intent.putExtra("keyword", ((LogoActivity) LogoActivity.context_logo).user.keyword.get(0));
-                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locname.get(0));
-                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.latitude.get(0));
-                intent.putExtra("longtitude", ((LogoActivity) LogoActivity.context_logo).user.longtitude.get(0));*/
+                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(0);
+                intent.putExtra("keyword",k);
+                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
+                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
                 startActivity(intent);
                 finish();
             }
         });
 
+        button_bookmark[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
+                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(1);
+                intent.putExtra("keyword",k);
+                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
+                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                startActivity(intent);
+                finish();
+            }
+        });
+        button_bookmark[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
+                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(2);
+                intent.putExtra("keyword",k);
+                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
+                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        button_bookmark[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
+                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(3);
+                intent.putExtra("keyword",k);
+                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
+                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        button_bookmark[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
+                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(4);
+                intent.putExtra("keyword",k);
+                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
+                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                startActivity(intent);
+                finish();
+            }
+        });
+        button_bookmark[5].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
+                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(5);
+                intent.putExtra("keyword",k);
+                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
+                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                startActivity(intent);
+                finish();
+            }
+        });
+        button_bookmark[6].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
+                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(6);
+                intent.putExtra("keyword",k);
+                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
+                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                startActivity(intent);
+                finish();
+            }
+        });
+        button_bookmark[7].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
+                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(7);
+                intent.putExtra("keyword",k);
+                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
+                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                startActivity(intent);
+                finish();
+            }
+        });
+        button_bookmark[8].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
+                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(8);
+                intent.putExtra("keyword",k);
+                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
+                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                startActivity(intent);
+                finish();
+            }
+        });
+        button_bookmark[9].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
+                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(9);
+                intent.putExtra("keyword",k);
+                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
+                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                startActivity(intent);
+                finish();
+            }
+        });
         //즐겨찾기 등록 버튼 누를 시 화면 전환
         button_save.setOnClickListener(new View.OnClickListener() {
             @Override

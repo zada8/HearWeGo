@@ -8,17 +8,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.google.firebase.firestore.GeoPoint;
+
+import static java.lang.Double.parseDouble;
 
 public class BookmarkEdit extends AppCompatActivity {
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
-    /*Intent intent = getIntent();
-    String keyword = intent.getStringExtra("keyword");
-    String locname = intent.getStringExtra("locname");
-    String latitude = intent.getStringExtra("latitude");
-    String longtitude = intent.getStringExtra("longtitude");*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +38,25 @@ public class BookmarkEdit extends AppCompatActivity {
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
 
+        Intent gintent = getIntent();
+        String keyword = gintent.getStringExtra("keyword");
+        String locname = gintent.getStringExtra("locname");
+        Double latitude = gintent.getDoubleExtra("latitude",0);
+        Double longtitude = gintent.getDoubleExtra("longitude",0);
+        GeoPoint geoPoint = new GeoPoint(latitude, longtitude);
+
+
+        TextView keyword_text = findViewById(R.id.keyword_text);
+        TextView locname_text = findViewById(R.id.locname_text);
+        keyword_text.setText(keyword);
+        locname_text.setText(locname);
+
+
         Button button_delete_bookmark = findViewById(R.id.delete_bookmark);
         Button button_set_destination = findViewById(R.id.set_destination);
-        TextView bookmark = findViewById(R.id.bookmark);
+        TextView bookmark = findViewById(R.id.keyword_text);
         //bookmark.setText();
-        TextView bookmark_address = findViewById(R.id.bookmark_address);
+        TextView bookmark_address = findViewById(R.id.locname_text);
         //bookmark.setText();
 
 
@@ -56,7 +68,7 @@ public class BookmarkEdit extends AppCompatActivity {
         button_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BookmarkEdit.this, AddBookmarkByAddressActivity.class);
+                Intent intent = new Intent(BookmarkEdit.this, BookmarkActivity.class);
                 startActivity(intent);
                 finish();
             }

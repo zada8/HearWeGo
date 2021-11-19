@@ -140,10 +140,15 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                 userID = account.getId();
                 userName = account.getDisplayName();
                 Log.d(TAG, "uid is exists. : " + userID);
-                user = new User(userName);
                 db.collection("users").document(userID).get().
                         addOnSuccessListener(this::onSuccess);
                 ref = db.collection("users").document(userID);
+                ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        user = documentSnapshot.toObject(User.class);
+                    }
+                });
 
                 cref = db.collection("users");
                 cref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -151,9 +156,9 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) { //작업이 성공적으로 마쳤을때 컬렉션 아래에 있는 모든 정보를 가져온다.
                             for (QueryDocumentSnapshot document : task.getResult()) {
-
                                 //document.getData() or document.getId() 등등 여러 방법으로
                                 //데이터를 가져올 수 있다.
+                                user = document.toObject(User.class);
                             }
                         } else {                    }
                     }

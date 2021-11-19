@@ -15,5 +15,11 @@ public class User {
     public User(String name){
         this.name = name;
     }
+    public User (String name, List<String> keywords, Map<String,String> locnames, Map<String, GeoPoint> geopoints){
+        this.name = name;
+        this.keywords = keywords;
+        this.locnames = locnames;
+        this.geopoints = geopoints;
+    }
 
 }

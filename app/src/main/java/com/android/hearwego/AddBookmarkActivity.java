@@ -149,9 +149,9 @@ public class AddBookmarkActivity extends AppCompatActivity{
                     Intent getIntent = getIntent();
                     String locname = getIntent.getStringExtra("locname"); // SurroungdingChoice로부터 장소명 전달받음
                     Double latitude = Double.parseDouble(getIntent.getStringExtra("latitude")); // SurroungdingChoice로부터 위도 전달받음
-                    Double longtitude = Double.parseDouble(getIntent.getStringExtra("longtitude")); // SurroungdingChoice로부터 경도 전달받음;
+                    Double longitude = Double.parseDouble(getIntent.getStringExtra("longitude")); // SurroungdingChoice로부터 경도 전달받음;
 
-                    GeoPoint geoPoint = new GeoPoint(latitude, longtitude);
+                    GeoPoint geoPoint = new GeoPoint(latitude, longitude);
 
                     Map<String, Object> docData = new HashMap<>();
                     Map<String, String> lnData = new HashMap<>();

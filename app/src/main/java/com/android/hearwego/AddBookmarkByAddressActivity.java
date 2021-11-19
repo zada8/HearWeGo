@@ -14,6 +14,7 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
 
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,5 +36,25 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
 
         Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         Button button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
+
+        //이전 버튼 누를 시 화면 전환
+        button_previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddBookmarkByAddressActivity.this, BookmarkActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        //홈 버튼 누를 시 화면 전환
+        button_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddBookmarkByAddressActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 }}
