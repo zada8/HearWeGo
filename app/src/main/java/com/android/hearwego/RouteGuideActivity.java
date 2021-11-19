@@ -248,9 +248,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
+
 
     /*Asynctask 클래스 NetworkTask 생성*/
     public class NetworkTask extends AsyncTask<Void, Void, String>{
@@ -334,6 +333,42 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         }
 
     }
+
+    /*'지하철로 이동' 구현하기 위한 AsyncTask 클래스*/
+    /*public class SubwayTask extends AsyncTask<Void, Void, String>{
+        private String url;
+        private ContentValues values;
+
+        public SubwayTask(String url, ContentValues values){
+            this.url = url;
+            this.values = values;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            String result;
+            RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
+            result = requestHttpURLConnection.request(url, values);
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            try {
+
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
+        }
+
+
+    }*/
 
     /*남은 거리 구하는 함수*/
     public String calcDistance(double lat1, double long1, double lat2, double long2){
