@@ -65,7 +65,7 @@ public class BookmarkEdit extends AppCompatActivity {
         button_delete_bookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* ((LogoActivity) LogoActivity.context_logo).ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+               ((LogoActivity) LogoActivity.context_logo).ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         ((LogoActivity) LogoActivity.context_logo).user = documentSnapshot.toObject(User.class);
@@ -89,10 +89,16 @@ public class BookmarkEdit extends AppCompatActivity {
                             public void onFailure(@NonNull Exception e) {
                                 Log.w(TAG, "Error writing document", e);
                             }
-                        });*/
+                        });
+                ((LogoActivity) LogoActivity.context_logo).ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        ((LogoActivity) LogoActivity.context_logo).user = documentSnapshot.toObject(User.class);
+                    }
+                });
 
 
-                Intent intent = new Intent(BookmarkEdit.this, HomeActivity.class);
+                Intent intent = new Intent(BookmarkEdit.this, BookmarkActivity.class);
                 startActivity(intent);
                 finish();
             }
