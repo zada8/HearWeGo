@@ -123,6 +123,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             public void onInit(int status) {
                 if(status != TextToSpeech.ERROR){
                     textToSpeech.setLanguage(Locale.KOREAN);
+                    textToSpeech.setPitch(1.5f);
+                    textToSpeech.setSpeechRate(1.0f);
                 }
             }
         });
@@ -166,7 +168,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                     @Override
                     public void onConvertToGPSToAddress(String s) {
                         textToSpeech.setPitch(1.5f);
-                        textToSpeech.setSpeechRate(1.0f);
+                        textToSpeech.setSpeechRate(0.7f);
                         textToSpeech.speak("현재 위치는 "+s+"입니다", TextToSpeech.QUEUE_FLUSH, null);
                     }
                 });
@@ -295,18 +297,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                     //Log.d("JSON확인-type", type);
                     JSONArray coordinatesArray = geometry.getJSONArray("coordinates");
                     //Log.d("JSON확인-coordinates", coordinatesArray.toString());
-                    //type이 LineString일 경우
-                    //coordinates의 length가 2 또는 3
-                    //length() == 2라면, 인덱스가 1인것을 coordinates에 저장
-                    //length() == 3도 마찬가지로, 인덱스가 1인것을 coordintates에 저장
-                    /*if(i == featuresArray.length()-2){
-                        JSONArray pointArray = (JSONArray)coordinatesArray.get(1);
-                        //Log.d("JSON확인-pointArray1", pointArray.toString());
-                        Double f_longitude = Double.parseDouble(pointArray.get(0).toString());
-                        Double f_latitude = Double.parseDouble(pointArray.get(1).toString());
-                        //Log.d("JSON확인-feaIndex3", f_latitude.toString() + f_longitude.toString());
-                        LatLngArrayList.add(new TMapPoint(f_latitude, f_longitude));
-                    }*/
 
                     if(type.equals("Point")){
                         //type이 point일 경우, coordinates의 length는 1밖에 없음
@@ -334,6 +324,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 g_longitude = LatLngArrayList.get(1).getLongitude(); //경도
                 reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
                 reDistance_text.setText(reDistnace + "m");
+                textToSpeech.speak(description, TextToSpeech.QUEUE_FLUSH, null);
                 //Log.d("JSON확인", reDistnace);
 
 
@@ -397,6 +388,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         /*현재 위치와 경유지까지의 거리 계산*/
         reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
         reDistance_text.setText(reDistnace+"m");
+        textToSpeech.speak("다음 목적지까지 " + reDistnace +"미터 남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
         Log.d("JSON실행-gLngLat", Double.toString(g_latitude) + Double.toString(g_longitude));
         //Log.d("JSON실행?-남은m", reDistnace+"m");
 
@@ -412,6 +404,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             Log.d("JSON실행-gLngLat", Double.toString(g_latitude) + Double.toString(g_longitude));
             //Log.d("JSON실행?-남은m", reDistnace+"m");
             guide_text.setText(DescriptionList.get(index));
+            textToSpeech.speak(DescriptionList.get(index), TextToSpeech.QUEUE_FLUSH, null);
 
             if(index == DescriptionList.size()-1){
                 tMapGpsManager.CloseGps();
