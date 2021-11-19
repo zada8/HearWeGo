@@ -8,19 +8,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -29,12 +33,12 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class BookmarkActivity extends AppCompatActivity {
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
     final String TAG = "BookmarkActivity";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,13 @@ public class BookmarkActivity extends AppCompatActivity {
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
 
+
+
+
+
+
+
+
         Button[] button_bookmark = new Button[10];
         button_bookmark[0] = findViewById(R.id.bookmark1);
         button_bookmark[1] = findViewById(R.id.bookmark2);
@@ -67,12 +78,15 @@ public class BookmarkActivity extends AppCompatActivity {
         button_bookmark[8] = findViewById(R.id.bookmark9);
         button_bookmark[9] = findViewById(R.id.bookmark10);
 
-        /*
-        CollectionReference cref = ((LogoActivity) LogoActivity.context_logo).db.
-
-                collection("users");
-
+        button_bookmark[0].setText(((LogoActivity) LogoActivity.context_logo).user.keywords.get(0));
+/*
+        CollectionReference cref = ((LogoActivity) LogoActivity.context_logo).db
+                .collection("users")
+                .document(((LogoActivity) LogoActivity.context_logo).userID)
+                .collection("");
+        cref.get();
         Query name = cref.document(((LogoActivity) LogoActivity.context_logo).userID).collection("name");
+
         button_bookmark[0].setText(name.toString());
         Query keywords = ((LogoActivity) LogoActivity.context_logo).keywordref;*/
 

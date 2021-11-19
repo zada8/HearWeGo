@@ -42,6 +42,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
@@ -67,10 +68,10 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
     public static Context context_logo;
     public String userName;
     public String userID;
-    public User user;
+    static User user;
     public FirebaseUser firebaseUser;
     public DocumentReference ref;
-    CollectionReference keywordref;
+    public CollectionReference cref;
     final String TAG = "LogoActivity";
 
     @Override
@@ -143,13 +144,14 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
                 db.collection("users").document(userID).get().
                         addOnSuccessListener(this::onSuccess);
                 ref = db.collection("users").document(userID);
-                keywordref = db.collection("users")
-                        .document(userID).collection("keywords");
-                keywordref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+                cref = db.collection("users");
+                cref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) { //작업이 성공적으로 마쳤을때 컬렉션 아래에 있는 모든 정보를 가져온다.
                             for (QueryDocumentSnapshot document : task.getResult()) {
+
                                 //document.getData() or document.getId() 등등 여러 방법으로
                                 //데이터를 가져올 수 있다.
                             }
@@ -169,7 +171,6 @@ public class LogoActivity extends AppCompatActivity implements GoogleApiClient.O
     private void onSuccess(DocumentSnapshot snapShotData) {
         if (snapShotData.exists()) {
             Log.d(TAG, "uid is exists. : " + userID);
-            user = snapShotData.toObject(User.class);
             ref.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot snapshot,
