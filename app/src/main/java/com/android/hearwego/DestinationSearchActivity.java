@@ -201,6 +201,10 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
                 s = matches.get(i);
                 textView.setText(s);   // 음성 인식한 데이터를 text로 변환해 표시
             }
+            TextView t = (TextView) findViewById(R.id.sttResult_des);
+            String tInput = t.getText().toString();
+
+            textToSpeech.speak(tInput + "으로 목적지가 입력 되었습니다.", TextToSpeech.QUEUE_FLUSH, null);
         }
         @Override
         public void onBeginningOfSpeech() {}
