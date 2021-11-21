@@ -87,15 +87,17 @@ public class AddBookmarkActivity extends AppCompatActivity{
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
-        //TextView tx = (TextView) findViewById(R.id.destination);//수정해야됨
-        //String des = tx.getText().toString();
+        //수정해야될수도
+        Intent getIntent = getIntent();
+        String locname = getIntent.getStringExtra("locname");
+        //
 
         // 버튼을 클릭 이벤트 - 객체에 Context와 listener를 할당한 후 실행
         sttBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 //destination
-                textToSpeech.speak("즐겨찾기 키워드를 음성으로 입력해주세요", TextToSpeech.QUEUE_FLUSH, null);
+                textToSpeech.speak(locname + "의 즐겨찾기 키워드를 음성으로 입력해주세요", TextToSpeech.QUEUE_FLUSH, null);
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -105,7 +107,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
                         mRecognizer.setRecognitionListener(listener);
                         mRecognizer.startListening(intent);
                     }
-                }, 4000); //딜레이 타임 조절
+                }, 5000); //딜레이 타임 조절
             }
         });
 
