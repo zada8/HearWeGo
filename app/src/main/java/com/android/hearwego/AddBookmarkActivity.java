@@ -4,9 +4,11 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class AddBookmarkActivity extends AppCompatActivity{
@@ -35,6 +38,8 @@ public class AddBookmarkActivity extends AppCompatActivity{
     public String keyword;
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
+
+    TextToSpeech textToSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,16 @@ public class AddBookmarkActivity extends AppCompatActivity{
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(uiOption);
 
+        //TextToSpeech 기본 설정
+        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR){
+                    textToSpeech.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
+
         //STT
         // 퍼미션 체크
         if ( Build.VERSION.SDK_INT >= 23 ) {
@@ -72,13 +87,25 @@ public class AddBookmarkActivity extends AppCompatActivity{
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
+        //TextView tx = (TextView) findViewById(R.id.destination);//수정해야됨
+        //String des = tx.getText().toString();
+
         // 버튼을 클릭 이벤트 - 객체에 Context와 listener를 할당한 후 실행
         sttBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                mRecognizer = SpeechRecognizer.createSpeechRecognizer(AddBookmarkActivity.this);
-                mRecognizer.setRecognitionListener(listener);
-                mRecognizer.startListening(intent);
+                //destination
+                textToSpeech.speak("즐겨찾기 키워드를 음성으로 입력해주세요", TextToSpeech.QUEUE_FLUSH, null);
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mRecognizer = SpeechRecognizer.createSpeechRecognizer(AddBookmarkActivity.this);
+                        mRecognizer.setRecognitionListener(listener);
+                        mRecognizer.startListening(intent);
+                    }
+                }, 4000); //딜레이 타임 조절
             }
         });
 
@@ -126,6 +153,12 @@ public class AddBookmarkActivity extends AppCompatActivity{
                 keyword = matches.get(i);
                 textView.setText(keyword);   // 음성 인식한 데이터 (키워드)를 text로 변환해 표시
             }
+
+            TextView t = (TextView) findViewById(R.id.sttResult_keyword);
+            String tInput = t.getText().toString();
+
+            textToSpeech.speak(tInput + "으로 즐겨찾기 키워드가 입력 되었습니다.", TextToSpeech.QUEUE_FLUSH, null);
+
         }
         @Override
         public void onBeginningOfSpeech() {}
@@ -222,5 +255,17 @@ public class AddBookmarkActivity extends AppCompatActivity{
         @Override
         public void onEvent(int eventType, Bundle params) {}
     };
+
+    //tts
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if(textToSpeech!=null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+            textToSpeech = null;
+        }
+    }
 
 }
