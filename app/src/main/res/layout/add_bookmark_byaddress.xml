@@ -65,30 +65,30 @@
 
         <TextView
             android:id="@+id/sttResult_keyword"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/mic_button_keyword"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginEnd="96dp"
-            android:layout_marginRight="96dp"
-            android:layout_marginBottom="304dp"
+            android:layout_marginBottom="250dp"
+            android:gravity="center"
             android:text="음성인식 결과가 여기에 표시됩니다."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/sttResult_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/mic_button_address"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginEnd="101dp"
-            android:layout_marginRight="101dp"
-            android:layout_marginBottom="521dp"
+            android:layout_marginBottom="480dp"
+            android:gravity="center"
             android:text="음성인식 결과가 여기에 표시됩니다." />
     </RelativeLayout>
 

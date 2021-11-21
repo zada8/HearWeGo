@@ -36,14 +36,9 @@
 
         <TextView
             android:id="@+id/sttResult_keyword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="false"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="87dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="306dp"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_below="@+id/mic_button"
             android:gravity="center"
             android:text="음성인식 결과가 여기에 표시됩니다."
             app:layout_constraintEnd_toEndOf="parent"
