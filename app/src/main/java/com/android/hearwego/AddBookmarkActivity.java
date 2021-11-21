@@ -7,28 +7,22 @@ import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -68,7 +62,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
                     Manifest.permission.RECORD_AUDIO},PERMISSION);
         }
         // xml의 버튼과 텍스트 뷰 연결
-        textView = (TextView)findViewById(R.id.sttResult);
+        textView = (TextView)findViewById(R.id.sttResult_keyword);
         sttBtn = (Button) findViewById(R.id.mic_button);
         bookmarkBtn = (Button) findViewById(R.id.save_bookmark);
 
