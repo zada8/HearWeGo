@@ -81,24 +81,24 @@ public class AddBookmarkActivity extends AppCompatActivity{
         sttBtn = (Button) findViewById(R.id.mic_button);
         bookmarkBtn = (Button) findViewById(R.id.save_bookmark);
 
+
         // RecognizerIntent 객체 생성
         Intent intent;
         intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
-        //수정해야될수도
+        /*나중에 추가(tts에 즐겨찾기name)
         Intent getIntent = getIntent();
         String locname = getIntent.getStringExtra("locname");
-        //
+        */
 
         // 버튼을 클릭 이벤트 - 객체에 Context와 listener를 할당한 후 실행
         sttBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                //destination
-                textToSpeech.speak(locname + "의 즐겨찾기 키워드를 음성으로 입력해주세요", TextToSpeech.QUEUE_FLUSH, null);
 
+                textToSpeech.speak( "즐겨찾기 키워드를 음성으로 입력해주세요", TextToSpeech.QUEUE_FLUSH, null);
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -107,7 +107,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
                         mRecognizer.setRecognitionListener(listener);
                         mRecognizer.startListening(intent);
                     }
-                }, 5000); //딜레이 타임 조절
+                }, 3000); //딜레이 타임 조절
             }
         });
 
