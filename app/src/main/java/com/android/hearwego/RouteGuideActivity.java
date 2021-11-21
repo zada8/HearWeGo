@@ -83,9 +83,13 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     String uu = null;
     URL url = null;
     HttpURLConnection urlConnection = null;
+    String uu_s = null;
+    URL url_s = null;
+    HttpURLConnection httpURLConnection_s = null;
 
     /*JSON 변수 선언*/
     JSONObject root = null;
+    JSONObject rootSub = null;
     ArrayList<TMapPoint> LatLngArrayList = new ArrayList<TMapPoint>();
     ArrayList<String> DescriptionList = new ArrayList<String>();
 
@@ -167,8 +171,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 tMapData.convertGpsToAddress(nowpoint.getLatitude(), nowpoint.getLongitude(), new TMapData.ConvertGPSToAddressListenerCallback() {
                     @Override
                     public void onConvertToGPSToAddress(String s) {
-                        textToSpeech.setPitch(1.5f);
-                        textToSpeech.setSpeechRate(0.7f);
                         textToSpeech.speak("현재 위치는 "+s+"입니다", TextToSpeech.QUEUE_FLUSH, null);
                     }
                 });
@@ -207,6 +209,18 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
     }
 
+    /*지하철 경로 JSON 파일을 가져오는 함수*/
+    /*public void getSubwayRoute(){
+        try{
+            String SX = Double.toString(longitude);
+            String SY = Double.toString(latitude);
+            String EX = longData;
+            String EY = latData;
+
+            uu_s = "https://api.odsay.com/v1/api/searchPubTransPathR?lang=0&SX=&SY=&EX=&EY=&OPT=0&SearchType=0&SearchPathType=1"
+        }
+    }*/
+
     /*보행자 경로 JSON 파일을 가져오는 함수*/
     public void getRoute(){
 
@@ -214,14 +228,11 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         startY = Double.toString(latitude);
         endX = longData;
         endY = latData;
-
-        Log.d("JSON확인", startX+startY+endX+endY);
+        //Log.d("JSON확인", startX+startY+endX+endY);
 
         try {
             String startName = URLEncoder.encode("출발지", "UTF-8");
             String endName = URLEncoder.encode("도착지", "UTF-8");
-
-            System.out.println(endX + endY);
 
             uu = "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&callback=result&appKey=" + appKey
                     + "&startX=" + startX + "&startY=" + startY + "&endX=" + endX + "&endY=" + endY
@@ -361,6 +372,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             try {
+                rootSub = new JSONObject(s);
 
             }catch (JSONException e){
                 e.printStackTrace();
