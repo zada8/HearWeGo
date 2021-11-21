@@ -21,6 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.type.LatLng;
+import com.odsay.odsayandroidsdk.API;
+import com.odsay.odsayandroidsdk.ODsayData;
+import com.odsay.odsayandroidsdk.ODsayService;
+import com.odsay.odsayandroidsdk.OnResultCallbackListener;
 import com.skt.Tmap.TMapData;
 import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapPoint;
@@ -45,6 +49,9 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
+
+    /*ODSAY 변수 선언*/
+    ODsayService oDsayService = null;
 
     /*텍스트뷰 선언*/
     TextView destination_text;
@@ -83,9 +90,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     String uu = null;
     URL url = null;
     HttpURLConnection urlConnection = null;
-    String uu_s = null;
-    URL url_s = null;
-    HttpURLConnection httpURLConnection_s = null;
 
     /*JSON 변수 선언*/
     JSONObject root = null;
@@ -120,6 +124,11 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility( uiOption );
+
+        /*Odsay 기본 선언*/
+        oDsayService =ODsayService.init(getApplicationContext(), "AY0v5KMZR/Ot2fKklprVDD0MW4D7Xnm7o+441agI080");
+        oDsayService.setConnectionTimeout(5000);
+        oDsayService.setReadTimeout(5000);
 
         /*TextToSpeech 기본 설정*/
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
@@ -185,6 +194,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 latitude = nowpoint.getLatitude();
                 longitude = nowpoint.getLongitude();
 
+                //getSubwayRoute();
                 getRoute();
             }
         });
@@ -211,14 +221,28 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
     /*지하철 경로 JSON 파일을 가져오는 함수*/
     /*public void getSubwayRoute(){
-        try{
-            String SX = Double.toString(longitude);
-            String SY = Double.toString(latitude);
-            String EX = longData;
-            String EY = latData;
+        OnResultCallbackListener onResultCallbackListener = new OnResultCallbackListener() {
+            @Override
+            public void onSuccess(ODsayData oDsayData, API api) {
+                try{
+                    if(api == API.SEARCH_PUB_TRANS_PATH){
+                        JSONObject path = (JSONObject)oDsayData.getJson().getJSONObject("result").getJSONArray("path").get(0);
+                        String firststationName = path.getJSONObject("info").getString("firstStartStation");
+                        String laststationName = path.getJSONObject("info").getString("lastEndStation");
+                        Log.d("JSON-ODSAY", firststationName+"->"+laststationName);
+                    }
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
 
-            uu_s = "https://api.odsay.com/v1/api/searchPubTransPathR?lang=0&SX=&SY=&EX=&EY=&OPT=0&SearchType=0&SearchPathType=1"
-        }
+            }
+
+            @Override
+            public void onError(int i, String s, API api) {
+                if(api == API.SEARCH_PUB_TRANS_PATH){}
+            }
+        };
+        oDsayService.requestSearchPubTransPath("129.07850166360282", "35.2056514706338","129.05908713064088", "35.15770756075379","0", "0", "1", onResultCallbackListener);
     }*/
 
     /*보행자 경로 JSON 파일을 가져오는 함수*/
@@ -344,43 +368,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         }
 
     }
-
-    /*'지하철로 이동' 구현하기 위한 AsyncTask 클래스*/
-    /*public class SubwayTask extends AsyncTask<Void, Void, String>{
-        private String url;
-        private ContentValues values;
-
-        public SubwayTask(String url, ContentValues values){
-            this.url = url;
-            this.values = values;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(Void... voids) {
-            String result;
-            RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
-            result = requestHttpURLConnection.request(url, values);
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            try {
-                rootSub = new JSONObject(s);
-
-            }catch (JSONException e){
-                e.printStackTrace();
-            }
-        }
-
-
-    }*/
 
     /*남은 거리 구하는 함수*/
     public String calcDistance(double lat1, double long1, double lat2, double long2){
