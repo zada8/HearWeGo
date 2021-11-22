@@ -142,7 +142,7 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
             //현재 위치 탐색 완료 후 주변 공공기관 찾기 시작
             Log.d("현재위치-SKT타워X", "실행되었습니다.");
                 //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 공공기관을 가져온다.
-                tMapData.findAroundNamePOI(nowPoint, "공공기관", 2, 10, new TMapData.FindAroundNamePOIListenerCallback() {
+                tMapData.findAroundNamePOI(nowPoint, "공공기관", 10, 10, new TMapData.FindAroundNamePOIListenerCallback() {
                     @Override
                     public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
                         for(int i = 0;i<10;i++){
