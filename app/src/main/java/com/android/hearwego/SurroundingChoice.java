@@ -76,6 +76,7 @@ public class SurroundingChoice extends AppCompatActivity {
             public void onClick(View v) {
                 onBackPressed();
             }
+
         });
 
         /*홈 버튼 누를 시 화면 전환*/

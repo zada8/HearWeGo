@@ -77,10 +77,14 @@ public class BookmarkActivity extends AppCompatActivity {
         button_bookmark[8] = findViewById(R.id.bookmark9);
         button_bookmark[9] = findViewById(R.id.bookmark10);
 
-        for (int i = 0; i < ((LogoActivity) LogoActivity.context_logo).user.keywords.size() ; i++){
-            button_bookmark[i].setText(((LogoActivity) LogoActivity.context_logo).user.keywords.get(i));
+        if (((LogoActivity) LogoActivity.context_logo).user == null){
+            
         }
-
+        else{
+            for (int i = 0; i < ((LogoActivity) LogoActivity.context_logo).user.keywords.size() ; i++){
+                button_bookmark[i].setText(((LogoActivity) LogoActivity.context_logo).user.keywords.get(i));
+            }
+        }
         Button button_save = findViewById(R.id.save_bookmark); //즐겨찾기 등록 버튼 참조
         Button button_previous = findViewById(R.id.previous); //이전 버튼 객체 참조
         Button button_home = findViewById(R.id.home); // 홈 버튼 객체 참조

@@ -158,7 +158,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
 
-        /*인텐트 받아들임*/
+        /*인텐트 받아들임*/ //인텐트
         Intent intent = getIntent();
         String nameData = intent.getStringExtra("name");
         latData = intent.getStringExtra("latitude");

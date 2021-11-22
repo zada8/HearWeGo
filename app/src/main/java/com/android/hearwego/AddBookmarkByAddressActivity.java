@@ -2,11 +2,14 @@ package com.android.hearwego;
 
 import android.Manifest;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,7 +19,17 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.SetOptions;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AddBookmarkByAddressActivity extends AppCompatActivity {
 
@@ -29,7 +42,13 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
     TextView textViewAddress;
     TextView textViewKeyword;
     final int PERMISSION = 1;
-    //
+    String addressText;
+    String keyword;
+    Double latitude;
+    Double longitude;
+    String locname;
+    Geocoder geocoder = new Geocoder(this);
+    List<Address> list;
 
     private View decorView; //full screen 객체 선언
     private int	uiOption; //full screen 객체 선언
@@ -90,7 +109,6 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
                 mRecognizer.startListening(intent);
             }
         });
-        //
 
         Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         Button button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
@@ -134,10 +152,19 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
                     results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
             for (int i = 0; i < matches.size(); i++){
-                String s;
-                s = matches.get(i);
-                textViewAddress.setText(s);   // 음성 인식한 데이터를 text로 변환해 표시
+                addressText = matches.get(i);
+                textViewAddress.setText(addressText);   // 음성 인식한 데이터를 text로 변환해 표시
             }
+            try {
+                list = geocoder.getFromLocationName(addressText,10);
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.e("TAG","주소 변환에서 에러발생");
+            }
+            latitude = list.get(0).getLatitude();
+            longitude = list.get(0).getLongitude();
+            locname = list.get(0).getFeatureName();
+            list.remove(0);
         }
 
 
@@ -221,9 +248,8 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
                     results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
             for (int i = 0; i < matches.size(); i++){
-                String s;
-                s = matches.get(i);
-                textViewKeyword.setText(s);   // 음성 인식한 데이터를 text로 변환해 표시
+                keyword = matches.get(i);
+                textViewKeyword.setText(keyword);   // 음성 인식한 데이터를 text로 변환해 표시
             }
         }
 
@@ -239,13 +265,33 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
 
         @Override
         public void onEndOfSpeech() {
-            saveBookmark.setOnClickListener(new View.OnClickListener() {
+            // 즐겨찾기에 저장
+            saveBookmark.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    Intent intent = new Intent(AddBookmarkByAddressActivity.this, BookmarkActivity.class);
+                    GeoPoint geoPoint = new GeoPoint(latitude, longitude);
+                    Map<String, Object> docData = new HashMap<>();
+                    Map<String, String> lnData = new HashMap<>();
+                    Map<String, GeoPoint> geoData = new HashMap<>();
+                    lnData.put(keyword,locname);
+                    geoData.put(keyword,geoPoint);
+                    docData.put("locnames",lnData);
+                    docData.put("geopoints",geoData);
+                    ((LogoActivity) LogoActivity.context_logo).db.collection("users").
+                            document(((LogoActivity) LogoActivity.context_logo).userID)
+                            .set(docData, SetOptions.merge());
+                    ((LogoActivity) LogoActivity.context_logo).ref.update("keywords", FieldValue.arrayUnion(keyword));
+                    ((LogoActivity) LogoActivity.context_logo).ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            ((LogoActivity) LogoActivity.context_logo).user = documentSnapshot.toObject(User.class);
+                        }
+                    });
+                    Intent intent = new Intent(AddBookmarkByAddressActivity.this, HomeActivity.class);
                     startActivity(intent);
                 }
             });
+
 
         }
 
@@ -298,4 +344,5 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
         @Override
         public void onEvent(int eventType, Bundle params) {}
     };
+
 }

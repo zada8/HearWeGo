@@ -108,7 +108,10 @@ public class BookmarkEdit extends AppCompatActivity {
         button_set_destination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BookmarkEdit.this, BookmarkActivity.class);
+                Intent intent = new Intent(BookmarkEdit.this, RouteGuideActivity.class);
+                intent.putExtra("name", locname);
+                intent.putExtra("latitude",latitude.toString());
+                intent.putExtra("longitude",longitude.toString());
                 startActivity(intent);
                 finish();
             }

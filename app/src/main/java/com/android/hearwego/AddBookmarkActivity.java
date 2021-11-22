@@ -134,6 +134,14 @@ public class AddBookmarkActivity extends AppCompatActivity{
                 finish();
             }
         });
+        button_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddBookmarkActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     //RecognizerLntent 객체에 할당할 listener 생성
