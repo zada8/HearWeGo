@@ -77,7 +77,7 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 mRecognizer = SpeechRecognizer.createSpeechRecognizer(AddBookmarkByAddressActivity.this);
-                mRecognizer.setRecognitionListener(listener);
+                mRecognizer.setRecognitionListener(addressListner);
                 mRecognizer.startListening(intent);
             }
         });
@@ -86,7 +86,7 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 mRecognizer = SpeechRecognizer.createSpeechRecognizer(AddBookmarkByAddressActivity.this);
-                mRecognizer.setRecognitionListener(listener2);
+                mRecognizer.setRecognitionListener(keywordListner);
                 mRecognizer.startListening(intent);
             }
         });
@@ -119,7 +119,7 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
 
     //stt
     //RecognizerIntent 객체에 할당할 listener 생성
-    private RecognitionListener listener = new RecognitionListener() {
+    private RecognitionListener addressListner = new RecognitionListener() {
         @Override
         public void onReadyForSpeech(Bundle params) {
             Toast.makeText(getApplicationContext(), "음성 인식을 시작합니다.",
@@ -206,7 +206,7 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
 
     //stt_keyword
     //RecognizerIntent 객체에 할당할 listener 생성
-    private RecognitionListener listener2 = new RecognitionListener() {
+    private RecognitionListener keywordListner = new RecognitionListener() {
         @Override
         public void onReadyForSpeech(Bundle params) {
             Toast.makeText(getApplicationContext(), "음성 인식을 시작합니다.",

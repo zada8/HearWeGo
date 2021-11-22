@@ -48,8 +48,8 @@ public class BookmarkEdit extends AppCompatActivity {
         String keyword = gintent.getStringExtra("keyword");
         String locname = gintent.getStringExtra("locname");
         Double latitude = gintent.getDoubleExtra("latitude",0);
-        Double longtitude = gintent.getDoubleExtra("longitude",0);
-        GeoPoint geoPoint = new GeoPoint(latitude, longtitude);
+        Double longitude = gintent.getDoubleExtra("longitude",0);
+        GeoPoint geoPoint = new GeoPoint(latitude, longitude);
 
 
         TextView keyword_text = findViewById(R.id.keyword_text);
@@ -104,6 +104,15 @@ public class BookmarkEdit extends AppCompatActivity {
             }
         });
 
+        //목적지 설정
+        button_set_destination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookmarkEdit.this, BookmarkActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         Button button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         Button button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
