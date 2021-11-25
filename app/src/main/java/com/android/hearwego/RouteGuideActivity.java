@@ -76,17 +76,17 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     Button button_home; //홈 버튼
 
     /*경도, 위도 변수 선언*/
-    Double latitude;
-    Double longitude;
+    Double latitude; //사용자 현재 위도 변수
+    Double longitude; //사용자 현재 경도 변수
     String reDistnace;
 
     /*JSON 받아오기 위한 변수 선언*/
-    String startX;
-    String startY;
-    String endX;
-    String endY;
-    String latData;
-    String longData;
+    String startX;//출발지 경도
+    String startY;//출발지 위도
+    String endX;//목적지 경도
+    String endY;//목적지 위도
+    String latData;//주변시설에서 받아온 목적지 위도
+    String longData;//주변시설에서 받아온 목적지 경도
     String uu = null;
     URL url = null;
     HttpURLConnection urlConnection = null;
@@ -233,6 +233,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                     }
                 } catch (JSONException e){
                     e.printStackTrace();
+                    String error = e.toString();
+                    System.out.println(error);
                 }
 
             }
@@ -242,7 +244,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 if(api == API.SEARCH_PUB_TRANS_PATH){}
             }
         };
-        oDsayService.requestSearchPubTransPath("129.07850166360282", "35.2056514706338","129.05908713064088", "35.15770756075379","0", "0", "1", onResultCallbackListener);
+        oDsayService.requestSearchPubTransPath(Double.toString(longitude), Double.toString(latitude),longData, latData,"0", "0", "1", onResultCallbackListener);
+        //oDsayService.requestSearchPubTransPath("129.13297481348195", "35.17208707493014", longData, latData,"0", "0", "1", onResultCallbackListener);
     }*/
 
     /*보행자 경로 JSON 파일을 가져오는 함수*/

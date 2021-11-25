@@ -157,6 +157,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                             sub_intent.putExtra("address", item.getPOIAddress());
                                             sub_intent.putExtra("latitude", item.noorLat);
                                             sub_intent.putExtra("longitude", item.noorLon);
+                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                             startActivity(sub_intent);
                                             finish();
                                         }
@@ -173,6 +174,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                             sub_intent.putExtra("address", item.getPOIAddress());
                                             sub_intent.putExtra("latitude", item.noorLat);
                                             sub_intent.putExtra("longitude", item.noorLon);
+                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                             startActivity(sub_intent);
                                             finish();
                                         }
@@ -189,6 +191,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                             sub_intent.putExtra("address", item.getPOIAddress());
                                             sub_intent.putExtra("latitude", item.noorLat);
                                             sub_intent.putExtra("longitude", item.noorLon);
+                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                             startActivity(sub_intent);
                                             finish();
                                         }
@@ -205,6 +208,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                             sub_intent.putExtra("address", item.getPOIAddress());
                                             sub_intent.putExtra("latitude", item.noorLat);
                                             sub_intent.putExtra("longitude", item.noorLon);
+                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                             startActivity(sub_intent);
                                             finish();
                                         }
@@ -221,6 +225,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                             sub_intent.putExtra("address", item.getPOIAddress());
                                             sub_intent.putExtra("latitude", item.noorLat);
                                             sub_intent.putExtra("longitude", item.noorLon);
+                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                             startActivity(sub_intent);
                                             finish();
                                         }
@@ -237,6 +242,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                             sub_intent.putExtra("address", item.getPOIAddress());
                                             sub_intent.putExtra("latitude", item.noorLat);
                                             sub_intent.putExtra("longitude", item.noorLon);
+                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                             startActivity(sub_intent);
                                             finish();
                                         }
@@ -253,6 +259,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                             sub_intent.putExtra("address", item.getPOIAddress());
                                             sub_intent.putExtra("latitude", item.noorLat);
                                             sub_intent.putExtra("longitude", item.noorLon);
+                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                             startActivity(sub_intent);
                                             finish();
                                         }
@@ -269,6 +276,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                             sub_intent.putExtra("address", item.getPOIAddress());
                                             sub_intent.putExtra("latitude", item.noorLat);
                                             sub_intent.putExtra("longitude", item.noorLon);
+                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                             startActivity(sub_intent);
                                             finish();
                                         }
@@ -285,6 +293,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                             sub_intent.putExtra("address", item.getPOIAddress());
                                             sub_intent.putExtra("latitude", item.noorLat);
                                             sub_intent.putExtra("longitude", item.noorLon);
+                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                             startActivity(sub_intent);
                                             finish();
                                         }
@@ -301,6 +310,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                                             sub_intent.putExtra("address", item.getPOIAddress());
                                             sub_intent.putExtra("latitude", item.noorLat);
                                             sub_intent.putExtra("longitude", item.noorLon);
+                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
                                             startActivity(sub_intent);
                                             finish();
                                         }
