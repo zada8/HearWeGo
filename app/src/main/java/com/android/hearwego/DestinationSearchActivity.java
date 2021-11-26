@@ -240,8 +240,8 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
                 public void onClick(View v){
                     Intent intent = new Intent(DestinationSearchActivity.this, RouteGuideActivity.class);
                     intent.putExtra("name", locname);
-                    intent.putExtra("latitude", latitude);
-                    intent.putExtra("longitude", longitude);
+                    intent.putExtra("latitude",latitude.toString());
+                    intent.putExtra("longitude",longitude.toString());
                     startActivity(intent);
 
                 }
