@@ -2,6 +2,8 @@ package com.android.hearwego;
 
 import android.Manifest;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,7 +28,9 @@ import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapView;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class DestinationSearchActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
@@ -39,10 +43,16 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
     TextView textView;
     final int PERMISSION = 1;
     //
-
     TMapView tMapView = null;
     TMapGpsManager tMapGpsManager = null;
     TMapData tMapData = null;
+
+    String addressText;
+    Double latitude;
+    Double longitude;
+    String locname;
+    Geocoder geocoder = new Geocoder(this);
+    List<Address> list;
 
     private static String API_KEY = "l7xx59d0bb77ddfc45efb709f48d1b31715c";
 
@@ -177,7 +187,6 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
             }
         });
 
-
     }
 
     //stt
@@ -197,14 +206,23 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
                     results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
             for (int i = 0; i < matches.size(); i++){
-                String s;
-                s = matches.get(i);
-                textView.setText(s);   // 음성 인식한 데이터를 text로 변환해 표시
+                addressText = matches.get(i);
+                textView.setText(addressText);   // 음성 인식한 데이터를 text로 변환해 표시
             }
             TextView t = (TextView) findViewById(R.id.sttResult_des);
             String tInput = t.getText().toString();
-
             textToSpeech.speak(tInput + "으로 목적지가 입력 되었습니다.", TextToSpeech.QUEUE_FLUSH, null);
+            try {
+                list = geocoder.getFromLocationName(addressText,10);
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.e("TAG","주소 변환에서 에러발생");
+            }
+            latitude = list.get(0).getLatitude();
+            longitude = list.get(0).getLongitude();
+            locname = list.get(0).getFeatureName();
+            list.remove(0);
+
         }
         @Override
         public void onBeginningOfSpeech() {}
@@ -220,8 +238,12 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
             startBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){
-                    Intent intent = new Intent(DestinationSearchActivity.this, RouteChoiceActivity.class);
+                    Intent intent = new Intent(DestinationSearchActivity.this, RouteGuideActivity.class);
+                    intent.putExtra("name", locname);
+                    intent.putExtra("latitude", latitude);
+                    intent.putExtra("longitude", longitude);
                     startActivity(intent);
+
                 }
             });
 
