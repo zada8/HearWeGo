@@ -6,9 +6,11 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +31,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class AddBookmarkByAddressActivity extends AppCompatActivity {
@@ -42,6 +45,7 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
     TextView textViewAddress;
     TextView textViewKeyword;
     final int PERMISSION = 1;
+    TextToSpeech textToSpeech;
     String addressText;
     String keyword;
     Double latitude;
@@ -72,6 +76,16 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(uiOption);
 
+        //TextToSpeech 기본 설정
+        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR){
+                    textToSpeech.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
+
         //STT
         // 퍼미션 체크
         if ( Build.VERSION.SDK_INT >= 23 ) {
@@ -95,18 +109,30 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
         sttBtnAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                mRecognizer = SpeechRecognizer.createSpeechRecognizer(AddBookmarkByAddressActivity.this);
-                mRecognizer.setRecognitionListener(addressListner);
-                mRecognizer.startListening(intent);
+                textToSpeech.speak( "즐겨찾기로 추가 할 장소의 주소를 음성으로 입력해주세요", TextToSpeech.QUEUE_FLUSH, null);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mRecognizer = SpeechRecognizer.createSpeechRecognizer(AddBookmarkByAddressActivity.this);
+                        mRecognizer.setRecognitionListener(addressListner);
+                        mRecognizer.startListening(intent);
+                    }},4000);
             }
         });
 
         sttBtnKeyword.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                mRecognizer = SpeechRecognizer.createSpeechRecognizer(AddBookmarkByAddressActivity.this);
-                mRecognizer.setRecognitionListener(keywordListner);
-                mRecognizer.startListening(intent);
+                textToSpeech.speak( "즐겨찾기 주소에 대한 키워드를 음성으로 입력해주세요", TextToSpeech.QUEUE_FLUSH, null);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mRecognizer = SpeechRecognizer.createSpeechRecognizer(AddBookmarkByAddressActivity.this);
+                        mRecognizer.setRecognitionListener(keywordListner);
+                        mRecognizer.startListening(intent);
+                    }},4000);
             }
         });
 
@@ -155,6 +181,10 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
                 addressText = matches.get(i);
                 textViewAddress.setText(addressText);   // 음성 인식한 데이터를 text로 변환해 표시
             }
+            TextView t = (TextView) findViewById(R.id.sttResult_address);
+            String tInput = t.getText().toString();
+            textToSpeech.speak(tInput + "으로 주소가 입력 되었습니다.", TextToSpeech.QUEUE_FLUSH, null);
+
             try {
                 list = geocoder.getFromLocationName(addressText,10);
             } catch (IOException e) {
@@ -251,6 +281,9 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
                 keyword = matches.get(i);
                 textViewKeyword.setText(keyword);   // 음성 인식한 데이터를 text로 변환해 표시
             }
+            TextView v = (TextView) findViewById(R.id.sttResult_keyword);
+            String vInput = v.getText().toString();
+            textToSpeech.speak(vInput + "으로 주소에 대한 키워드가 입력 되었습니다.", TextToSpeech.QUEUE_FLUSH, null);
         }
 
 
