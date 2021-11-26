@@ -96,6 +96,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     JSONObject rootSub = null;
     ArrayList<TMapPoint> LatLngArrayList = new ArrayList<TMapPoint>();
     ArrayList<String> DescriptionList = new ArrayList<String>();
+    ArrayList<String> StationNameList = new ArrayList<String>();
+    ArrayList<TMapPoint> SubLatLngList = new ArrayList<TMapPoint>();
 
     /*실시간 음성안내를 위한 변수 선언*/
     int index = 1;
@@ -194,8 +196,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 latitude = nowpoint.getLatitude();
                 longitude = nowpoint.getLongitude();
 
-                //getSubwayRoute();
-                getRoute();
+                getSubwayRoute();
+                //getRoute();
             }
         });
 
@@ -220,33 +222,42 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     }
 
     /*지하철 경로 JSON 파일을 가져오는 함수*/
-    /*public void getSubwayRoute(){
+    public void getSubwayRoute(){
         OnResultCallbackListener onResultCallbackListener = new OnResultCallbackListener() {
             @Override
             public void onSuccess(ODsayData oDsayData, API api) {
                 try{
                     if(api == API.SEARCH_PUB_TRANS_PATH){
-                        JSONObject path = (JSONObject)oDsayData.getJson().getJSONObject("result").getJSONArray("path").get(0);
-                        String firststationName = path.getJSONObject("info").getString("firstStartStation");
-                        String laststationName = path.getJSONObject("info").getString("lastEndStation");
-                        Log.d("JSON-ODSAY", firststationName+"->"+laststationName);
+                        JSONObject path = (JSONObject) oDsayData.getJson().getJSONObject("result").getJSONArray("path").get(0);
+                        JSONObject subpath = (JSONObject)path.getJSONArray("subPath").get(1);
+                        JSONObject passStoplist = subpath.getJSONObject("passStopList");
+                        JSONArray stations = passStoplist.getJSONArray("stations");
+                        for(int i = 0;i<stations.length();i++){
+                            JSONObject station = (JSONObject)stations.get(i);
+                            String stationName = station.getString("stationName");
+                            StationNameList.add(stationName);
+                        }
+
+                        Log.d("JSON-ODSAY", stations.toString());
+                        Log.d("JSON-ODSAY", Integer.toString(stations.length()));
                     }
                 } catch (JSONException e){
                     e.printStackTrace();
-                    String error = e.toString();
-                    System.out.println(error);
+                    //Log.e("error", e.getMessage());
                 }
 
             }
 
             @Override
             public void onError(int i, String s, API api) {
-                if(api == API.SEARCH_PUB_TRANS_PATH){}
+                if(api == API.SEARCH_PUB_TRANS_PATH){
+                    textToSpeech.speak("해당 목적지로 향하는 지하철 경로가 존재하지 않습니다.", TextToSpeech.QUEUE_FLUSH, null);
+                }
             }
         };
         oDsayService.requestSearchPubTransPath(Double.toString(longitude), Double.toString(latitude),longData, latData,"0", "0", "1", onResultCallbackListener);
         //oDsayService.requestSearchPubTransPath("129.13297481348195", "35.17208707493014", longData, latData,"0", "0", "1", onResultCallbackListener);
-    }*/
+    }
 
     /*보행자 경로 JSON 파일을 가져오는 함수*/
     public void getRoute(){
