@@ -178,8 +178,8 @@ public class AddBookmarkActivity extends AppCompatActivity{
                 public void onClick(View v){
                     Intent getIntent = getIntent();
                     String locname = getIntent.getStringExtra("locname"); // SurroungdingChoice로부터 장소명 전달받음
-                    Double latitude = Double.parseDouble(getIntent.getStringExtra("latitude")); // SurroungdingChoice로부터 위도 전달받음
-                    Double longitude = Double.parseDouble(getIntent.getStringExtra("longitude")); // SurroungdingChoice로부터 경도 전달받음;
+                    double latitude = Double.parseDouble(getIntent.getStringExtra("latitude")); // SurroungdingChoice로부터 위도 전달받음
+                    double longitude = Double.parseDouble(getIntent.getStringExtra("longitude")); // SurroungdingChoice로부터 경도 전달받음;
 
                     GeoPoint geoPoint = new GeoPoint(latitude, longitude);
 
@@ -198,7 +198,7 @@ public class AddBookmarkActivity extends AppCompatActivity{
                     ((LogoActivity) LogoActivity.context_logo).ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            ((LogoActivity) LogoActivity.context_logo).user = documentSnapshot.toObject(User.class);
+                            LogoActivity.user = documentSnapshot.toObject(User.class);
                         }
                     });
                     Intent intent = new Intent(AddBookmarkActivity.this, HomeActivity.class);

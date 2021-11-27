@@ -19,7 +19,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
-        <activity android:name=".ResultActivity" />
         <activity android:name=".SurroundingChoice" />
         <activity android:name=".BookmarkEdit" />
         <activity android:name=".RouteGuideActivity" />

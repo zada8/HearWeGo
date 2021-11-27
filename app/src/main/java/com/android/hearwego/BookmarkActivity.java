@@ -60,11 +60,6 @@ public class BookmarkActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
         Button[] button_bookmark = new Button[10];
         button_bookmark[0] = findViewById(R.id.bookmark1);
         button_bookmark[1] = findViewById(R.id.bookmark2);
@@ -77,12 +72,13 @@ public class BookmarkActivity extends AppCompatActivity {
         button_bookmark[8] = findViewById(R.id.bookmark9);
         button_bookmark[9] = findViewById(R.id.bookmark10);
 
-        if (((LogoActivity) LogoActivity.context_logo).user == null){
-            
-        }
-        else{
-            for (int i = 0; i < ((LogoActivity) LogoActivity.context_logo).user.keywords.size() ; i++){
-                button_bookmark[i].setText(((LogoActivity) LogoActivity.context_logo).user.keywords.get(i));
+        try{
+            for (int i = 0; i < LogoActivity.user.keywords.size() ; i++){
+                button_bookmark[i].setText(LogoActivity.user.keywords.get(i));
+            }
+        }catch (Exception e){
+            for (int i = 0; i < 10 ; i++) {
+                button_bookmark[i].setText("즐겨찾기");
             }
         }
         Button button_save = findViewById(R.id.save_bookmark); //즐겨찾기 등록 버튼 참조
@@ -94,11 +90,11 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(0);
+                String k = LogoActivity.user.keywords.get(0);
                 intent.putExtra("keyword",k);
-                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
-                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
                 startActivity(intent);
                 finish();
             }
@@ -108,11 +104,11 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(1);
+                String k = LogoActivity.user.keywords.get(1);
                 intent.putExtra("keyword",k);
-                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
-                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
                 startActivity(intent);
                 finish();
             }
@@ -121,11 +117,11 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(2);
+                String k = LogoActivity.user.keywords.get(2);
                 intent.putExtra("keyword",k);
-                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
-                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
                 startActivity(intent);
                 finish();
             }
@@ -135,11 +131,11 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(3);
+                String k = LogoActivity.user.keywords.get(3);
                 intent.putExtra("keyword",k);
-                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
-                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
                 startActivity(intent);
                 finish();
             }
@@ -149,11 +145,11 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(4);
+                String k = LogoActivity.user.keywords.get(4);
                 intent.putExtra("keyword",k);
-                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
-                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
                 startActivity(intent);
                 finish();
             }
@@ -162,11 +158,11 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(5);
+                String k = LogoActivity.user.keywords.get(5);
                 intent.putExtra("keyword",k);
-                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
-                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
                 startActivity(intent);
                 finish();
             }
@@ -175,11 +171,11 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(6);
+                String k = LogoActivity.user.keywords.get(6);
                 intent.putExtra("keyword",k);
-                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
-                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
                 startActivity(intent);
                 finish();
             }
@@ -188,11 +184,11 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(7);
+                String k = LogoActivity.user.keywords.get(7);
                 intent.putExtra("keyword",k);
-                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
-                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
                 startActivity(intent);
                 finish();
             }
@@ -201,11 +197,11 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(8);
+                String k = LogoActivity.user.keywords.get(8);
                 intent.putExtra("keyword",k);
-                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
-                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
                 startActivity(intent);
                 finish();
             }
@@ -214,11 +210,11 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = ((LogoActivity) LogoActivity.context_logo).user.keywords.get(9);
+                String k = LogoActivity.user.keywords.get(9);
                 intent.putExtra("keyword",k);
-                intent.putExtra("locname", ((LogoActivity) LogoActivity.context_logo).user.locnames.get(k).toString());
-                intent.putExtra("latitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", ((LogoActivity) LogoActivity.context_logo).user.geopoints.get(k).getLongitude());
+                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
                 startActivity(intent);
                 finish();
             }

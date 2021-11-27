@@ -47,8 +47,8 @@ public class BookmarkEdit extends AppCompatActivity {
         Intent gintent = getIntent();
         String keyword = gintent.getStringExtra("keyword");
         String locname = gintent.getStringExtra("locname");
-        Double latitude = gintent.getDoubleExtra("latitude",0);
-        Double longitude = gintent.getDoubleExtra("longitude",0);
+        double latitude = gintent.getDoubleExtra("latitude",0);
+        double longitude = gintent.getDoubleExtra("longitude",0);
         GeoPoint geoPoint = new GeoPoint(latitude, longitude);
 
 
@@ -68,16 +68,16 @@ public class BookmarkEdit extends AppCompatActivity {
                ((LogoActivity) LogoActivity.context_logo).ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        ((LogoActivity) LogoActivity.context_logo).user = documentSnapshot.toObject(User.class);
+                        LogoActivity.user = documentSnapshot.toObject(User.class);
                     }
                 });
-                ((LogoActivity) LogoActivity.context_logo).user.keywords.remove(keyword);
-                ((LogoActivity) LogoActivity.context_logo).user.locnames.remove(keyword);
-                ((LogoActivity) LogoActivity.context_logo).user.geopoints.remove(keyword);
+                LogoActivity.user.keywords.remove(keyword);
+                LogoActivity.user.locnames.remove(keyword);
+                LogoActivity.user.geopoints.remove(keyword);
                 ((LogoActivity) LogoActivity.context_logo).ref.delete();
                 ((LogoActivity) LogoActivity.context_logo).db.collection("users")
                         .document(((LogoActivity) LogoActivity.context_logo).userID)
-                        .set(((LogoActivity) LogoActivity.context_logo).user)
+                        .set(LogoActivity.user)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -93,7 +93,7 @@ public class BookmarkEdit extends AppCompatActivity {
                 ((LogoActivity) LogoActivity.context_logo).ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        ((LogoActivity) LogoActivity.context_logo).user = documentSnapshot.toObject(User.class);
+                        LogoActivity.user = documentSnapshot.toObject(User.class);
                     }
                 });
 
@@ -110,8 +110,8 @@ public class BookmarkEdit extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkEdit.this, RouteGuideActivity.class);
                 intent.putExtra("name", locname);
-                intent.putExtra("latitude",latitude.toString());
-                intent.putExtra("longitude",longitude.toString());
+                intent.putExtra("latitude", Double.toString(latitude));
+                intent.putExtra("longitude", Double.toString(longitude));
                 startActivity(intent);
                 finish();
             }

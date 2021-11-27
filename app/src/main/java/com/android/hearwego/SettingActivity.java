@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -117,6 +119,22 @@ public class SettingActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int i) {
                                         ((LogoActivity) LogoActivity.context_logo).withdraw();
                                         Toast.makeText(SettingActivity.this, "계정이 삭제 되었습니다.", Toast.LENGTH_LONG).show();
+                                        ((LogoActivity) LogoActivity.context_logo).db.collection("users").document(((LogoActivity) LogoActivity.context_logo).userID)
+                                                .delete()
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Log.d("TAG", "DocumentSnapshot successfully deleted!");
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.w("TAG", "Error deleting document", e);
+                                                    }
+                                                });
+
+
                                         Intent intent = new Intent(SettingActivity.this, LogoActivity.class);
                                         startActivity(intent);
                                         finish();

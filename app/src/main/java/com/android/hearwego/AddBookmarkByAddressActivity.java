@@ -317,7 +317,7 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
                     ((LogoActivity) LogoActivity.context_logo).ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            ((LogoActivity) LogoActivity.context_logo).user = documentSnapshot.toObject(User.class);
+                            LogoActivity.user = documentSnapshot.toObject(User.class);
                         }
                     });
                     Intent intent = new Intent(AddBookmarkByAddressActivity.this, HomeActivity.class);
