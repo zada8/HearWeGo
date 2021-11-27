@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,10 +45,10 @@ public class HomeActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility( uiOption );
 
 
-        ImageButton button_navi = findViewById(R.id.menu_navi); //메뉴1: 길 안내 이미지 버튼 객체 참조
-        ImageButton button_surround = findViewById(R.id.menu_surround); //메뉴2: 주변시설 이미지 버튼 객체 참조
-        ImageButton button_bookmark = findViewById(R.id.menu_bookmark); //메뉴3: 즐겨찾기 이미지 버튼 객체 참조
-        ImageButton button_setting = findViewById(R.id.menu_setting); //메뉴4: 설정 이미지 버튼 객체 참조
+        Button button_navi = findViewById(R.id.menu_navi); //메뉴1: 길 안내 이미지 버튼 객체 참조
+        Button button_surround = findViewById(R.id.menu_surround); //메뉴2: 주변시설 이미지 버튼 객체 참조
+        Button button_bookmark = findViewById(R.id.menu_bookmark); //메뉴3: 즐겨찾기 이미지 버튼 객체 참조
+        Button button_setting = findViewById(R.id.menu_setting); //메뉴4: 설정 이미지 버튼 객체 참조
 
         button_navi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,14 +86,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        /*Intent intent = getIntent();
-        String name = intent.getStringExtra("name"); //LogoActivity로부터 이름 전달받음
-        String imageurl = intent.getStringExtra("imageurl"); //LogoActivity로부터 이미지 url 전달받음
-
-        name_box = findViewById(R.id.name_box); //name 텍스트를 TextView에 세팅
-        name_box.setText(name);
-        image_box = findViewById(R.id.image_box);
-        Glide.with(this).load(imageurl).into(image_box); //이미지 url을 ImageView에 세팅*/
 
     }
 
