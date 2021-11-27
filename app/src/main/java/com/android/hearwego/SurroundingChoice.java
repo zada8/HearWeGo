@@ -74,7 +74,9 @@ public class SurroundingChoice extends AppCompatActivity {
         button_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(SurroundingChoice.this, SurroundingActivity.class);
+                startActivity(intent);
+                finish();
             }
 
         });
