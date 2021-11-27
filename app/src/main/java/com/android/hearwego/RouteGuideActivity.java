@@ -71,7 +71,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
     /*버튼 선언*/
     Button nowgps_btn; //현재 위치 확인 버튼
-    Button setStart_btn; //출발지 지정 버튼
+    Button button_walk; //도보 출발지 지정 버튼
+    Button button_subway; //지하철 출발지 지정 버튼
     Button button_previous; //이전 버튼
     Button button_home; //홈 버튼
 
@@ -151,7 +152,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
         /*버튼 설정*/
         nowgps_btn = findViewById(R.id.button2_nowgps);
-        setStart_btn = findViewById(R.id.button_setStartPoint);
+        button_walk = findViewById(R.id.button_setStartPoint);
+        button_subway = findViewById(R.id.button_setSubPoint);
         button_previous = findViewById(R.id.previous); //이전 이미지 버튼 객체 참조
         button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
 
@@ -160,8 +162,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         String nameData = intent.getStringExtra("name");
         latData = intent.getStringExtra("latitude");
         longData = intent.getStringExtra("longitude");
-        //Double latitude = intent.getDoubleExtra("latitude", 0);
-        //Double longitude = intent.getDoubleExtra("longitude", 0);
 
         destination_text = findViewById(R.id.destination_text);
         destination_text.setText(nameData);
@@ -183,17 +183,15 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             }
         });
 
-        /*출발지 설정 확인 버틀 누를 시*/
-        setStart_btn.setOnClickListener(new View.OnClickListener() {
+        /*도보 출발지 설정 버튼 누를 시*/
+        button_walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TMapPoint nowpoint = tMapView.getLocationPoint();
                 String latitude = Double.toString(nowpoint.getLatitude());
                 String longitude = Double.toString(nowpoint.getLongitude());
 
-
-                getSubwayStation();
-                //getRoute(longitude, latitude, longData, latData);
+                getRoute(longitude, latitude, longData, latData);
             }
         });
 
@@ -356,11 +354,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                     }
                 }
 
-                System.out.println("JSON확인-distance"+ ep_distance);
-                System.out.println("JSON확인-feaIndex2" + LatLngArrayList);
-                System.out.println("JSON확인-description" + DescriptionList);
-
-
                 /*첫번째 설명, 남은 거리 구하기 위함*/
                 description = DescriptionList.get(0);
                 guide_text.setText(description);
@@ -369,7 +362,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
                 reDistance_text.setText(reDistnace + "m");
                 textToSpeech.speak(description, TextToSpeech.QUEUE_FLUSH, null);
-                //Log.d("JSON확인", reDistnace);
 
 
             } catch (JSONException e) {
