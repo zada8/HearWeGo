@@ -169,7 +169,7 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
         sttBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                textToSpeech.speak("목적지 키워드를 음성으로 입력해주세요", TextToSpeech.QUEUE_FLUSH, null);
+                textToSpeech.speak("목적지 주소를 음성으로 입력해주세요", TextToSpeech.QUEUE_FLUSH, null);
                 // 딜레이를 1초 주기
                 textToSpeech.playSilence(1000, TextToSpeech.QUEUE_ADD, null);
 

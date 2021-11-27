@@ -124,7 +124,7 @@ public class SettingActivity extends AppCompatActivity {
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
-                                                        Log.d("TAG", "DocumentSnapshot successfully deleted!");
+                                                        Log.d("TAG", "계정 정보 삭제");
                                                     }
                                                 })
                                                 .addOnFailureListener(new OnFailureListener() {
