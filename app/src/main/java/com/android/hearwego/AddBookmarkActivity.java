@@ -119,21 +119,13 @@ public class AddBookmarkActivity extends AppCompatActivity{
         button_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddBookmarkActivity.this, SurroundingChoice.class);
+                Intent intent = new Intent(AddBookmarkActivity.this, SurroundingActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
 
         //홈 버튼 누를 시 화면 전환
-        button_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AddBookmarkActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
         button_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
