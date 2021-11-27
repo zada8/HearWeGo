@@ -56,6 +56,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     /*텍스트뷰 선언*/
     TextView destination_text;
     TextView guide_text;
+    TextView guide_text2;
     TextView reDistance_text;
 
     String appKey = "l7xx59d0bb77ddfc45efb709f48d1b31715c"; //appKey
@@ -98,7 +99,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     /*실시간 음성안내를 위한 변수 선언*/
     int index = 1;
     int check = 1;
-    int ep_distance = 0;
     Double g_latitude = 0.0;
     Double g_longitude = 0.0;
     String description = "";
@@ -166,6 +166,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         destination_text = findViewById(R.id.destination_text);
         destination_text.setText(nameData);
         guide_text = findViewById(R.id.guide_message);
+        guide_text2 = findViewById(R.id.guide_message2);
         reDistance_text = findViewById(R.id.distance);
 
         /*현재 위치 확인 버튼 누를 시*/
@@ -192,6 +193,16 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 String longitude = Double.toString(nowpoint.getLongitude());
 
                 getRoute(longitude, latitude, longData, latData);
+                button_walk.setVisibility(View.INVISIBLE);
+                button_subway.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        /*지하철 버튼 누를 시*/
+        button_subway.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSubwayStation();
             }
         });
 
@@ -217,6 +228,10 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
     /*지하철 경로 JSON 파일을 가져오는 함수*/
     public void getSubwayStation(){
+        TMapPoint nowpoint = tMapView.getLocationPoint();
+        String latitude = Double.toString(nowpoint.getLatitude());
+        String longitude = Double.toString(nowpoint.getLongitude());
+
         OnResultCallbackListener onResultCallbackListener = new OnResultCallbackListener() {
             @Override
             public void onSuccess(ODsayData oDsayData, API api) {
@@ -235,12 +250,9 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                             Double f_latitude = Double.parseDouble(station.getString("y"));
                             SubLatLngList.add(new TMapPoint(f_latitude, f_longitude));
                         }
-
-                        System.out.println(StationNameList);
-                        System.out.println(SubLatLngList);
-
-                        Log.d("JSON-ODSAY", stations.toString());
-                        Log.d("JSON-ODSAY", Integer.toString(stations.length()));
+                        System.out.println(SubLatLngList.get(0).getLongitude());
+                        System.out.println(SubLatLngList.get(0).getLatitude());
+                        getRoute(longitude, latitude, Double.toString(SubLatLngList.get(0).getLongitude()), Double.toString(SubLatLngList.get(0).getLatitude()));
                     }
                 } catch (JSONException e){
                     e.printStackTrace();
@@ -255,8 +267,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 }
             }
         };
-        //oDsayService.requestSearchPubTransPath(Double.toString(longitude), Double.toString(latitude),longData, latData,"0", "0", "1", onResultCallbackListener);
-        oDsayService.requestSearchPubTransPath("129.13297481348195", "35.17208707493014", longData, latData,"0", "0", "1", onResultCallbackListener);
+        oDsayService.requestSearchPubTransPath(longitude, latitude,longData, latData,"0", "0", "1", onResultCallbackListener);
+        //oDsayService.requestSearchPubTransPath("129.13297481348195", "35.17208707493014", longData, latData,"0", "0", "1", onResultCallbackListener);
     }
 
     /*보행자 경로 JSON 파일을 가져오는 함수*/
@@ -353,6 +365,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                         }
                     }
                 }
+                //Log.d("JSON-ODSAY", LatLngArrayList.toString());
 
                 /*첫번째 설명, 남은 거리 구하기 위함*/
                 description = DescriptionList.get(0);
