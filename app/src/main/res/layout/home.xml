@@ -31,53 +31,68 @@
             android:layout_marginTop="24dp">
 
             <!-- Menu navi -->
-            <ImageButton
+            <Button
                 android:id="@+id/menu_navi"
                 android:layout_width="395dp"
                 android:layout_height="187.75dp"
-                android:background="@drawable/menu_navi" />
+                android:background="@drawable/bg_navi"
+                android:text="길 안내"
+                android:gravity="right|center_vertical"
+                android:paddingRight="61dp"
+                android:textColor="@color/yellow"
+                android:textSize="56sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
 
             <!-- Menu surroundings -->
-            <ImageButton
+            <Button
                 android:id="@+id/menu_surround"
                 android:layout_width="395dp"
                 android:layout_height="187.75dp"
                 android:layout_marginTop="195.75dp"
-                android:background="@drawable/menu_surroundings" />
+                android:background="@drawable/bg_surroundings"
+                android:text="주변시설"
+                android:gravity="right|center_vertical"
+                android:paddingRight="42dp"
+                android:textColor="@color/yellow"
+                android:textSize="56sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
 
             <!-- Menu bookmarks -->
-            <ImageButton
+            <Button
                 android:id="@+id/menu_bookmark"
                 android:layout_width="395dp"
                 android:layout_height="187.75dp"
                 android:layout_marginTop="391.5dp"
-                android:background="@drawable/menu_bookmark" />
+                android:background="@drawable/bg_bookmark"
+                android:text="즐겨찾기"
+                android:gravity="right|center_vertical"
+                android:paddingRight="42dp"
+                android:textColor="@color/yellow"
+                android:textSize="56sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
 
             <!-- Menu setting -->
-            <ImageButton
+            <Button
                 android:id="@+id/menu_setting"
                 android:layout_width="395dp"
                 android:layout_height="187.75dp"
                 android:layout_marginTop="587.25dp"
-                android:background="@drawable/menu_setting" />
+                android:background="@drawable/bg_setting"
+                android:text="설정"
+                android:gravity="right|center_vertical"
+                android:paddingRight="93.5dp"
+                android:textColor="@color/yellow"
+                android:textSize="56sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"/>
         </RelativeLayout>
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/name_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
-        android:id="@+id/image_box"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="@+id/background" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
