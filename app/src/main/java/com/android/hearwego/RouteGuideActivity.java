@@ -103,6 +103,15 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     Double g_longitude = 0.0;
     String description = "";
 
+    /*지하철 경로 구현 위한 변수 선언*/
+    int type = 1;
+    int subway = 0;
+    int subIndex = 0;
+    int subwayCount = 0;
+    Double s_latitude = 0.0;
+    Double s_longitude = 0.0;
+    String subName = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -231,14 +240,19 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         TMapPoint nowpoint = tMapView.getLocationPoint();
         String latitude = Double.toString(nowpoint.getLatitude());
         String longitude = Double.toString(nowpoint.getLongitude());
+        subway = 1;
 
         OnResultCallbackListener onResultCallbackListener = new OnResultCallbackListener() {
             @Override
             public void onSuccess(ODsayData oDsayData, API api) {
                 try{
                     if(api == API.SEARCH_PUB_TRANS_PATH){
-                        JSONObject path = (JSONObject) oDsayData.getJson().getJSONObject("result").getJSONArray("path").get(0);
+                        JSONObject result = oDsayData.getJson().getJSONObject("result");
+                        subwayCount = result.getInt("subwayCount");
+                        JSONObject path = (JSONObject) result.getJSONArray("path").get(0);
                         JSONObject subpath = (JSONObject)path.getJSONArray("subPath").get(1);
+                        JSONObject lane = (JSONObject)subpath.getJSONArray("lane").get(0);
+                        subName = lane.getString("name");
                         JSONObject passStoplist = subpath.getJSONObject("passStopList");
                         JSONArray stations = passStoplist.getJSONArray("stations");
                         for(int i = 0;i<stations.length();i++){
@@ -246,13 +260,15 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                             String stationName = station.getString("stationName");
                             StationNameList.add(stationName);
 
-                            Double f_longitude = Double.parseDouble(station.getString("x"));
-                            Double f_latitude = Double.parseDouble(station.getString("y"));
-                            SubLatLngList.add(new TMapPoint(f_latitude, f_longitude));
+                            Double longitude = Double.parseDouble(station.getString("x"));
+                            Double latitude = Double.parseDouble(station.getString("y"));
+                            SubLatLngList.add(new TMapPoint(latitude, longitude));
                         }
-                        System.out.println(SubLatLngList.get(0).getLongitude());
-                        System.out.println(SubLatLngList.get(0).getLatitude());
+                        Log.d("JSON-ODSAY-역이름", StationNameList.toString());
+                        Log.d("JSON-ODSAY-위경도", SubLatLngList.toString());
+                        guide_text2.setText("출발역은 " +StationNameList.get(0) + "역입니다");
                         getRoute(longitude, latitude, Double.toString(SubLatLngList.get(0).getLongitude()), Double.toString(SubLatLngList.get(0).getLatitude()));
+
                     }
                 } catch (JSONException e){
                     e.printStackTrace();
@@ -365,7 +381,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                         }
                     }
                 }
-                //Log.d("JSON-ODSAY", LatLngArrayList.toString());
+                Log.d("JSON-ODSAY", LatLngArrayList.toString());
 
                 /*첫번째 설명, 남은 거리 구하기 위함*/
                 description = DescriptionList.get(0);
@@ -414,10 +430,14 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         nowPoint = tMapView.getLocationPoint();
         latitude = nowPoint.getLatitude();
         longitude = nowPoint.getLongitude();
-        if(root != null){
+        Log.d("JSON-LatLng", nowPoint.toString());
+        if(root != null && type == 1){
             if(index<DescriptionList.size()){
                 getDescription();
             }
+        }
+        if(subway == 1 && type == 2){
+            getSubRoute();
         }
     }
 
@@ -435,10 +455,10 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
         reDistance_text.setText(reDistnace+"m");
         textToSpeech.speak("다음 목적지까지 " + reDistnace +"미터 남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
-        Log.d("JSON실행-gLngLat", Double.toString(g_latitude) + Double.toString(g_longitude));
+        //Log.d("JSON실행-gLngLat", Double.toString(g_latitude) + Double.toString(g_longitude));
 
-        /*위도 경도 차이가 0.00005보다 작을 경우 실행*/
-        if(latitude_gap <= 0.00005 || longitude_gap <= 0.00005){
+        /*위도 경도 차이가 0.00001보다 작을 경우 실행*/
+        if(latitude_gap <= 0.00001 || longitude_gap <= 0.00001){
             if(index < LatLngArrayList.size()-1){
                 g_latitude = LatLngArrayList.get(index+1).getLatitude();
                 g_longitude = LatLngArrayList.get(index+1).getLongitude();
@@ -450,14 +470,52 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             textToSpeech.speak(DescriptionList.get(index), TextToSpeech.QUEUE_FLUSH, null);
 
             if(index == DescriptionList.size()-1){
-                tMapGpsManager.CloseGps();
+                if(subway == 1){
+                    type = 2;
+                    Log.d("JSON실행-sub=1,type=2", "실행??");
+                } else{
+                    tMapGpsManager.CloseGps();
+                }
             }
-
             if(index < DescriptionList.size()-1){
                 index = index +1;
                 check = check + 1;
             }
         }
+
+    }
+
+    public void getSubRoute(){
+        if(subwayCount == 1){ //환승이 없는 경우
+            Log.d("JSON실행-SubRoute", "실행??");
+            double latitude_gap = 0.0;
+            double longitude_gap = 0.0;
+
+            s_latitude = SubLatLngList.get(subIndex).getLatitude();
+            s_longitude = SubLatLngList.get(subIndex).getLongitude();
+
+            /*현재 위치와 지하철역 위도,경도 차이 계산*/
+            latitude_gap = Math.abs(latitude - s_latitude);
+            longitude_gap = Math.abs(longitude - s_longitude);
+
+            guide_text2.setText("환승 없음\n" + "지하철 정보는 " + subName + "입니다.");
+
+            if(latitude_gap <= 0.00005 || longitude_gap <= 0.00005){
+                reDistance_text.setText(StationNameList.get(subIndex));
+
+                if(subIndex == StationNameList.size() - 1){
+                    guide_text.setText("도착역입니다.");
+                } else{
+                    guide_text.setText("다음역은 " + StationNameList.get(subIndex+1)+"입니다.");
+                }
+
+                if(subIndex < StationNameList.size()-1){
+                    subIndex = subIndex + 1;
+                }
+
+            }
+        }
+
 
     }
     }
