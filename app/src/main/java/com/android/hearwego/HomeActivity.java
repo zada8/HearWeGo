@@ -85,14 +85,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        Intent intent = getIntent();
+        /*Intent intent = getIntent();
         String name = intent.getStringExtra("name"); //LogoActivity로부터 이름 전달받음
         String imageurl = intent.getStringExtra("imageurl"); //LogoActivity로부터 이미지 url 전달받음
 
         name_box = findViewById(R.id.name_box); //name 텍스트를 TextView에 세팅
         name_box.setText(name);
         image_box = findViewById(R.id.image_box);
-        Glide.with(this).load(imageurl).into(image_box); //이미지 url을 ImageView에 세팅
+        Glide.with(this).load(imageurl).into(image_box); //이미지 url을 ImageView에 세팅*/
 
     }
 
