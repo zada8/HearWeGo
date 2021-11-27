@@ -80,7 +80,7 @@
         android:id="@+id/distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:text="0M"
         android:textColor="#FFE500"
         android:textSize="64sp"
@@ -94,74 +94,94 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="길 안내 설명"
         android:textAlignment="center"
         android:textColor="#FFE500"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button_pause"
-        app:layout_constraintTop_toBottomOf="@+id/distance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="5dp" />
+        app:layout_constraintTop_toBottomOf="@+id/distance" />
 
-    <ImageButton
-        android:id="@+id/button_pause"
-        style="@android:style/Widget.ImageButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="390dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/skip_next"
-        app:icon="@drawable/pause"
-        app:iconGravity="textEnd"
-        app:iconPadding="0dp"
-        app:iconTint="#FFE500"
-        app:srcCompat="@drawable/pause"
-        tools:ignore="VectorDrawableCompat"
-        app:layout_constraintBottom_toTopOf="@+id/button2_nowgps"
-        app:layout_constraintTop_toBottomOf="@+id/guide_message"
+        android:orientation="vertical"
+        android:layout_marginTop="130dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button2_nowgps"
+        app:layout_constraintTop_toBottomOf="@+id/guide_message">
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_setStartPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/default_yellow"
+                android:layout_centerHorizontal="true"
+                android:text="도보"
+                android:textColor="@color/yellow"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <Button
+                android:id="@+id/button_setSubPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/default_yellow"
+                android:layout_centerHorizontal="true"
+                android:text="지하철"
+                android:textColor="@color/yellow"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button2_nowgps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
-        android:background="@drawable/default_yellow"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/default_yellow"
+        android:fontFamily="@font/inter_medium"
+        android:gravity="center"
         android:text="현재 위치 확인"
         android:textColor="@color/yellow"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:fontFamily="@font/inter_medium"
-        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_pause" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/button_setStartPoint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/default_yellow"
-        android:layout_centerHorizontal="true"
-        android:text="출발지 설정"
-        android:textColor="@color/yellow"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/inter_medium"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2_nowgps"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"/>
+
 
 
 

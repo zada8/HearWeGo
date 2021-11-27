@@ -81,10 +81,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     String reDistnace;
 
     /*JSON 받아오기 위한 변수 선언*/
-    String startX;//출발지 경도
-    String startY;//출발지 위도
-    String endX;//목적지 경도
-    String endY;//목적지 위도
     String latData;//주변시설에서 받아온 목적지 위도
     String longData;//주변시설에서 받아온 목적지 경도
     String uu = null;
@@ -93,7 +89,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
     /*JSON 변수 선언*/
     JSONObject root = null;
-    JSONObject rootSub = null;
     ArrayList<TMapPoint> LatLngArrayList = new ArrayList<TMapPoint>();
     ArrayList<String> DescriptionList = new ArrayList<String>();
     ArrayList<String> StationNameList = new ArrayList<String>();
@@ -193,11 +188,12 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             @Override
             public void onClick(View v) {
                 TMapPoint nowpoint = tMapView.getLocationPoint();
-                latitude = nowpoint.getLatitude();
-                longitude = nowpoint.getLongitude();
+                String latitude = Double.toString(nowpoint.getLatitude());
+                String longitude = Double.toString(nowpoint.getLongitude());
 
-                getSubwayRoute();
-                //getRoute();
+
+                getSubwayStation();
+                //getRoute(longitude, latitude, longData, latData);
             }
         });
 
@@ -222,7 +218,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     }
 
     /*지하철 경로 JSON 파일을 가져오는 함수*/
-    public void getSubwayRoute(){
+    public void getSubwayStation(){
         OnResultCallbackListener onResultCallbackListener = new OnResultCallbackListener() {
             @Override
             public void onSuccess(ODsayData oDsayData, API api) {
@@ -236,14 +232,20 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                             JSONObject station = (JSONObject)stations.get(i);
                             String stationName = station.getString("stationName");
                             StationNameList.add(stationName);
+
+                            Double f_longitude = Double.parseDouble(station.getString("x"));
+                            Double f_latitude = Double.parseDouble(station.getString("y"));
+                            SubLatLngList.add(new TMapPoint(f_latitude, f_longitude));
                         }
+
+                        System.out.println(StationNameList);
+                        System.out.println(SubLatLngList);
 
                         Log.d("JSON-ODSAY", stations.toString());
                         Log.d("JSON-ODSAY", Integer.toString(stations.length()));
                     }
                 } catch (JSONException e){
                     e.printStackTrace();
-                    //Log.e("error", e.getMessage());
                 }
 
             }
@@ -255,18 +257,12 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 }
             }
         };
-        oDsayService.requestSearchPubTransPath(Double.toString(longitude), Double.toString(latitude),longData, latData,"0", "0", "1", onResultCallbackListener);
-        //oDsayService.requestSearchPubTransPath("129.13297481348195", "35.17208707493014", longData, latData,"0", "0", "1", onResultCallbackListener);
+        //oDsayService.requestSearchPubTransPath(Double.toString(longitude), Double.toString(latitude),longData, latData,"0", "0", "1", onResultCallbackListener);
+        oDsayService.requestSearchPubTransPath("129.13297481348195", "35.17208707493014", longData, latData,"0", "0", "1", onResultCallbackListener);
     }
 
     /*보행자 경로 JSON 파일을 가져오는 함수*/
-    public void getRoute(){
-
-        startX = Double.toString(longitude);
-        startY = Double.toString(latitude);
-        endX = longData;
-        endY = latData;
-        //Log.d("JSON확인", startX+startY+endX+endY);
+    public void getRoute(String startX, String startY, String endX, String endY){
 
         try {
             String startName = URLEncoder.encode("출발지", "UTF-8");
@@ -411,10 +407,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
         tMapView.setCenterPoint(location.getLongitude(), location.getLatitude());
         nowPoint = tMapView.getLocationPoint();
-         //Log.d("현재위치-RouteGuide", nowPoint.toString());
         latitude = nowPoint.getLatitude();
         longitude = nowPoint.getLongitude();
-         //Log.d("JSON확인1", latitude.toString() + longitude.toString());
         if(root != null){
             if(index<DescriptionList.size()){
                 getDescription();
@@ -431,18 +425,15 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         /*GPS와 경유지의 위도, 경도 차이 계산*/
         latitude_gap = Math.abs(latitude - g_latitude);
         longitude_gap = Math.abs(longitude - g_longitude);
-        //Log.d("JSON실행?", "실행O");
 
         /*현재 위치와 경유지까지의 거리 계산*/
         reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
         reDistance_text.setText(reDistnace+"m");
         textToSpeech.speak("다음 목적지까지 " + reDistnace +"미터 남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
         Log.d("JSON실행-gLngLat", Double.toString(g_latitude) + Double.toString(g_longitude));
-        //Log.d("JSON실행?-남은m", reDistnace+"m");
 
         /*위도 경도 차이가 0.00005보다 작을 경우 실행*/
         if(latitude_gap <= 0.00005 || longitude_gap <= 0.00005){
-            //Log.d("JSON실행?3", "실행됐니");
             if(index < LatLngArrayList.size()-1){
                 g_latitude = LatLngArrayList.get(index+1).getLatitude();
                 g_longitude = LatLngArrayList.get(index+1).getLongitude();
@@ -450,7 +441,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
             reDistance_text.setText(reDistnace+"m");
             Log.d("JSON실행-gLngLat", Double.toString(g_latitude) + Double.toString(g_longitude));
-            //Log.d("JSON실행?-남은m", reDistnace+"m");
             guide_text.setText(DescriptionList.get(index));
             textToSpeech.speak(DescriptionList.get(index), TextToSpeech.QUEUE_FLUSH, null);
 
@@ -463,8 +453,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 check = check + 1;
             }
         }
-
-
 
     }
     }
