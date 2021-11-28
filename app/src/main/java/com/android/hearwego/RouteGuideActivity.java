@@ -112,6 +112,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     Double s_longitude = 0.0;
     String subName = "";
 
+    int locNum = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,7 +221,9 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         button_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                locNum = 0;
                 onBackPressed();
+                finish();
             }
         });
 
@@ -227,6 +231,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         button_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                locNum = 0;
                 Intent intent = new Intent(RouteGuideActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
@@ -424,20 +429,22 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     /*사용자 위치가 변경되면 실행되는 함수*/
     @Override
     public void onLocationChange(Location location) {
-        //현재 위치의 위도, 경도를 받아옴
-        tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
-        tMapView.setCenterPoint(location.getLongitude(), location.getLatitude());
-        nowPoint = tMapView.getLocationPoint();
-        latitude = nowPoint.getLatitude();
-        longitude = nowPoint.getLongitude();
-        Log.d("JSON-LatLng", nowPoint.toString());
-        if(root != null && type == 1){
-            if(index<DescriptionList.size()){
-                getDescription();
+        if(locNum == 1){
+            //현재 위치의 위도, 경도를 받아옴
+            tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
+            tMapView.setCenterPoint(location.getLongitude(), location.getLatitude());
+            nowPoint = tMapView.getLocationPoint();
+            latitude = nowPoint.getLatitude();
+            longitude = nowPoint.getLongitude();
+            Log.d("JSON-LatLng", nowPoint.toString());
+            if(root != null && type == 1){
+                if(index<DescriptionList.size()){
+                    getDescription();
+                }
             }
-        }
-        if(subway == 1 && type == 2){
-            getSubRoute();
+            if(subway == 1 && type == 2){
+                getSubRoute();
+            }
         }
     }
 
