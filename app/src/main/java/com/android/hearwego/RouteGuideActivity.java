@@ -252,8 +252,9 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 try{
                     if(api == API.SEARCH_PUB_TRANS_PATH){
                         JSONObject result = oDsayData.getJson().getJSONObject("result");
-                        subwayCount = result.getInt("subwayCount");
                         JSONObject path = (JSONObject) result.getJSONArray("path").get(0);
+                        JSONObject info = path.getJSONObject("info");
+                        subwayCount = info.getInt("subwayTransitCount");
                         JSONObject subpath = (JSONObject)path.getJSONArray("subPath").get(1);
                         JSONObject lane = (JSONObject)subpath.getJSONArray("lane").get(0);
                         subName = lane.getString("name");
