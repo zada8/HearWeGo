@@ -173,7 +173,6 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         String nameData = intent.getStringExtra("name");
         latData = intent.getStringExtra("latitude");
         longData = intent.getStringExtra("longitude");
-
         destination_text = findViewById(R.id.destination_text);
         destination_text.setText(nameData);
         guide_text = findViewById(R.id.guide_message);

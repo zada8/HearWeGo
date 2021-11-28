@@ -85,6 +85,7 @@
         android:textColor="#FFE500"
         android:textSize="64sp"
         android:textStyle="bold"
+        android:fontFamily="@font/inter_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_route_guide" />
@@ -101,6 +102,7 @@
         android:textColor="#FFE500"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:fontFamily="@font/inter_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/distance" />
@@ -117,6 +119,7 @@
         android:textColor="#FFE500"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:fontFamily="@font/inter_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guide_message" />
@@ -192,16 +195,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent" />
-
-
-
     </LinearLayout>
-
-
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
