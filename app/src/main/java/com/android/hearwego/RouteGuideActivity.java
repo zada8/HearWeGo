@@ -94,6 +94,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     ArrayList<TMapPoint> LatLngArrayList = new ArrayList<TMapPoint>();
     ArrayList<String> DescriptionList = new ArrayList<String>();
     ArrayList<String> StationNameList = new ArrayList<String>();
+    ArrayList<String> LaneList = new ArrayList<String>();
     ArrayList<TMapPoint> SubLatLngList = new ArrayList<TMapPoint>();
 
     /*실시간 음성안내를 위한 변수 선언*/
@@ -255,20 +256,38 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                         JSONObject path = (JSONObject) result.getJSONArray("path").get(0);
                         JSONObject info = path.getJSONObject("info");
                         subwayCount = info.getInt("subwayTransitCount");
-                        JSONObject subpath = (JSONObject)path.getJSONArray("subPath").get(1);
-                        JSONObject lane = (JSONObject)subpath.getJSONArray("lane").get(0);
-                        subName = lane.getString("name");
-                        JSONObject passStoplist = subpath.getJSONObject("passStopList");
-                        JSONArray stations = passStoplist.getJSONArray("stations");
-                        for(int i = 0;i<stations.length();i++){
-                            JSONObject station = (JSONObject)stations.get(i);
+                        for(int i = 1;i<=subwayCount;i++){
+                            JSONObject subpath = (JSONObject)path.getJSONArray("subPath").get(2*i-1);
+                            JSONObject lane = (JSONObject)subpath.getJSONArray("lane").get(0);
+                            String subName = lane.getString("name");
+                            LaneList.add(subName);
+                            JSONObject passStopList = subpath.getJSONObject("passStopList");
+                            JSONArray stations = passStopList.getJSONArray("stations");
+                            for(int j = 0;j<stations.length();j++){
+                                JSONObject station = (JSONObject)stations.get(j);
+                                String stationName = station.getString("stationName");
+                                StationNameList.add(stationName);
+
+                                double longitude = Double.parseDouble(station.getString("x"));
+                                double latitude = Double.parseDouble(station.getString("y"));
+                                SubLatLngList.add(new TMapPoint(latitude, longitude));
+                            }
+
+                        }
+                        //JSONObject subpath = (JSONObject)path.getJSONArray("subPath").get(1);
+                        //JSONObject lane = (JSONObject)subpath.getJSONArray("lane").get(0);
+                        //subName = lane.getString("name");
+                        //JSONObject passStoplist = subpath.getJSONObject("passStopList");
+                        //JSONArray stations = passStoplist.getJSONArray("stations");
+                        /*for(int j = 0;j<stations.length();j++){
+                            JSONObject station = (JSONObject)stations.get(j);
                             String stationName = station.getString("stationName");
                             StationNameList.add(stationName);
 
                             Double longitude = Double.parseDouble(station.getString("x"));
                             Double latitude = Double.parseDouble(station.getString("y"));
                             SubLatLngList.add(new TMapPoint(latitude, longitude));
-                        }
+                        }*/
                         Log.d("JSON-ODSAY-역이름", StationNameList.toString());
                         Log.d("JSON-ODSAY-위경도", SubLatLngList.toString());
                         guide_text2.setText("출발역은 " +StationNameList.get(0) + "역입니다");

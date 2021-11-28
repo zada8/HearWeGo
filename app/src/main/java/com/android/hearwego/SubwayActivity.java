@@ -51,6 +51,8 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
     Button button_subway9;
     Button button_subway10;
 
+    int subNum = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,23 +127,25 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
 
     @Override
     public void onLocationChange(Location location) {
-        tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
-        nowPoint = tMapView.getLocationPoint();
-        Log.d("지하철역-현재위치", nowPoint.toString());
+        if(subNum == 1){
+            tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
+            nowPoint = tMapView.getLocationPoint();
+            Log.d("지하철역-현재위치", nowPoint.toString());
 
-        /*Tmap 기본 위치가 SKT 타워로 설정되어있음.
-         * SKT 타워 주변의 지하철역이 뜨지 않게 만들기 위해서
-         * SKT 타워 경도와 진짜 현재 위치의 경도를 비교*/
-        n_latitude = Double.toString(nowPoint.getLatitude());
-        if(n_latitude.equals(SKT_latitude) == true){
-            Log.d("현재위치-SKT타워O", "실행되었습니다.");
-        } else{
-            //현재 위치 탐색 완료 후 주변 공공기관 찾기 시작
-            Log.d("현재위치-SKT타워X", "실행되었습니다.");
+            /*Tmap 기본 위치가 SKT 타워로 설정되어있음.
+             * SKT 타워 주변의 지하철역이 뜨지 않게 만들기 위해서
+             * SKT 타워 경도와 진짜 현재 위치의 경도를 비교*/
+            n_latitude = Double.toString(nowPoint.getLatitude());
+            if(n_latitude.equals(SKT_latitude) == true){
+                Log.d("현재위치-SKT타워O", "실행되었습니다.");
+            } else{
+                //현재 위치 탐색 완료 후 주변 공공기관 찾기 시작
+                Log.d("현재위치-SKT타워X", "실행되었습니다.");
                 //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 공공기관을 가져온다.
                 tMapData.findAroundNamePOI(nowPoint, "지하철", 10, 10, new TMapData.FindAroundNamePOIListenerCallback() {
                     @Override
                     public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
+                        subNum = 0;
                         for(int i = 0;i<10;i++){
                             TMapPOIItem item = arrayList.get(i);
                             Log.d("지하철역-현재위치이름", item.getPOIName() + item.getDistance(nowPoint));
@@ -323,6 +327,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                     }
                 });
             }
+        }
 
         }
     }
