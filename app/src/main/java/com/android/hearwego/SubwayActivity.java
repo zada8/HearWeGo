@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import com.skt.Tmap.TMapView;
 import com.skt.Tmap.poi_item.TMapPOIItem;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
 
@@ -89,6 +91,7 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
             uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(uiOption);
 
+
         /*지하철 버튼 id 지정*/
         button_subway1 = findViewById(R.id.subway1);
         button_subway2 = findViewById(R.id.subway2);
@@ -142,188 +145,193 @@ public class SubwayActivity extends AppCompatActivity implements TMapGpsManager.
                 //현재 위치 탐색 완료 후 주변 공공기관 찾기 시작
                 Log.d("현재위치-SKT타워X", "실행되었습니다.");
                 //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 공공기관을 가져온다.
-                tMapData.findAroundNamePOI(nowPoint, "지하철", 10, 10, new TMapData.FindAroundNamePOIListenerCallback() {
+                tMapData.findAroundNamePOI(nowPoint, "지하철", 2, 10, new TMapData.FindAroundNamePOIListenerCallback() {
                     @Override
                     public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
                         subNum = 0;
-                        for(int i = 0;i<10;i++){
-                            TMapPOIItem item = arrayList.get(i);
-                            Log.d("지하철역-현재위치이름", item.getPOIName() + item.getDistance(nowPoint));
-                            switch (i){
-                                case 0:
-                                    button_subway1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_subway1.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
-                                            sub_intent.putExtra("name", item.getPOIName());
-                                            sub_intent.putExtra("address", item.getPOIAddress());
-                                            sub_intent.putExtra("latitude", item.noorLat);
-                                            sub_intent.putExtra("longitude", item.noorLon);
-                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(sub_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 1:
-                                    button_subway2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_subway2.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
-                                            sub_intent.putExtra("name", item.getPOIName());
-                                            sub_intent.putExtra("address", item.getPOIAddress());
-                                            sub_intent.putExtra("latitude", item.noorLat);
-                                            sub_intent.putExtra("longitude", item.noorLon);
-                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(sub_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 2:
-                                    button_subway3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_subway3.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
-                                            sub_intent.putExtra("name", item.getPOIName());
-                                            sub_intent.putExtra("address", item.getPOIAddress());
-                                            sub_intent.putExtra("latitude", item.noorLat);
-                                            sub_intent.putExtra("longitude", item.noorLon);
-                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(sub_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 3:
-                                    button_subway4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_subway4.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
-                                            sub_intent.putExtra("name", item.getPOIName());
-                                            sub_intent.putExtra("address", item.getPOIAddress());
-                                            sub_intent.putExtra("latitude", item.noorLat);
-                                            sub_intent.putExtra("longitude", item.noorLon);
-                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(sub_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 4:
-                                    button_subway5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_subway5.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
-                                            sub_intent.putExtra("name", item.getPOIName());
-                                            sub_intent.putExtra("address", item.getPOIAddress());
-                                            sub_intent.putExtra("latitude", item.noorLat);
-                                            sub_intent.putExtra("longitude", item.noorLon);
-                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(sub_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 5:
-                                    button_subway6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_subway6.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
-                                            sub_intent.putExtra("name", item.getPOIName());
-                                            sub_intent.putExtra("address", item.getPOIAddress());
-                                            sub_intent.putExtra("latitude", item.noorLat);
-                                            sub_intent.putExtra("longitude", item.noorLon);
-                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(sub_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 6:
-                                    button_subway7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_subway7.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
-                                            sub_intent.putExtra("name", item.getPOIName());
-                                            sub_intent.putExtra("address", item.getPOIAddress());
-                                            sub_intent.putExtra("latitude", item.noorLat);
-                                            sub_intent.putExtra("longitude", item.noorLon);
-                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(sub_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 7:
-                                    button_subway8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_subway8.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
-                                            sub_intent.putExtra("name", item.getPOIName());
-                                            sub_intent.putExtra("address", item.getPOIAddress());
-                                            sub_intent.putExtra("latitude", item.noorLat);
-                                            sub_intent.putExtra("longitude", item.noorLon);
-                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(sub_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 8:
-                                    button_subway9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_subway9.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
-                                            sub_intent.putExtra("name", item.getPOIName());
-                                            sub_intent.putExtra("address", item.getPOIAddress());
-                                            sub_intent.putExtra("latitude", item.noorLat);
-                                            sub_intent.putExtra("longitude", item.noorLon);
-                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(sub_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 9:
-                                    button_subway10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_subway10.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
-                                            sub_intent.putExtra("name", item.getPOIName());
-                                            sub_intent.putExtra("address", item.getPOIAddress());
-                                            sub_intent.putExtra("latitude", item.noorLat);
-                                            sub_intent.putExtra("longitude", item.noorLon);
-                                            sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(sub_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                default:
-                                    Log.d("지하철-오류", "해당하는 버튼이 없습니다.");
+                        try{
+                            for(int i = 0;i<10;i++){
+                                TMapPOIItem item = arrayList.get(i);
+                                Log.d("지하철역-현재위치이름", item.getPOIName() + item.getDistance(nowPoint));
+                                switch (i){
+                                    case 0:
+                                        button_subway1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_subway1.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                                sub_intent.putExtra("name", item.getPOIName());
+                                                sub_intent.putExtra("address", item.getPOIAddress());
+                                                sub_intent.putExtra("latitude", item.noorLat);
+                                                sub_intent.putExtra("longitude", item.noorLon);
+                                                sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(sub_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 1:
+                                        button_subway2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_subway2.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                                sub_intent.putExtra("name", item.getPOIName());
+                                                sub_intent.putExtra("address", item.getPOIAddress());
+                                                sub_intent.putExtra("latitude", item.noorLat);
+                                                sub_intent.putExtra("longitude", item.noorLon);
+                                                sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(sub_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 2:
+                                        button_subway3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_subway3.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                                sub_intent.putExtra("name", item.getPOIName());
+                                                sub_intent.putExtra("address", item.getPOIAddress());
+                                                sub_intent.putExtra("latitude", item.noorLat);
+                                                sub_intent.putExtra("longitude", item.noorLon);
+                                                sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(sub_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 3:
+                                        button_subway4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_subway4.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                                sub_intent.putExtra("name", item.getPOIName());
+                                                sub_intent.putExtra("address", item.getPOIAddress());
+                                                sub_intent.putExtra("latitude", item.noorLat);
+                                                sub_intent.putExtra("longitude", item.noorLon);
+                                                sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(sub_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 4:
+                                        button_subway5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_subway5.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                                sub_intent.putExtra("name", item.getPOIName());
+                                                sub_intent.putExtra("address", item.getPOIAddress());
+                                                sub_intent.putExtra("latitude", item.noorLat);
+                                                sub_intent.putExtra("longitude", item.noorLon);
+                                                sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(sub_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 5:
+                                        button_subway6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_subway6.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                                sub_intent.putExtra("name", item.getPOIName());
+                                                sub_intent.putExtra("address", item.getPOIAddress());
+                                                sub_intent.putExtra("latitude", item.noorLat);
+                                                sub_intent.putExtra("longitude", item.noorLon);
+                                                sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(sub_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 6:
+                                        button_subway7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_subway7.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                                sub_intent.putExtra("name", item.getPOIName());
+                                                sub_intent.putExtra("address", item.getPOIAddress());
+                                                sub_intent.putExtra("latitude", item.noorLat);
+                                                sub_intent.putExtra("longitude", item.noorLon);
+                                                sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(sub_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 7:
+                                        button_subway8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_subway8.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                                sub_intent.putExtra("name", item.getPOIName());
+                                                sub_intent.putExtra("address", item.getPOIAddress());
+                                                sub_intent.putExtra("latitude", item.noorLat);
+                                                sub_intent.putExtra("longitude", item.noorLon);
+                                                sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(sub_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 8:
+                                        button_subway9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_subway9.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                                sub_intent.putExtra("name", item.getPOIName());
+                                                sub_intent.putExtra("address", item.getPOIAddress());
+                                                sub_intent.putExtra("latitude", item.noorLat);
+                                                sub_intent.putExtra("longitude", item.noorLon);
+                                                sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(sub_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 9:
+                                        button_subway10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_subway10.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent sub_intent = new Intent(SubwayActivity.this, SurroundingChoice.class);
+                                                sub_intent.putExtra("name", item.getPOIName());
+                                                sub_intent.putExtra("address", item.getPOIAddress());
+                                                sub_intent.putExtra("latitude", item.noorLat);
+                                                sub_intent.putExtra("longitude", item.noorLon);
+                                                sub_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(sub_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    default:
+                                        Log.d("지하철-오류", "해당하는 버튼이 없습니다.");
+                                }
                             }
+                        }catch (IndexOutOfBoundsException e){
+                            e.printStackTrace();
                         }
+
                     }
                 });
             }

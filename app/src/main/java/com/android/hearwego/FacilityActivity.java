@@ -145,188 +145,193 @@ public class FacilityActivity extends AppCompatActivity implements TMapGpsManage
                 //현재 위치 탐색 완료 후 주변 공공기관 찾기 시작
                 Log.d("현재위치-SKT타워X", "실행되었습니다.");
                 //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 공공기관을 가져온다.
-                tMapData.findAroundNamePOI(nowPoint, "공공기관", 10, 10, new TMapData.FindAroundNamePOIListenerCallback() {
+                tMapData.findAroundNamePOI(nowPoint, "공공기관", 2, 10, new TMapData.FindAroundNamePOIListenerCallback() {
                     @Override
                     public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
                         FacNum = 0;
-                        for(int i = 0;i<10;i++){
-                            TMapPOIItem item = arrayList.get(i);
-                            Log.d("공공기관-현재위치이름", item.getPOIName());
-                            switch (i){
-                                case 0:
-                                    button_facility1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_facility1.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
-                                            fac_intent.putExtra("name", item.getPOIName());
-                                            fac_intent.putExtra("address", item.getPOIAddress());
-                                            fac_intent.putExtra("latitude", item.noorLat);
-                                            fac_intent.putExtra("longitude", item.noorLon);
-                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(fac_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 1:
-                                    button_facility2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_facility2.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
-                                            fac_intent.putExtra("name", item.getPOIName());
-                                            fac_intent.putExtra("address", item.getPOIAddress());
-                                            fac_intent.putExtra("latitude", item.noorLat);
-                                            fac_intent.putExtra("longitude", item.noorLon);
-                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(fac_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 2:
-                                    button_facility3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_facility3.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
-                                            fac_intent.putExtra("name", item.getPOIName());
-                                            fac_intent.putExtra("address", item.getPOIAddress());
-                                            fac_intent.putExtra("latitude", item.noorLat);
-                                            fac_intent.putExtra("longitude", item.noorLon);
-                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(fac_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 3:
-                                    button_facility4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_facility4.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
-                                            fac_intent.putExtra("name", item.getPOIName());
-                                            fac_intent.putExtra("address", item.getPOIAddress());
-                                            fac_intent.putExtra("latitude", item.noorLat);
-                                            fac_intent.putExtra("longitude", item.noorLon);
-                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(fac_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 4:
-                                    button_facility5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_facility5.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
-                                            fac_intent.putExtra("name", item.getPOIName());
-                                            fac_intent.putExtra("address", item.getPOIAddress());
-                                            fac_intent.putExtra("latitude", item.noorLat);
-                                            fac_intent.putExtra("longitude", item.noorLon);
-                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(fac_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 5:
-                                    button_facility6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_facility6.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
-                                            fac_intent.putExtra("name", item.getPOIName());
-                                            fac_intent.putExtra("address", item.getPOIAddress());
-                                            fac_intent.putExtra("latitude", item.noorLat);
-                                            fac_intent.putExtra("longitude", item.noorLon);
-                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(fac_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 6:
-                                    button_facility7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_facility7.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
-                                            fac_intent.putExtra("name", item.getPOIName());
-                                            fac_intent.putExtra("address", item.getPOIAddress());
-                                            fac_intent.putExtra("latitude", item.noorLat);
-                                            fac_intent.putExtra("longitude", item.noorLon);
-                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(fac_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 7:
-                                    button_facility8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_facility8.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
-                                            fac_intent.putExtra("name", item.getPOIName());
-                                            fac_intent.putExtra("address", item.getPOIAddress());
-                                            fac_intent.putExtra("latitude", item.noorLat);
-                                            fac_intent.putExtra("longitude", item.noorLon);
-                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(fac_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 8:
-                                    button_facility9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_facility9.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
-                                            fac_intent.putExtra("name", item.getPOIName());
-                                            fac_intent.putExtra("address", item.getPOIAddress());
-                                            fac_intent.putExtra("latitude", item.noorLat);
-                                            fac_intent.putExtra("longitude", item.noorLon);
-                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(fac_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 9:
-                                    button_facility10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                    button_facility10.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
-                                            fac_intent.putExtra("name", item.getPOIName());
-                                            fac_intent.putExtra("address", item.getPOIAddress());
-                                            fac_intent.putExtra("latitude", item.noorLat);
-                                            fac_intent.putExtra("longitude", item.noorLon);
-                                            fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                            startActivity(fac_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                default:
-                                    Log.d("공공기관-오류", "해당하는 버튼이 없습니다.");
+                        try {
+                            for(int i = 0;i<10;i++){
+                                TMapPOIItem item = arrayList.get(i);
+                                Log.d("공공기관-현재위치이름", item.getPOIName());
+                                switch (i){
+                                    case 0:
+                                        button_facility1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_facility1.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                                fac_intent.putExtra("name", item.getPOIName());
+                                                fac_intent.putExtra("address", item.getPOIAddress());
+                                                fac_intent.putExtra("latitude", item.noorLat);
+                                                fac_intent.putExtra("longitude", item.noorLon);
+                                                fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(fac_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 1:
+                                        button_facility2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_facility2.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                                fac_intent.putExtra("name", item.getPOIName());
+                                                fac_intent.putExtra("address", item.getPOIAddress());
+                                                fac_intent.putExtra("latitude", item.noorLat);
+                                                fac_intent.putExtra("longitude", item.noorLon);
+                                                fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(fac_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 2:
+                                        button_facility3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_facility3.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                                fac_intent.putExtra("name", item.getPOIName());
+                                                fac_intent.putExtra("address", item.getPOIAddress());
+                                                fac_intent.putExtra("latitude", item.noorLat);
+                                                fac_intent.putExtra("longitude", item.noorLon);
+                                                fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(fac_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 3:
+                                        button_facility4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_facility4.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                                fac_intent.putExtra("name", item.getPOIName());
+                                                fac_intent.putExtra("address", item.getPOIAddress());
+                                                fac_intent.putExtra("latitude", item.noorLat);
+                                                fac_intent.putExtra("longitude", item.noorLon);
+                                                fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(fac_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 4:
+                                        button_facility5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_facility5.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                                fac_intent.putExtra("name", item.getPOIName());
+                                                fac_intent.putExtra("address", item.getPOIAddress());
+                                                fac_intent.putExtra("latitude", item.noorLat);
+                                                fac_intent.putExtra("longitude", item.noorLon);
+                                                fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(fac_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 5:
+                                        button_facility6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_facility6.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                                fac_intent.putExtra("name", item.getPOIName());
+                                                fac_intent.putExtra("address", item.getPOIAddress());
+                                                fac_intent.putExtra("latitude", item.noorLat);
+                                                fac_intent.putExtra("longitude", item.noorLon);
+                                                fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(fac_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 6:
+                                        button_facility7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_facility7.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                                fac_intent.putExtra("name", item.getPOIName());
+                                                fac_intent.putExtra("address", item.getPOIAddress());
+                                                fac_intent.putExtra("latitude", item.noorLat);
+                                                fac_intent.putExtra("longitude", item.noorLon);
+                                                fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(fac_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 7:
+                                        button_facility8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_facility8.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                                fac_intent.putExtra("name", item.getPOIName());
+                                                fac_intent.putExtra("address", item.getPOIAddress());
+                                                fac_intent.putExtra("latitude", item.noorLat);
+                                                fac_intent.putExtra("longitude", item.noorLon);
+                                                fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(fac_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 8:
+                                        button_facility9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_facility9.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                                fac_intent.putExtra("name", item.getPOIName());
+                                                fac_intent.putExtra("address", item.getPOIAddress());
+                                                fac_intent.putExtra("latitude", item.noorLat);
+                                                fac_intent.putExtra("longitude", item.noorLon);
+                                                fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(fac_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 9:
+                                        button_facility10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                        button_facility10.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent fac_intent = new Intent(FacilityActivity.this, SurroundingChoice.class);
+                                                fac_intent.putExtra("name", item.getPOIName());
+                                                fac_intent.putExtra("address", item.getPOIAddress());
+                                                fac_intent.putExtra("latitude", item.noorLat);
+                                                fac_intent.putExtra("longitude", item.noorLon);
+                                                fac_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
+                                                startActivity(fac_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    default:
+                                        Log.d("공공기관-오류", "해당하는 버튼이 없습니다.");
+                                }
                             }
+                        }catch (IndexOutOfBoundsException e){
+                            e.printStackTrace();
                         }
+
                     }
                 });
             }

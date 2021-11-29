@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -157,191 +158,195 @@ public class HospitalActivity extends AppCompatActivity implements TMapGpsManage
                     @Override
                     public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
                         hosNum = 0;
-                        for (int i = 0; i < 20; i++) {
-                            num = num + 1;
-                            if (num == 10) {
-                                break;
+                        try{
+                            for (int i = 0; i < 20; i++) {
+                                num = num + 1;
+                                if (num == 10) {
+                                    break;
+                                }
+                                TMapPOIItem item = arrayList.get(i);
+                                Log.d("병원:현재-위치", item.getPOIName());
+                                if (item.getPOIName().contains("주차장")) {
+                                    num = num - 1;
+                                    continue;
+                                }
+                                switch (num) {
+                                    case 0:
+                                        button_hospital1.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                        button_hospital1.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                                hs1_intent.putExtra("name", item.getPOIName());
+                                                hs1_intent.putExtra("address", item.getPOIAddress());
+                                                hs1_intent.putExtra("latitude", item.noorLat);
+                                                hs1_intent.putExtra("longitude", item.noorLon);
+                                                hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                                startActivity(hs1_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 1:
+                                        button_hospital2.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                        button_hospital2.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                                hs1_intent.putExtra("name", item.getPOIName());
+                                                hs1_intent.putExtra("address", item.getPOIAddress());
+                                                hs1_intent.putExtra("latitude", item.noorLat);
+                                                hs1_intent.putExtra("longitude", item.noorLon);
+                                                hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                                startActivity(hs1_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 2:
+                                        button_hospital3.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                        button_hospital3.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                                hs1_intent.putExtra("name", item.getPOIName());
+                                                hs1_intent.putExtra("address", item.getPOIAddress());
+                                                hs1_intent.putExtra("latitude", item.noorLat);
+                                                hs1_intent.putExtra("longitude", item.noorLon);
+                                                hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                                startActivity(hs1_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 3:
+                                        button_hospital4.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                        button_hospital4.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                                hs1_intent.putExtra("name", item.getPOIName());
+                                                hs1_intent.putExtra("address", item.getPOIAddress());
+                                                hs1_intent.putExtra("latitude", item.noorLat);
+                                                hs1_intent.putExtra("longitude", item.noorLon);
+                                                hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                                startActivity(hs1_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 4:
+                                        button_hospital5.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                        button_hospital5.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                                hs1_intent.putExtra("name", item.getPOIName());
+                                                hs1_intent.putExtra("address", item.getPOIAddress());
+                                                hs1_intent.putExtra("latitude", item.noorLat);
+                                                hs1_intent.putExtra("longitude", item.noorLon);
+                                                hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                                startActivity(hs1_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 5:
+                                        button_hospital6.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                        button_hospital6.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                                hs1_intent.putExtra("name", item.getPOIName());
+                                                hs1_intent.putExtra("address", item.getPOIAddress());
+                                                hs1_intent.putExtra("latitude", item.noorLat);
+                                                hs1_intent.putExtra("longitude", item.noorLon);
+                                                hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                                startActivity(hs1_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 6:
+                                        button_hospital7.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                        button_hospital7.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                                hs1_intent.putExtra("name", item.getPOIName());
+                                                hs1_intent.putExtra("address", item.getPOIAddress());
+                                                hs1_intent.putExtra("latitude", item.noorLat);
+                                                hs1_intent.putExtra("longitude", item.noorLon);
+                                                hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                                startActivity(hs1_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 7:
+                                        button_hospital8.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                        button_hospital8.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                                hs1_intent.putExtra("name", item.getPOIName());
+                                                hs1_intent.putExtra("address", item.getPOIAddress());
+                                                hs1_intent.putExtra("latitude", item.noorLat);
+                                                hs1_intent.putExtra("longitude", item.noorLon);
+                                                hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                                startActivity(hs1_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 8:
+                                        button_hospital9.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                        button_hospital9.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                                hs1_intent.putExtra("name", item.getPOIName());
+                                                hs1_intent.putExtra("address", item.getPOIAddress());
+                                                hs1_intent.putExtra("latitude", item.noorLat);
+                                                hs1_intent.putExtra("longitude", item.noorLon);
+                                                hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                                startActivity(hs1_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    case 9:
+                                        button_hospital10.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                        button_hospital10.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tMapGps.CloseGps();
+                                                Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
+                                                hs1_intent.putExtra("name", item.getPOIName());
+                                                hs1_intent.putExtra("address", item.getPOIAddress());
+                                                hs1_intent.putExtra("latitude", item.noorLat);
+                                                hs1_intent.putExtra("longitude", item.noorLon);
+                                                hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
+                                                startActivity(hs1_intent);
+                                                finish();
+                                            }
+                                        });
+                                        break;
+                                    default:
+                                        Log.d("오류", "해당하는 버튼이 없습니다.");
+                                }
                             }
-                            TMapPOIItem item = arrayList.get(i);
-                            Log.d("병원:현재-위치", item.getPOIName());
-                            if (item.getPOIName().contains("주차장")) {
-                                num = num - 1;
-                                continue;
-                            }
-                            switch (num) {
-                                case 0:
-                                    button_hospital1.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                    button_hospital1.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
-                                            hs1_intent.putExtra("name", item.getPOIName());
-                                            hs1_intent.putExtra("address", item.getPOIAddress());
-                                            hs1_intent.putExtra("latitude", item.noorLat);
-                                            hs1_intent.putExtra("longitude", item.noorLon);
-                                            hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                            startActivity(hs1_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 1:
-                                    button_hospital2.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                    button_hospital2.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
-                                            hs1_intent.putExtra("name", item.getPOIName());
-                                            hs1_intent.putExtra("address", item.getPOIAddress());
-                                            hs1_intent.putExtra("latitude", item.noorLat);
-                                            hs1_intent.putExtra("longitude", item.noorLon);
-                                            hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                            startActivity(hs1_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 2:
-                                    button_hospital3.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                    button_hospital3.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
-                                            hs1_intent.putExtra("name", item.getPOIName());
-                                            hs1_intent.putExtra("address", item.getPOIAddress());
-                                            hs1_intent.putExtra("latitude", item.noorLat);
-                                            hs1_intent.putExtra("longitude", item.noorLon);
-                                            hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                            startActivity(hs1_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 3:
-                                    button_hospital4.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                    button_hospital4.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
-                                            hs1_intent.putExtra("name", item.getPOIName());
-                                            hs1_intent.putExtra("address", item.getPOIAddress());
-                                            hs1_intent.putExtra("latitude", item.noorLat);
-                                            hs1_intent.putExtra("longitude", item.noorLon);
-                                            hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                            startActivity(hs1_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 4:
-                                    button_hospital5.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                    button_hospital5.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
-                                            hs1_intent.putExtra("name", item.getPOIName());
-                                            hs1_intent.putExtra("address", item.getPOIAddress());
-                                            hs1_intent.putExtra("latitude", item.noorLat);
-                                            hs1_intent.putExtra("longitude", item.noorLon);
-                                            hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                            startActivity(hs1_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 5:
-                                    button_hospital6.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                    button_hospital6.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
-                                            hs1_intent.putExtra("name", item.getPOIName());
-                                            hs1_intent.putExtra("address", item.getPOIAddress());
-                                            hs1_intent.putExtra("latitude", item.noorLat);
-                                            hs1_intent.putExtra("longitude", item.noorLon);
-                                            hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                            startActivity(hs1_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 6:
-                                    button_hospital7.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                    button_hospital7.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
-                                            hs1_intent.putExtra("name", item.getPOIName());
-                                            hs1_intent.putExtra("address", item.getPOIAddress());
-                                            hs1_intent.putExtra("latitude", item.noorLat);
-                                            hs1_intent.putExtra("longitude", item.noorLon);
-                                            hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                            startActivity(hs1_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 7:
-                                    button_hospital8.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                    button_hospital8.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
-                                            hs1_intent.putExtra("name", item.getPOIName());
-                                            hs1_intent.putExtra("address", item.getPOIAddress());
-                                            hs1_intent.putExtra("latitude", item.noorLat);
-                                            hs1_intent.putExtra("longitude", item.noorLon);
-                                            hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                            startActivity(hs1_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 8:
-                                    button_hospital9.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                    button_hospital9.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
-                                            hs1_intent.putExtra("name", item.getPOIName());
-                                            hs1_intent.putExtra("address", item.getPOIAddress());
-                                            hs1_intent.putExtra("latitude", item.noorLat);
-                                            hs1_intent.putExtra("longitude", item.noorLon);
-                                            hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                            startActivity(hs1_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                case 9:
-                                    button_hospital10.setText(item.getPOIName() + "\n" + String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                    button_hospital10.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            tMapGps.CloseGps();
-                                            Intent hs1_intent = new Intent(HospitalActivity.this, SurroundingChoice.class);
-                                            hs1_intent.putExtra("name", item.getPOIName());
-                                            hs1_intent.putExtra("address", item.getPOIAddress());
-                                            hs1_intent.putExtra("latitude", item.noorLat);
-                                            hs1_intent.putExtra("longitude", item.noorLon);
-                                            hs1_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint)) + "M");
-                                            startActivity(hs1_intent);
-                                            finish();
-                                        }
-                                    });
-                                    break;
-                                default:
-                                    Log.d("오류", "해당하는 버튼이 없습니다.");
-                            }
+                        } catch (IndexOutOfBoundsException e){
+                            e.printStackTrace();
                         }
                     }
                 });
