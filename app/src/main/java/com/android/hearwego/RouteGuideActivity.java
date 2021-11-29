@@ -11,6 +11,7 @@ import android.net.Network;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -44,6 +45,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Timer;
 
 public class RouteGuideActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
 
@@ -116,6 +118,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     int subIndex = 0;
     int subwayCount = 0;
     int transIndex = 0;
+    int trans_cnt = 0;
     Double s_latitude = 0.0;
     Double s_longitude = 0.0;
 
@@ -302,6 +305,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
 
                         guide_text2.setText("출발역은 " + StationNameList.get(0) + "역입니다");
+                        //textToSpeech.speak("출발역은 " + StationNameList.get(0) + "역입니다", TextToSpeech.QUEUE_FLUSH, null); 이거 안돼?ㅠ
                         getRoute(longitude, latitude, Double.toString(SubLatLngList.get(0).getLongitude()), Double.toString(SubLatLngList.get(0).getLatitude()));
 
                     }
@@ -384,57 +388,62 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            //doInBackground()로 부터 리턴된 값이 onPostExecute()의 매개변수로 넘어오므로 s를 출력한다.
-            try {
+            try{
+                //doInBackground()로 부터 리턴된 값이 onPostExecute()의 매개변수로 넘어오므로 s를 출력한다.
+                try {
 
-                //전체 데이터를 제이슨 객체로 변환
-                root = new JSONObject(s);
-                Log.d("JSON확인", "제일 상위" + root);
-                LatLngArrayList.clear();
-                DescriptionList.clear();
+                    //전체 데이터를 제이슨 객체로 변환
+                    root = new JSONObject(s);
+                    Log.d("JSON확인", "제일 상위" + root);
+                    LatLngArrayList.clear();
+                    DescriptionList.clear();
 
-                JSONArray featuresArray = root.getJSONArray("features"); //총 경로 횟수를 featuresArray에 저장
-                Log.d("JSON확인-feaIndex", Integer.toString(featuresArray.length()));
-                for (int i = 0; i < featuresArray.length(); i++) {
-                    JSONObject featuresIndex = (JSONObject) featuresArray.get(i);
-                    //Log.d("JSON확인-feaIndex", featuresIndex.toString());
-                    JSONObject geometry = featuresIndex.getJSONObject("geometry");
-                    JSONObject properties = featuresIndex.getJSONObject("properties");
-                    //Log.d("JSON확인-geometry", geometry.toString());
-                    String type = geometry.getString("type");
-                    //Log.d("JSON확인-type", type);
-                    JSONArray coordinatesArray = geometry.getJSONArray("coordinates");
-                    //Log.d("JSON확인-coordinates", coordinatesArray.toString());
+                    JSONArray featuresArray = root.getJSONArray("features"); //총 경로 횟수를 featuresArray에 저장
+                    Log.d("JSON확인-feaIndex", Integer.toString(featuresArray.length()));
+                    for (int i = 0; i < featuresArray.length(); i++) {
+                        JSONObject featuresIndex = (JSONObject) featuresArray.get(i);
+                        //Log.d("JSON확인-feaIndex", featuresIndex.toString());
+                        JSONObject geometry = featuresIndex.getJSONObject("geometry");
+                        JSONObject properties = featuresIndex.getJSONObject("properties");
+                        //Log.d("JSON확인-geometry", geometry.toString());
+                        String type = geometry.getString("type");
+                        //Log.d("JSON확인-type", type);
+                        JSONArray coordinatesArray = geometry.getJSONArray("coordinates");
+                        //Log.d("JSON확인-coordinates", coordinatesArray.toString());
 
-                    if (type.equals("Point")) {
-                        //type이 point일 경우, coordinates의 length는 1밖에 없음
-                        //Log.d("JSON확인-pointArray2", coordinatesArray.toString());
-                        Double f_longitude = Double.parseDouble(coordinatesArray.get(0).toString());
-                        Double f_latitude = Double.parseDouble(coordinatesArray.get(1).toString());
-                        String description = properties.getString("description");
-                        DescriptionList.add(description);
-                        LatLngArrayList.add(new TMapPoint(f_latitude, f_longitude));
-                        if (i == featuresArray.length() - 1) {
+                        if (type.equals("Point")) {
+                            //type이 point일 경우, coordinates의 length는 1밖에 없음
+                            //Log.d("JSON확인-pointArray2", coordinatesArray.toString());
+                            Double f_longitude = Double.parseDouble(coordinatesArray.get(0).toString());
+                            Double f_latitude = Double.parseDouble(coordinatesArray.get(1).toString());
+                            String description = properties.getString("description");
+                            DescriptionList.add(description);
                             LatLngArrayList.add(new TMapPoint(f_latitude, f_longitude));
+                            if (i == featuresArray.length() - 1) {
+                                LatLngArrayList.add(new TMapPoint(f_latitude, f_longitude));
+                            }
                         }
                     }
+                    Log.d("JSON-ODSAY", LatLngArrayList.toString());
+                    Log.d("JSON-ODSAY", DescriptionList.toString());
+
+                    /*첫번째 설명, 남은 거리 구하기 위함*/
+                    description = DescriptionList.get(0);
+                    guide_text.setText(description);
+                    g_latitude = LatLngArrayList.get(1).getLatitude(); //위도
+                    g_longitude = LatLngArrayList.get(1).getLongitude(); //경도
+                    reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
+                    reDistance_text.setText(reDistnace + "m");
+                    textToSpeech.speak(description, TextToSpeech.QUEUE_FLUSH, null);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                Log.d("JSON-ODSAY", LatLngArrayList.toString());
-                Log.d("JSON-ODSAY", DescriptionList.toString());
-
-                /*첫번째 설명, 남은 거리 구하기 위함*/
-                description = DescriptionList.get(0);
-                guide_text.setText(description);
-                g_latitude = LatLngArrayList.get(1).getLatitude(); //위도
-                g_longitude = LatLngArrayList.get(1).getLongitude(); //경도
-                reDistnace = calcDistance(latitude, longitude, g_latitude, g_longitude);
-                reDistance_text.setText(reDistnace + "m");
-                textToSpeech.speak(description, TextToSpeech.QUEUE_FLUSH, null);
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
+            } catch (NullPointerException e){
+                textToSpeech.speak("해당 목적지로 향하는 도보 경로가 존재하지 않습니다.", TextToSpeech.QUEUE_FLUSH, null);
             }
+
         }
 
     }
@@ -539,24 +548,62 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             latitude_gap = Math.abs(latitude - s_latitude);
             longitude_gap = Math.abs(longitude - s_longitude);
 
-            guide_text2.setText("환승 없음\n" + "지하철 노선은 " + LaneList.get(0) + "입니다.");
-
             if (latitude_gap <= 0.00005 || longitude_gap <= 0.00005) {
                 reDistance_text.setText(StationNameList.get(subIndex));
+                textToSpeech.speak("이번역은 " + StationNameList.get(subIndex)+"역입니다.", TextToSpeech.QUEUE_FLUSH, null);
 
                 if (subIndex == StationNameList.size() - 1) {
                     guide_text.setText("도착역입니다.");
+                    //textToSpeech.speak("도착역입니다.", TextToSpeech.QUEUE_FLUSH, null);
                     Log.d("JSON-Station", Double.toString(SubLatLngList.get(subIndex).getLongitude()) +  Double.toString(SubLatLngList.get(subIndex).getLatitude()));
                     Log.d("JSON-Station", latData + longData);
-                    getRoute(Double.toString(SubLatLngList.get(subIndex).getLongitude()), Double.toString(SubLatLngList.get(subIndex).getLatitude()), longData, latData);
-                    type = 1;
-                    subway = 2;
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            textToSpeech.speak(guide_text.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                        }
+                    }, 2500);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getRoute(Double.toString(s_longitude), Double.toString(s_latitude), longData, latData);
+                            type = 1;
+                            subway = 2;
+                        }
+                    },4000);
+
                 } else {
-                    guide_text.setText("다음역은 " + StationNameList.get(subIndex + 1) + "입니다.");
+                    guide_text.setText("다음역은 " + StationNameList.get(subIndex + 1) + "역입니다.");
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            textToSpeech.speak(guide_text.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                        }
+                    }, 2500);
+                }
+
+                if(trans_cnt == 0){
+                    guide_text2.setText("환승 없음\n" + "지하철 노선은 " + LaneList.get(0) + "입니다.");
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            textToSpeech.speak(guide_text2.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                        }
+                    }, 5000);
+                    trans_cnt++;
                 }
 
                 if (subIndex < StationNameList.size() - 1) {
-                    subIndex = subIndex + 1;
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            subIndex = subIndex + 1;
+                        }
+                    }, 5100);
                 }
 
             }
@@ -567,43 +614,102 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             //다음 지하철역의 경도, 위도 정보를 가져온다.
             s_latitude = SubLatLngList.get(subIndex).getLatitude();
             s_longitude = SubLatLngList.get(subIndex).getLongitude();
+            Log.d("JSON-STATION0", Integer.toString(subIndex));
 
             //현재 위치와 지하철역 위도,경도 차이 계산
             latitude_gap = Math.abs(latitude - s_latitude);
             longitude_gap = Math.abs(longitude - s_longitude);
 
-            guide_text2.setText("환승 횟수는 " + (subwayCount - 1) + "번입니다.");
-            guide_text3.setText("지하철 노선은 " + LaneList.get(transIndex) + "입니다.");
-
             Log.d("JSON-실행0", "실행??");
             if (latitude_gap <= 0.0001 || longitude_gap <= 0.0001) {
                 Log.d("JSON-실행1", "실행??");
                 reDistance_text.setText(StationNameList.get(subIndex));
+                textToSpeech.speak("이번역은 " + StationNameList.get(subIndex)+"역입니다.", TextToSpeech.QUEUE_FLUSH, null);
+                Log.d("JSON-STATION1", Integer.toString(subIndex));
 
                 if (subIndex == StationNameList.size() - 1) {
                     guide_text.setText("도착역입니다.");
-                    getRoute(Double.toString(s_latitude), Double.toString(s_longitude), longData, latData);
-                    type = 1;
-                    subway = 2;
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            textToSpeech.speak(guide_text.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                        }
+                    }, 2500);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getRoute(Double.toString(s_longitude), Double.toString(s_latitude), longData, latData);
+                            type = 1;
+                            subway = 2;
+                        }
+                    },4000);
                 } else {
                     Log.d("JSON-실행2", "실행??");
-                    guide_text.setText("다음역은 " + StationNameList.get(subIndex + 1) + "입니다.");
+                    guide_text.setText("다음역은 " + StationNameList.get(subIndex + 1) + "역입니다.");
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d("JSON-STATION2", Integer.toString(subIndex));
+                            textToSpeech.speak(guide_text.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                        }
+                    }, 2500);
+
                 }
 
                 Log.d("JSON-실행3", "실행??");
+                if(trans_cnt == 0){
+                    guide_text2.setText("남은 환승 횟수는 " + (subwayCount - trans_cnt - 1) + "번입니다.");
+                    guide_text3.setText("지하철 노선은 " + LaneList.get(transIndex) + "입니다.");
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            textToSpeech.speak(guide_text2.getText().toString() + guide_text3.getText().toString(),TextToSpeech.QUEUE_FLUSH,  null);
+                        }
+                    }, 5000);
+                    trans_cnt++;
+                }
+
                 if(transIndex < transIndexList.size()){
                     if(subIndex == (transIndexList.get(transIndex)-1)){
                         guide_text3.setText("다음역인 " + tranStationList.get(transIndex)+"에서\n"+LaneList.get(transIndex+1)+"으로 환승합니다.");
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                textToSpeech.speak("다음역인 " + tranStationList.get(transIndex)+"에서\n"+LaneList.get(transIndex+1)+"으로 환승합니다.",
+                                        TextToSpeech.QUEUE_FLUSH, null);
+                            }
+                        }, 5000);
                     } else if(subIndex == transIndexList.get(transIndex)){
                         transIndex = transIndex+1;
+                        guide_text2.setText("남은 환승 횟수는 " + (subwayCount - trans_cnt - 1) + "번입니다.");
+                        guide_text3.setText("지하철 노선은 " + LaneList.get(transIndex) + "입니다.");
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                textToSpeech.speak(guide_text2.getText().toString() + guide_text3.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                            }
+                        }, 5000);
+
+                        trans_cnt++;
                     }
                 }
-
                 Log.d("JSON-실행4", "실행??");
                 if (subIndex < StationNameList.size() - 1) {
-                    subIndex = subIndex + 1;
-                }
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                            subIndex = subIndex + 1;
+                            Log.d("JSON-STATION3", Integer.toString(subIndex));
+                    }
+                }, 5100);
 
+                }
             }
 
 
