@@ -214,8 +214,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 String longitude = Double.toString(nowpoint.getLongitude());
 
                 getRoute(longitude, latitude, longData, latData);
-                //button_walk.setVisibility(View.INVISIBLE);
-                //button_subway.setVisibility(View.INVISIBLE);
+                button_walk.setVisibility(View.INVISIBLE);
+                button_subway.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -224,8 +224,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             @Override
             public void onClick(View v) {
                 getSubwayStation();
-                //button_walk.setVisibility(View.INVISIBLE);
-                //button_subway.setVisibility(View.INVISIBLE);
+                button_walk.setVisibility(View.INVISIBLE);
+                button_subway.setVisibility(View.INVISIBLE);
             }
         });
 
