@@ -390,6 +390,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                 //전체 데이터를 제이슨 객체로 변환
                 root = new JSONObject(s);
                 Log.d("JSON확인", "제일 상위" + root);
+                LatLngArrayList.clear();
+                DescriptionList.clear();
 
                 JSONArray featuresArray = root.getJSONArray("features"); //총 경로 횟수를 featuresArray에 저장
                 Log.d("JSON확인-feaIndex", Integer.toString(featuresArray.length()));
@@ -418,6 +420,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
                     }
                 }
                 Log.d("JSON-ODSAY", LatLngArrayList.toString());
+                Log.d("JSON-ODSAY", DescriptionList.toString());
 
                 /*첫번째 설명, 남은 거리 구하기 위함*/
                 description = DescriptionList.get(0);
@@ -543,6 +546,11 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
                 if (subIndex == StationNameList.size() - 1) {
                     guide_text.setText("도착역입니다.");
+                    Log.d("JSON-Station", Double.toString(SubLatLngList.get(subIndex).getLongitude()) +  Double.toString(SubLatLngList.get(subIndex).getLatitude()));
+                    Log.d("JSON-Station", latData + longData);
+                    getRoute(Double.toString(SubLatLngList.get(subIndex).getLongitude()), Double.toString(SubLatLngList.get(subIndex).getLatitude()), longData, latData);
+                    type = 1;
+                    subway = 2;
                 } else {
                     guide_text.setText("다음역은 " + StationNameList.get(subIndex + 1) + "입니다.");
                 }
@@ -574,6 +582,9 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
 
                 if (subIndex == StationNameList.size() - 1) {
                     guide_text.setText("도착역입니다.");
+                    getRoute(Double.toString(s_latitude), Double.toString(s_longitude), longData, latData);
+                    type = 1;
+                    subway = 2;
                 } else {
                     Log.d("JSON-실행2", "실행??");
                     guide_text.setText("다음역은 " + StationNameList.get(subIndex + 1) + "입니다.");
