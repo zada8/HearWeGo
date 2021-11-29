@@ -103,7 +103,6 @@ public class SettingActivity extends AppCompatActivity {
                 alert.setTitle("로그아웃"); // 대화창 제목 설정
                 alert.setIcon(R.drawable.ic_baseline_check_24);
                 alert.show();
-                //Toast.makeText(SettingActivity.this, "로그아웃", Toast.LENGTH_SHORT).show();
             }
         });
 
