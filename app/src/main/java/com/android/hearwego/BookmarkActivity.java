@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -90,11 +91,15 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = LogoActivity.user.keywords.get(0);
-                intent.putExtra("keyword",k);
-                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
-                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                try{
+                    String k = LogoActivity.user.keywords.get(0);
+                    intent.putExtra("keyword",k);
+                    intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                    intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                    intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                }catch (Exception e){
+                    Toast.makeText(BookmarkActivity.this, "즐겨찾기를 설정해주세요", Toast.LENGTH_SHORT).show();
+                }
                 startActivity(intent);
                 finish();
             }
@@ -104,11 +109,15 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = LogoActivity.user.keywords.get(1);
-                intent.putExtra("keyword",k);
-                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
-                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                try{
+                    String k = LogoActivity.user.keywords.get(1);
+                    intent.putExtra("keyword",k);
+                    intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                    intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                    intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                }catch (Exception e){
+                    Toast.makeText(BookmarkActivity.this, "즐겨찾기를 설정해주세요", Toast.LENGTH_SHORT).show();
+                }
                 startActivity(intent);
                 finish();
             }
@@ -117,11 +126,15 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = LogoActivity.user.keywords.get(2);
-                intent.putExtra("keyword",k);
-                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
-                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                try{
+                    String k = LogoActivity.user.keywords.get(2);
+                    intent.putExtra("keyword",k);
+                    intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                    intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                    intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                }catch (Exception e){
+                    Toast.makeText(BookmarkActivity.this, "즐겨찾기를 설정해주세요", Toast.LENGTH_SHORT).show();
+                }
                 startActivity(intent);
                 finish();
             }
@@ -131,11 +144,15 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = LogoActivity.user.keywords.get(3);
-                intent.putExtra("keyword",k);
-                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
-                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                try{
+                    String k = LogoActivity.user.keywords.get(3);
+                    intent.putExtra("keyword",k);
+                    intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                    intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                    intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                }catch (Exception e){
+                    Toast.makeText(BookmarkActivity.this, "즐겨찾기를 설정해주세요", Toast.LENGTH_SHORT).show();
+                }
                 startActivity(intent);
                 finish();
             }
@@ -145,11 +162,15 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = LogoActivity.user.keywords.get(4);
-                intent.putExtra("keyword",k);
-                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
-                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                try{
+                    String k = LogoActivity.user.keywords.get(4);
+                    intent.putExtra("keyword",k);
+                    intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                    intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                    intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                }catch (Exception e){
+                    Toast.makeText(BookmarkActivity.this, "즐겨찾기를 설정해주세요", Toast.LENGTH_SHORT).show();
+                }
                 startActivity(intent);
                 finish();
             }
@@ -158,11 +179,15 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = LogoActivity.user.keywords.get(5);
-                intent.putExtra("keyword",k);
-                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
-                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                try{
+                    String k = LogoActivity.user.keywords.get(5);
+                    intent.putExtra("keyword",k);
+                    intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                    intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                    intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                }catch (Exception e){
+                    Toast.makeText(BookmarkActivity.this, "즐겨찾기를 설정해주세요", Toast.LENGTH_SHORT).show();
+                }
                 startActivity(intent);
                 finish();
             }
@@ -171,11 +196,15 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = LogoActivity.user.keywords.get(6);
-                intent.putExtra("keyword",k);
-                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
-                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                try{
+                    String k = LogoActivity.user.keywords.get(6);
+                    intent.putExtra("keyword",k);
+                    intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                    intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                    intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                }catch (Exception e){
+                    Toast.makeText(BookmarkActivity.this, "즐겨찾기를 설정해주세요", Toast.LENGTH_SHORT).show();
+                }
                 startActivity(intent);
                 finish();
             }
@@ -184,11 +213,15 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = LogoActivity.user.keywords.get(7);
-                intent.putExtra("keyword",k);
-                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
-                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                try{
+                    String k = LogoActivity.user.keywords.get(7);
+                    intent.putExtra("keyword",k);
+                    intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                    intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                    intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                }catch (Exception e){
+                    Toast.makeText(BookmarkActivity.this, "즐겨찾기를 설정해주세요", Toast.LENGTH_SHORT).show();
+                }
                 startActivity(intent);
                 finish();
             }
@@ -197,11 +230,15 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = LogoActivity.user.keywords.get(8);
-                intent.putExtra("keyword",k);
-                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
-                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                try{
+                    String k = LogoActivity.user.keywords.get(8);
+                    intent.putExtra("keyword",k);
+                    intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                    intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                    intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                }catch (Exception e){
+                    Toast.makeText(BookmarkActivity.this, "즐겨찾기를 설정해주세요", Toast.LENGTH_SHORT).show();
+                }
                 startActivity(intent);
                 finish();
             }
@@ -210,11 +247,15 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookmarkActivity.this, BookmarkEdit.class);
-                String k = LogoActivity.user.keywords.get(9);
-                intent.putExtra("keyword",k);
-                intent.putExtra("locname", LogoActivity.user.locnames.get(k));
-                intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
-                intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                try{
+                    String k = LogoActivity.user.keywords.get(9);
+                    intent.putExtra("keyword",k);
+                    intent.putExtra("locname", LogoActivity.user.locnames.get(k));
+                    intent.putExtra("latitude", LogoActivity.user.geopoints.get(k).getLatitude());
+                    intent.putExtra("longitude", LogoActivity.user.geopoints.get(k).getLongitude());
+                }catch (Exception e){
+                    Toast.makeText(BookmarkActivity.this, "즐겨찾기를 설정해주세요", Toast.LENGTH_SHORT).show();
+                }
                 startActivity(intent);
                 finish();
             }
