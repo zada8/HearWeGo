@@ -231,7 +231,8 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
             @Override
             public void onClick(View v) {
                 locNum = 0;
-                onBackPressed();
+                Intent intent = new Intent(RouteGuideActivity.this, HomeActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
