@@ -152,6 +152,24 @@
         app:layout_constraintTop_toBottomOf="@+id/guide_message"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout">
 
+        <Button
+            android:id="@+id/button2_nowgps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/default_yellow"
+            android:fontFamily="@font/inter_medium"
+            android:gravity="center"
+            android:text="현재 위치 확인"
+            android:textColor="@color/yellow"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
@@ -195,23 +213,7 @@
                 app:layout_constraintStart_toStartOf="parent"/>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button2_nowgps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/default_yellow"
-            android:fontFamily="@font/inter_medium"
-            android:gravity="center"
-            android:text="현재 위치 확인"
-            android:textColor="@color/yellow"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
