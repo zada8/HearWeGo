@@ -23,12 +23,17 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <ImageButton
+    <Button
         android:id="@+id/button1_nowgps"
-        style="@android:style/Widget.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/now_gps"
+        android:background="@drawable/default_yellow"
+        android:fontFamily="@font/inter_medium"
+        android:gravity="center"
+        android:text="현재 위치 확인"
+        android:textColor="@color/yellow"
+        android:textSize="36sp"
+        android:textStyle="bold"
         android:foregroundGravity="center"
         app:layout_constraintBottom_toTopOf="@+id/search_start_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,19 +78,29 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
-        <ImageButton
-            android:id="@+id/previous"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/previous_button"/>
-
-        <ImageButton
+        <Button
             android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/home_button"/>
+            android:background="@drawable/frame_31"
+            android:text="홈"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/inter_medium"/>
+
+        <Button
+            android:id="@+id/previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/frame_31"
+            android:text="이전"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/inter_medium"/>
     </LinearLayout>
 
     <TextView

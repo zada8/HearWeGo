@@ -107,9 +107,9 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
         tMapGpsManager.OpenGps();
 
         //버튼 선언
-        ImageButton nowgps_btn = findViewById(R.id.button1_nowgps);
-        ImageButton previous = findViewById(R.id.previous);
-        ImageButton home = findViewById(R.id.home);
+        Button nowgps_btn = findViewById(R.id.button1_nowgps);
+        Button previous = findViewById(R.id.previous);
+        Button home = findViewById(R.id.home);
 
         //현재위치확인 버튼 누르면 현재위치를 음성으로 안내할 수 있게 구현
         nowgps_btn.setOnClickListener(new View.OnClickListener() {

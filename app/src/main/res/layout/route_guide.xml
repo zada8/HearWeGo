@@ -156,8 +156,8 @@
             android:id="@+id/button2_nowgps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/default_yellow"
             android:fontFamily="@font/inter_medium"
             android:gravity="center"
@@ -165,10 +165,10 @@
             android:textColor="@color/yellow"
             android:textSize="36sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
         <LinearLayout
             android:id="@+id/linearLayout3"
