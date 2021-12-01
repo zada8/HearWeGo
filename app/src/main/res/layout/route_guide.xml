@@ -97,7 +97,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="길 안내 설명"
+        android:text="경로 안내 설명"
         android:textAlignment="center"
         android:textColor="#FFE500"
         android:textSize="30sp"
