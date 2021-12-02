@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A8A8A8">
-    <!-- Frame 29 -->
+    android:background="#A8A8A8"
+    tools:context=".DestinationSearchActivity">
+
 
     <Button
         android:id="@+id/search_start_button"
