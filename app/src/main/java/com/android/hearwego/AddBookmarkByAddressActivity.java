@@ -302,6 +302,9 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
             saveBookmark.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
+                    TextView tv = (TextView) findViewById(R.id.sttResult_keyword);
+                    String tvInput = tv.getText().toString();
+                    textToSpeech.speak( tvInput+"이 즐겨찾기로 저장되었습니다.", TextToSpeech.QUEUE_FLUSH, null);
                     GeoPoint geoPoint = new GeoPoint(latitude, longitude);
                     Map<String, Object> docData = new HashMap<>();
                     Map<String, String> lnData = new HashMap<>();
