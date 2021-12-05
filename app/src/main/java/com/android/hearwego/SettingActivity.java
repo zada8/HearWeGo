@@ -73,6 +73,16 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+        //도움말 버튼 누를 시 화면 전환
+        button_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingActivity.this, HelpActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         //로그아웃 버튼 클릭시 동작
         btn_logout.setOnClickListener(new View.OnClickListener() {
