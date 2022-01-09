@@ -1,7 +1,6 @@
 package com.android.hearwego;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Build;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +18,7 @@ import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapView;
 import com.skt.Tmap.poi_item.TMapPOIItem;
 
-import java.util.ArrayList;
+import java.util.Locale;
 
 public class PharmacyActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
 
@@ -74,7 +72,7 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
         tMapGps = new TMapGpsManager(this);
         tMapGps.setMinTime(1000);
         tMapGps.setMinDistance(5);
-        tMapGps.setProvider(tMapGps.NETWORK_PROVIDER);
+        tMapGps.setProvider(TMapGpsManager.NETWORK_PROVIDER);
         tMapGps.OpenGps();
 
         ActionBar actionBar = getSupportActionBar(); //액션바(패키지명) 숨김처리
@@ -107,23 +105,17 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
         Button button_home = findViewById(R.id.home); // 홈 이미지 버튼 객체 참조
 
         //이전 버튼 누를 시 화면 전환
-        button_previous.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PharmacyActivity.this, SurroundingActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        button_previous.setOnClickListener(v -> {
+            Intent intent = new Intent(PharmacyActivity.this, SurroundingActivity.class);
+            startActivity(intent);
+            finish();
         });
 
         //홈 버튼 누를 시 화면 전환
-        button_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PharmacyActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        button_home.setOnClickListener(v -> {
+            Intent intent = new Intent(PharmacyActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 
@@ -144,200 +136,167 @@ public class PharmacyActivity extends AppCompatActivity implements TMapGpsManage
                 //현재 위치 탐색 완료 후 주변 약국 찾기 시작
                 Log.d("현재위치-SKT타워X", "실행되었습니다.");
                 //주변 반경 2km 지정, 가까운 순서대로 출력, 버튼이 10개라 10개의 약국을 가져온다.
-                tMapData.findAroundNamePOI(nowPoint, "약국", 2, 20, new TMapData.FindAroundNamePOIListenerCallback() {
-                    @Override
-                    public void onFindAroundNamePOI(ArrayList<TMapPOIItem> arrayList) {
-                        pharNum = 0;
-                        try{
-                            for(int i = 0;i<20;i++){
-                                num = num+1;
-                                if(num==10){
-                                    break;
-                                }
-                                TMapPOIItem item = arrayList.get(i);
-                                Log.d("약국-현재위치이름", item.getPOIName());
-                                if(item.getPOIName().contains("주차장")){
-                                    num=num-1;
-                                    continue;
-                                }
-                                switch (num){
-                                    case 0:
-                                        button_pharmacy1.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                        button_pharmacy1.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                tMapGps.CloseGps();
-                                                Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
-                                                ph_intent.putExtra("name", item.getPOIName());
-                                                ph_intent.putExtra("address", item.getPOIAddress());
-                                                ph_intent.putExtra("latitude", item.noorLat);
-                                                ph_intent.putExtra("longitude", item.noorLon);
-                                                ph_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                                startActivity(ph_intent);
-                                                finish();
-                                            }
-                                        });
-                                        break;
-                                    case 1:
-                                        button_pharmacy2.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                        button_pharmacy2.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                tMapGps.CloseGps();
-                                                Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
-                                                ph_intent.putExtra("name", item.getPOIName());
-                                                ph_intent.putExtra("address", item.getPOIAddress());
-                                                ph_intent.putExtra("latitude", item.noorLat);
-                                                ph_intent.putExtra("longitude", item.noorLon);
-                                                ph_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                                startActivity(ph_intent);
-                                                finish();
-                                            }
-                                        });
-                                        break;
-                                    case 2:
-                                        button_pharmacy3.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                        button_pharmacy3.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                tMapGps.CloseGps();
-                                                Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
-                                                ph_intent.putExtra("name", item.getPOIName());
-                                                ph_intent.putExtra("address", item.getPOIAddress());
-                                                ph_intent.putExtra("latitude", item.noorLat);
-                                                ph_intent.putExtra("longitude", item.noorLon);
-                                                ph_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                                startActivity(ph_intent);
-                                                finish();
-                                            }
-                                        });
-                                        break;
-                                    case 3:
-                                        button_pharmacy4.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                        button_pharmacy4.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                tMapGps.CloseGps();
-                                                Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
-                                                ph_intent.putExtra("name", item.getPOIName());
-                                                ph_intent.putExtra("address", item.getPOIAddress());
-                                                ph_intent.putExtra("latitude", item.noorLat);
-                                                ph_intent.putExtra("longitude", item.noorLon);
-                                                ph_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                                startActivity(ph_intent);
-                                                finish();
-                                            }
-                                        });
-                                        break;
-                                    case 4:
-                                        button_pharmacy5.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                        button_pharmacy5.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                tMapGps.CloseGps();
-                                                Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
-                                                ph_intent.putExtra("name", item.getPOIName());
-                                                ph_intent.putExtra("address", item.getPOIAddress());
-                                                ph_intent.putExtra("latitude", item.noorLat);
-                                                ph_intent.putExtra("longitude", item.noorLon);
-                                                ph_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                                startActivity(ph_intent);
-                                                finish();
-                                            }
-                                        });
-                                        break;
-                                    case 5:
-                                        button_pharmacy6.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                        button_pharmacy6.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                tMapGps.CloseGps();
-                                                Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
-                                                ph_intent.putExtra("name", item.getPOIName());
-                                                ph_intent.putExtra("address", item.getPOIAddress());
-                                                ph_intent.putExtra("latitude", item.noorLat);
-                                                ph_intent.putExtra("longitude", item.noorLon);
-                                                ph_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                                startActivity(ph_intent);
-                                                finish();
-                                            }
-                                        });
-                                        break;
-                                    case 6:
-                                        button_pharmacy7.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                        button_pharmacy7.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                tMapGps.CloseGps();
-                                                Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
-                                                ph_intent.putExtra("name", item.getPOIName());
-                                                ph_intent.putExtra("address", item.getPOIAddress());
-                                                ph_intent.putExtra("latitude", item.noorLat);
-                                                ph_intent.putExtra("longitude", item.noorLon);
-                                                ph_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                                startActivity(ph_intent);
-                                                finish();
-                                            }
-                                        });
-                                        break;
-                                    case 7:
-                                        button_pharmacy8.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                        button_pharmacy8.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                tMapGps.CloseGps();
-                                                Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
-                                                ph_intent.putExtra("name", item.getPOIName());
-                                                ph_intent.putExtra("address", item.getPOIAddress());
-                                                ph_intent.putExtra("latitude", item.noorLat);
-                                                ph_intent.putExtra("longitude", item.noorLon);
-                                                ph_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                                startActivity(ph_intent);
-                                                finish();
-                                            }
-                                        });
-                                        break;
-                                    case 8:
-                                        button_pharmacy9.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                        button_pharmacy9.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                tMapGps.CloseGps();
-                                                Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
-                                                ph_intent.putExtra("name", item.getPOIName());
-                                                ph_intent.putExtra("address", item.getPOIAddress());
-                                                ph_intent.putExtra("latitude", item.noorLat);
-                                                ph_intent.putExtra("longitude", item.noorLon);
-                                                ph_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                                startActivity(ph_intent);
-                                                finish();
-                                            }
-                                        });
-                                        break;
-                                    case 9:
-                                        button_pharmacy10.setText(item.getPOIName()+"\n"+String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                        button_pharmacy10.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                tMapGps.CloseGps();
-                                                Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
-                                                ph_intent.putExtra("name", item.getPOIName());
-                                                ph_intent.putExtra("address", item.getPOIAddress());
-                                                ph_intent.putExtra("latitude", item.noorLat);
-                                                ph_intent.putExtra("longitude", item.noorLon);
-                                                ph_intent.putExtra("distance", String.format("%.2f", item.getDistance(nowPoint))+"M");
-                                                startActivity(ph_intent);
-                                                finish();
-                                            }
-                                        });
-                                        break;
-                                    default:
-                                        Log.d("약국-오류", "해당하는 버튼이 없습니다.");
-                                }
+                tMapData.findAroundNamePOI(nowPoint, "약국", 2, 20, arrayList -> {
+                    pharNum = 0;
+                    try{
+                        for(int i = 0;i<20;i++){
+                            num = num+1;
+                            if(num==10){
+                                break;
                             }
-                        }catch (IndexOutOfBoundsException e){
-                            e.printStackTrace();
+                            TMapPOIItem item = arrayList.get(i);
+                            Log.d("약국-현재위치이름", item.getPOIName());
+                            if(item.getPOIName().contains("주차장")){
+                                num=num-1;
+                                continue;
+                            }
+                            switch (num){
+                                case 0:
+                                    button_pharmacy1.setText(getString(R.string.getPOIname, item.getPOIName(), String.format(Locale.getDefault(),"%.2f", item.getDistance(nowPoint))));
+                                    button_pharmacy1.setOnClickListener(v -> {
+                                        tMapGps.CloseGps();
+                                        Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
+                                        ph_intent.putExtra("name", item.getPOIName());
+                                        ph_intent.putExtra("address", item.getPOIAddress());
+                                        ph_intent.putExtra("latitude", item.noorLat);
+                                        ph_intent.putExtra("longitude", item.noorLon);
+                                        ph_intent.putExtra("distance", String.format(Locale.getDefault(), "%.2f", item.getDistance(nowPoint))+"M");
+                                        startActivity(ph_intent);
+                                        finish();
+                                    });
+                                    break;
+                                case 1:
+                                    button_pharmacy2.setText(getString(R.string.getPOIname, item.getPOIName(), String.format(Locale.getDefault(),"%.2f", item.getDistance(nowPoint))));
+                                    button_pharmacy2.setOnClickListener(v -> {
+                                        tMapGps.CloseGps();
+                                        Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
+                                        ph_intent.putExtra("name", item.getPOIName());
+                                        ph_intent.putExtra("address", item.getPOIAddress());
+                                        ph_intent.putExtra("latitude", item.noorLat);
+                                        ph_intent.putExtra("longitude", item.noorLon);
+                                        ph_intent.putExtra("distance", String.format(Locale.getDefault(), "%.2f", item.getDistance(nowPoint))+"M");
+                                        startActivity(ph_intent);
+                                        finish();
+                                    });
+                                    break;
+                                case 2:
+                                    button_pharmacy3.setText(getString(R.string.getPOIname, item.getPOIName(), String.format(Locale.getDefault(),"%.2f", item.getDistance(nowPoint))));
+                                    button_pharmacy3.setOnClickListener(v -> {
+                                        tMapGps.CloseGps();
+                                        Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
+                                        ph_intent.putExtra("name", item.getPOIName());
+                                        ph_intent.putExtra("address", item.getPOIAddress());
+                                        ph_intent.putExtra("latitude", item.noorLat);
+                                        ph_intent.putExtra("longitude", item.noorLon);
+                                        ph_intent.putExtra("distance", String.format(Locale.getDefault(), "%.2f", item.getDistance(nowPoint))+"M");
+                                        startActivity(ph_intent);
+                                        finish();
+                                    });
+                                    break;
+                                case 3:
+                                    button_pharmacy4.setText(getString(R.string.getPOIname, item.getPOIName(), String.format(Locale.getDefault(),"%.2f", item.getDistance(nowPoint))));
+                                    button_pharmacy4.setOnClickListener(v -> {
+                                        tMapGps.CloseGps();
+                                        Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
+                                        ph_intent.putExtra("name", item.getPOIName());
+                                        ph_intent.putExtra("address", item.getPOIAddress());
+                                        ph_intent.putExtra("latitude", item.noorLat);
+                                        ph_intent.putExtra("longitude", item.noorLon);
+                                        ph_intent.putExtra("distance", String.format(Locale.getDefault(), "%.2f", item.getDistance(nowPoint))+"M");
+                                        startActivity(ph_intent);
+                                        finish();
+                                    });
+                                    break;
+                                case 4:
+                                    button_pharmacy5.setText(getString(R.string.getPOIname, item.getPOIName(), String.format(Locale.getDefault(),"%.2f", item.getDistance(nowPoint))));
+                                    button_pharmacy5.setOnClickListener(v -> {
+                                        tMapGps.CloseGps();
+                                        Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
+                                        ph_intent.putExtra("name", item.getPOIName());
+                                        ph_intent.putExtra("address", item.getPOIAddress());
+                                        ph_intent.putExtra("latitude", item.noorLat);
+                                        ph_intent.putExtra("longitude", item.noorLon);
+                                        ph_intent.putExtra("distance", String.format(Locale.getDefault(), "%.2f", item.getDistance(nowPoint))+"M");
+                                        startActivity(ph_intent);
+                                        finish();
+                                    });
+                                    break;
+                                case 5:
+                                    button_pharmacy6.setText(getString(R.string.getPOIname, item.getPOIName(), String.format(Locale.getDefault(),"%.2f", item.getDistance(nowPoint))));
+                                    button_pharmacy6.setOnClickListener(v -> {
+                                        tMapGps.CloseGps();
+                                        Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
+                                        ph_intent.putExtra("name", item.getPOIName());
+                                        ph_intent.putExtra("address", item.getPOIAddress());
+                                        ph_intent.putExtra("latitude", item.noorLat);
+                                        ph_intent.putExtra("longitude", item.noorLon);
+                                        ph_intent.putExtra("distance", String.format(Locale.getDefault(), "%.2f", item.getDistance(nowPoint))+"M");
+                                        startActivity(ph_intent);
+                                        finish();
+                                    });
+                                    break;
+                                case 6:
+                                    button_pharmacy7.setText(getString(R.string.getPOIname, item.getPOIName(), String.format(Locale.getDefault(),"%.2f", item.getDistance(nowPoint))));
+                                    button_pharmacy7.setOnClickListener(v -> {
+                                        tMapGps.CloseGps();
+                                        Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
+                                        ph_intent.putExtra("name", item.getPOIName());
+                                        ph_intent.putExtra("address", item.getPOIAddress());
+                                        ph_intent.putExtra("latitude", item.noorLat);
+                                        ph_intent.putExtra("longitude", item.noorLon);
+                                        ph_intent.putExtra("distance", String.format(Locale.getDefault(), "%.2f", item.getDistance(nowPoint))+"M");
+                                        startActivity(ph_intent);
+                                        finish();
+                                    });
+                                    break;
+                                case 7:
+                                    button_pharmacy8.setText(getString(R.string.getPOIname, item.getPOIName(), String.format(Locale.getDefault(),"%.2f", item.getDistance(nowPoint))));
+                                    button_pharmacy8.setOnClickListener(v -> {
+                                        tMapGps.CloseGps();
+                                        Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
+                                        ph_intent.putExtra("name", item.getPOIName());
+                                        ph_intent.putExtra("address", item.getPOIAddress());
+                                        ph_intent.putExtra("latitude", item.noorLat);
+                                        ph_intent.putExtra("longitude", item.noorLon);
+                                        ph_intent.putExtra("distance", String.format(Locale.getDefault(), "%.2f", item.getDistance(nowPoint))+"M");
+                                        startActivity(ph_intent);
+                                        finish();
+                                    });
+                                    break;
+                                case 8:
+                                    button_pharmacy9.setText(getString(R.string.getPOIname, item.getPOIName(), String.format(Locale.getDefault(),"%.2f", item.getDistance(nowPoint))));
+                                    button_pharmacy9.setOnClickListener(v -> {
+                                        tMapGps.CloseGps();
+                                        Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
+                                        ph_intent.putExtra("name", item.getPOIName());
+                                        ph_intent.putExtra("address", item.getPOIAddress());
+                                        ph_intent.putExtra("latitude", item.noorLat);
+                                        ph_intent.putExtra("longitude", item.noorLon);
+                                        ph_intent.putExtra("distance", String.format(Locale.getDefault(), "%.2f", item.getDistance(nowPoint))+"M");
+                                        startActivity(ph_intent);
+                                        finish();
+                                    });
+                                    break;
+                                case 9:
+                                    button_pharmacy10.setText(getString(R.string.getPOIname, item.getPOIName(), String.format(Locale.getDefault(),"%.2f", item.getDistance(nowPoint))));
+                                    button_pharmacy10.setOnClickListener(v -> {
+                                        tMapGps.CloseGps();
+                                        Intent ph_intent = new Intent(PharmacyActivity.this, SurroundingChoice.class);
+                                        ph_intent.putExtra("name", item.getPOIName());
+                                        ph_intent.putExtra("address", item.getPOIAddress());
+                                        ph_intent.putExtra("latitude", item.noorLat);
+                                        ph_intent.putExtra("longitude", item.noorLon);
+                                        ph_intent.putExtra("distance", String.format(Locale.getDefault(), "%.2f", item.getDistance(nowPoint))+"M");
+                                        startActivity(ph_intent);
+                                        finish();
+                                    });
+                                    break;
+                                default:
+                                    Log.d("약국-오류", "해당하는 버튼이 없습니다.");
+                            }
                         }
+                    }catch (IndexOutOfBoundsException e){
+                        e.printStackTrace();
                     }
                 });
             }

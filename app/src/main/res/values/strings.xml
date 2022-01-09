@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HearWeGo</string>
+    <string name="getPOIname">%s\n %sm</string>
 </resources>

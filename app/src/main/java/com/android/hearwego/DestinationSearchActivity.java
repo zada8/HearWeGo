@@ -15,7 +15,6 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +53,7 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
     Geocoder geocoder = new Geocoder(this);
     List<Address> list;
 
-    private static String API_KEY = "l7xx59d0bb77ddfc45efb709f48d1b31715c";
+    String API_KEY = "l7xx59d0bb77ddfc45efb709f48d1b31715c";
 
     TextToSpeech textToSpeech;
 
@@ -84,12 +83,9 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
 
 
         //TextToSpeech 기본 설정
-        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR){
-                    textToSpeech.setLanguage(Locale.KOREAN);
-                }
+        textToSpeech = new TextToSpeech(getApplicationContext(), status -> {
+            if(status != TextToSpeech.ERROR){
+                textToSpeech.setLanguage(Locale.KOREAN);
             }
         });
 
@@ -103,7 +99,7 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
         tMapGpsManager = new TMapGpsManager(this);
         tMapGpsManager.setMinTime(1000);
         tMapGpsManager.setMinDistance(5);
-        tMapGpsManager.setProvider(tMapGpsManager.NETWORK_PROVIDER);
+        tMapGpsManager.setProvider(TMapGpsManager.NETWORK_PROVIDER);
         tMapGpsManager.OpenGps();
 
         //버튼 선언
@@ -112,40 +108,28 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
         Button home = findViewById(R.id.home);
 
         //현재위치확인 버튼 누르면 현재위치를 음성으로 안내할 수 있게 구현
-        nowgps_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TMapPoint nowpoint = tMapView.getLocationPoint();
+        nowgps_btn.setOnClickListener(v -> {
+            TMapPoint nowpoint = tMapView.getLocationPoint();
 
-                tMapData.convertGpsToAddress(nowpoint.getLatitude(), nowpoint.getLongitude(), new TMapData.ConvertGPSToAddressListenerCallback() {
-                    @Override
-                    public void onConvertToGPSToAddress(String s) {
-                        textToSpeech.setPitch(1.5f);
-                        textToSpeech.setSpeechRate(1.0f);
-                        textToSpeech.speak("현재 위치는 "+s+"입니다", TextToSpeech.QUEUE_FLUSH, null);
-                    }
-                });
-            }
+            tMapData.convertGpsToAddress(nowpoint.getLatitude(), nowpoint.getLongitude(), s -> {
+                textToSpeech.setPitch(1.5f);
+                textToSpeech.setSpeechRate(1.0f);
+                textToSpeech.speak("현재 위치는 "+s+"입니다", TextToSpeech.QUEUE_FLUSH, null);
+            });
         });
 
         //이전 버튼 선언
-        previous.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DestinationSearchActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        previous.setOnClickListener(v -> {
+            Intent intent = new Intent(DestinationSearchActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
         });
 
         //홈 버튼 선언
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DestinationSearchActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        home.setOnClickListener(v -> {
+            Intent intent = new Intent(DestinationSearchActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
         });
 
 
@@ -166,25 +150,22 @@ public class DestinationSearchActivity extends AppCompatActivity implements TMap
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
         // 버튼을 클릭 이벤트 - 객체에 Context와 listener를 할당한 후 실행
-        sttBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                textToSpeech.speak("목적지 주소를 음성으로 입력해주세요", TextToSpeech.QUEUE_FLUSH, null);
-                // 딜레이를 1초 주기
-                textToSpeech.playSilence(1000, TextToSpeech.QUEUE_ADD, null);
+        sttBtn.setOnClickListener(v -> {
+            textToSpeech.speak("목적지 주소를 음성으로 입력해주세요", TextToSpeech.QUEUE_FLUSH, null);
+            // 딜레이를 1초 주기
+            textToSpeech.playSilence(1000, TextToSpeech.QUEUE_ADD, null);
 
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mRecognizer = SpeechRecognizer.createSpeechRecognizer(DestinationSearchActivity.this);
-                        mRecognizer.setRecognitionListener(listener);
-                        mRecognizer.startListening(intent);
-                    }
-                }, 3000); //딜레이 타임 조절
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mRecognizer = SpeechRecognizer.createSpeechRecognizer(DestinationSearchActivity.this);
+                    mRecognizer.setRecognitionListener(listener);
+                    mRecognizer.startListening(intent);
+                }
+            }, 3000); //딜레이 타임 조절
 /*
-  */
-            }
+*/
         });
 
     }
