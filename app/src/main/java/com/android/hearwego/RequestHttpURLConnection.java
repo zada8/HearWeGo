@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 public class RequestHttpURLConnection {
@@ -18,9 +18,9 @@ public class RequestHttpURLConnection {
         //HTTPURLConnection 참조변수
         HttpURLConnection urlConnection = null;
         //URL 뒤에 붙여서 보낼 파라미터
-        StringBuffer sbParams = new StringBuffer();
+        StringBuilder sbParams = new StringBuilder();
 
-        /**
+        /*
          * 1. StringBuffer에 파라미터 연결
          */
         // 보낼 데이터가 없으면 파라미터를 비운다.
@@ -51,7 +51,7 @@ public class RequestHttpURLConnection {
             }
         }
 
-        /**
+        /*
          * 2. HttpURLConnection을 통해 web의 데이터를 가져온다.
          */
         try{
@@ -66,7 +66,7 @@ public class RequestHttpURLConnection {
             //[2-2]. parameter 전달 및 데이터 읽어오기.
             String strParams = sbParams.toString(); //sbParams에 정리한 파라미터들을 string으로 저장. 예)id=id1&password=123;
             OutputStream os = urlConnection.getOutputStream();
-            os.write(strParams.getBytes("UTF-8"));//출력 스트림에 출력
+            os.write(strParams.getBytes(StandardCharsets.UTF_8));//출력 스트림에 출력
             os.flush();//출력 스트림을 비우고 버퍼링 된 모든 출력바이트를 강제 실행
             os.close(); //출력 스트림을 닫고 모든 시스템 자원을 해제
 
@@ -77,20 +77,18 @@ public class RequestHttpURLConnection {
 
             //[2-4] 읽어온 결과물 리턴
             //요청한 URL의 출력물을 BufferedReader로 받는다.
-            BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), StandardCharsets.UTF_8));
 
             //출력물의 라인과 그 합에 대한 변수
             String line;
-            String page = "";
+            StringBuilder page = new StringBuilder();
 
             while((line = reader.readLine()) != null){
-                page += line;
+                page.append(line);
             }
 
-            return page;
+            return page.toString();
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
