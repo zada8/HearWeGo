@@ -30,7 +30,7 @@
             android:layout_marginTop="124dp"
             android:layout_marginEnd="139dp"
             android:background="@drawable/small_mic"
-            android:text="주소"
+            android:text="@string/address"
             android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
             android:layout_marginTop="353dp"
             android:layout_marginEnd="137dp"
             android:background="@drawable/small_mic"
-            android:text="키워드"
+            android:text="@string/keyword"
             android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="250dp"
             android:gravity="center"
-            android:text="음성인식 결과가 여기에 표시됩니다."
+            android:text="@string/sttResult"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -79,7 +79,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="480dp"
             android:gravity="center"
-            android:text="음성인식 결과가 여기에 표시됩니다." />
+            android:text="@string/sttResult" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -98,7 +98,7 @@
             android:layout_marginTop="19dp"
             android:gravity="center_horizontal|center_vertical"
             android:lineSpacingExtra="10sp"
-            android:text="즐겨찾기 추가"
+            android:text="@string/add_bookmark"
             android:textColor="@color/white"
             android:textSize="36sp"
             android:textStyle="bold"
@@ -115,7 +115,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="576dp"
         android:background="@drawable/frame_6"
-        android:text="즐겨찾기 등록"
+        android:text="@string/save_bookmark"
         android:textColor="@color/yellow"
         android:textSize="36sp"
         android:textStyle="bold"

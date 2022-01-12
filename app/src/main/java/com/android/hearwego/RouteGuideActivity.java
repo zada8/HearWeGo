@@ -5,23 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.location.Location;
-import android.net.Network;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.type.LatLng;
 import com.odsay.odsayandroidsdk.API;
 import com.odsay.odsayandroidsdk.ODsayData;
 import com.odsay.odsayandroidsdk.ODsayService;
@@ -30,12 +24,10 @@ import com.skt.Tmap.TMapData;
 import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapView;
-import com.skt.Tmap.TmapAuthentication;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.NodeList;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -45,7 +37,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Timer;
 
 public class RouteGuideActivity extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
 
@@ -95,15 +86,15 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
     /*JSON 변수 선언*/
     JSONObject root = null;
     //도보 경로 안내 구현 위한 배열
-    ArrayList<TMapPoint> LatLngArrayList = new ArrayList<TMapPoint>();
-    ArrayList<String> DescriptionList = new ArrayList<String>();
+    ArrayList<TMapPoint> LatLngArrayList = new ArrayList<>();
+    ArrayList<String> DescriptionList = new ArrayList<>();
     //지하철 경로 안내 구현 위한 배열
-    ArrayList<String> StationNameList = new ArrayList<String>();
-    ArrayList<TMapPoint> SubLatLngList = new ArrayList<TMapPoint>();
+    ArrayList<String> StationNameList = new ArrayList<>();
+    ArrayList<TMapPoint> SubLatLngList = new ArrayList<>();
     //지하철 환승 구현 위한 배열
-    ArrayList<String> LaneList = new ArrayList<String>(); //지하철 노선명
-    ArrayList<String> tranStationList = new ArrayList<String>(); //환승역 이름
-    ArrayList<Integer> transIndexList = new ArrayList<Integer>(); //환승역 인덱스
+    ArrayList<String> LaneList = new ArrayList<>(); //지하철 노선명
+    ArrayList<String> tranStationList = new ArrayList<>(); //환승역 이름
+    ArrayList<Integer> transIndexList = new ArrayList<>(); //환승역 인덱스
 
     /*실시간 음성안내를 위한 변수 선언*/
     int index = 1;
@@ -150,14 +141,11 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         oDsayService.setReadTimeout(5000);
 
         /*TextToSpeech 기본 설정*/
-        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(Locale.KOREAN);
-                    textToSpeech.setPitch(1.5f);
-                    textToSpeech.setSpeechRate(1.0f);
-                }
+        textToSpeech = new TextToSpeech(getApplicationContext(), status -> {
+            if (status != TextToSpeech.ERROR) {
+                textToSpeech.setLanguage(Locale.KOREAN);
+                textToSpeech.setPitch(1.5f);
+                textToSpeech.setSpeechRate(1.0f);
             }
         });
 
@@ -168,7 +156,7 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         tMapGpsManager = new TMapGpsManager(this);
         tMapGpsManager.setMinTime(1000);
         tMapGpsManager.setMinDistance(5);
-        tMapGpsManager.setProvider(tMapGpsManager.NETWORK_PROVIDER);
+        tMapGpsManager.setProvider(TMapGpsManager.NETWORK_PROVIDER);
         tMapGpsManager.OpenGps();
 
         /*버튼 설정*/
@@ -191,64 +179,44 @@ public class RouteGuideActivity extends AppCompatActivity implements TMapGpsMana
         reDistance_text = findViewById(R.id.distance);
 
         /*현재 위치 확인 버튼 누를 시*/
-        nowgps_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TMapPoint nowpoint = tMapView.getLocationPoint();
+        nowgps_btn.setOnClickListener(v -> {
+            TMapPoint nowpoint = tMapView.getLocationPoint();
 
-                tMapData.convertGpsToAddress(nowpoint.getLatitude(), nowpoint.getLongitude(), new TMapData.ConvertGPSToAddressListenerCallback() {
-                    @Override
-                    public void onConvertToGPSToAddress(String s) {
-                        textToSpeech.speak("현재 위치는 " + s + "입니다", TextToSpeech.QUEUE_FLUSH, null);
-                    }
-                });
-            }
+            tMapData.convertGpsToAddress(nowpoint.getLatitude(), nowpoint.getLongitude(), s -> textToSpeech.speak("현재 위치는 " + s + "입니다", TextToSpeech.QUEUE_FLUSH, null));
         });
 
         /*도보 출발지 설정 버튼 누를 시*/
-        button_walk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TMapPoint nowpoint = tMapView.getLocationPoint();
-                String latitude = Double.toString(nowpoint.getLatitude());
-                String longitude = Double.toString(nowpoint.getLongitude());
+        button_walk.setOnClickListener(v -> {
+            TMapPoint nowpoint = tMapView.getLocationPoint();
+            String latitude = Double.toString(nowpoint.getLatitude());
+            String longitude = Double.toString(nowpoint.getLongitude());
 
-                getRoute(longitude, latitude, longData, latData);
-                button_walk.setVisibility(View.INVISIBLE);
-                button_subway.setVisibility(View.INVISIBLE);
-            }
+            getRoute(longitude, latitude, longData, latData);
+            button_walk.setVisibility(View.INVISIBLE);
+            button_subway.setVisibility(View.INVISIBLE);
         });
 
         /*지하철 버튼 누를 시*/
-        button_subway.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSubwayStation();
-                button_walk.setVisibility(View.INVISIBLE);
-                button_subway.setVisibility(View.INVISIBLE);
-            }
+        button_subway.setOnClickListener(v -> {
+            getSubwayStation();
+            button_walk.setVisibility(View.INVISIBLE);
+            button_subway.setVisibility(View.INVISIBLE);
         });
 
         //이전 버튼 누를 시 화면 전환
-        button_previous.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                locNum = 0;
-                Intent intent = new Intent(RouteGuideActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        button_previous.setOnClickListener(v -> {
+            locNum = 0;
+            Intent intent1 = new Intent(RouteGuideActivity.this, HomeActivity.class);
+            startActivity(intent1);
+            finish();
         });
 
         //홈 버튼 누를 시 화면 전환
-        button_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                locNum = 0;
-                Intent intent = new Intent(RouteGuideActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        button_home.setOnClickListener(v -> {
+            locNum = 0;
+            Intent intent12 = new Intent(RouteGuideActivity.this, HomeActivity.class);
+            startActivity(intent12);
+            finish();
         });
 
     }

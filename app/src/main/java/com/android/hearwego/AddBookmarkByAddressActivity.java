@@ -380,5 +380,15 @@ public class AddBookmarkByAddressActivity extends AppCompatActivity {
         @Override
         public void onEvent(int eventType, Bundle params) {}
     };
+    //tts
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
+        if(textToSpeech!=null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+            textToSpeech = null;
+        }
+    }
 }

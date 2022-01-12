@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">HearWeGo</string>
+    <string name="getPOIname">%s\n %sm</string>
+    <string name="sttResult">음성인식 결과가 여기에 표시됩니다.</string>
+    <string name="save_bookmark">즐겨찾기 등록</string>
+    <string name="add_bookmark">즐겨찾기 추가</string>
+    <string name="previous">이전</string>
+    <string name="home">홈</string>
+    <string name="bookmark_name">즐겨찾기명</string>
+    <string name="location_name">장소명</string>
+    <string name="delete_bookmark">즐겨찾기 삭제</string>
+    <string name="set_destination">목적지로 설정</string>
+    <string name="address">주소</string>
+    <string name="keyword">키워드</string>
+    <string name="facility">공공기관</string>
+    <string name="facility1">공공기관1</string>
+    <string name="facility2">공공기관2</string>
+    <string name="facility3">공공기관3</string>
+    <string name="facility4">공공기관4</string>
+    <string name="facility5">공공기관5</string>
+    <string name="facility6">공공기관6</string>
+    <string name="facility7">공공기관7</string>
+    <string name="facility8">공공기관8</string>
+    <string name="facility9">공공기관9</string>
+    <string name="facility10">공공기관10</string>
 </resources>
