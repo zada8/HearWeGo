@@ -11,9 +11,9 @@
         android:id="@+id/background"
         android:layout_width="411dp"
         android:layout_height="823dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="783dp"
+        android:layout_marginStart="783dp"
         android:layout_marginTop="1039dp"
         android:background="@drawable/background"
         tools:ignore="MissingConstraints" >
@@ -24,10 +24,11 @@
             android:id="@+id/frame_menu"
             android:layout_width="395dp"
             android:layout_height="775dp"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="24dp">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            tools:ignore="UselessParent">
 
             <!-- Menu navi -->
             <Button
@@ -41,7 +42,8 @@
                 android:textColor="@color/yellow"
                 android:textSize="56sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/inter_medium"/>
+                android:fontFamily="@font/inter_medium"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <!-- Menu surroundings -->
             <Button
@@ -56,7 +58,8 @@
                 android:textColor="@color/yellow"
                 android:textSize="56sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/inter_medium"/>
+                android:fontFamily="@font/inter_medium"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <!-- Menu bookmarks -->
             <Button
@@ -71,7 +74,8 @@
                 android:textColor="@color/yellow"
                 android:textSize="56sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/inter_medium"/>
+                android:fontFamily="@font/inter_medium"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
             <!-- Menu setting -->
             <Button
@@ -86,7 +90,8 @@
                 android:textColor="@color/yellow"
                 android:textSize="56sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/inter_medium"/>
+                android:fontFamily="@font/inter_medium"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
         </RelativeLayout>
 
     </RelativeLayout>
