@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">HearWeGo</string>
     <string name="getPOIname">%s\n %sm</string>
+    <string name="guidetext">출발역은 %s역 입니다.</string>
+    <string name="guidetext2">다음역은 %s역 입니다.</string>
+    <string name="guidetext3">환승없음\n 지하철 노선은 %s 입니다</string>
+    <string name="guidetext4">남은 환승 횟수는 %d번 입니다.</string>
+    <string name="guidetext5">"지하철 노선은 "%s 입니다."</string>
+    <string name="guidetext6">다음역인 %s에서 %s으로 환승합니다.</string>
+    <string name="reDistance">%sm</string>
     <string name="sttResult">음성인식 결과가 여기에 표시됩니다.</string>
     <string name="save_bookmark">즐겨찾기 등록</string>
     <string name="add_bookmark">즐겨찾기 추가</string>
